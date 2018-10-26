@@ -2,14 +2,12 @@ package com.yueya.common.base;
 import org.jooq.*;
 import org.jooq.impl.DAOImpl;
 import org.jooq.impl.DSL;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.name;
 
 public abstract class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T> {
+
 
     private final String TEMP_TABLE_NAME="query_temp";
     protected BaseDao(Table table, Class type) {
