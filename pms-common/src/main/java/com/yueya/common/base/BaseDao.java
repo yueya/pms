@@ -24,12 +24,12 @@ public abstract class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImp
         DSLContext create=DSL.using(super.configuration());
         Table<R> table=getTable();
         List<P> result;
-        //如果分页offet超过1000，使用延迟关联子查询提高分页速度
+        //如果分页offset超过1000，使用延迟关联子查询提高分页速度
         if(offset>1000 && !table.getIndexes().isEmpty()){
             String indexName=table.getIndexes().get(0).getFields().get(0).getName();
             Field index=field(name(getTable().getName(),indexName));
             result=create
-                    .select()
+                    .select(table.fields())
                     .from(table)
                     .join(create.select(index).from(table).where(conditions)
                             .limit(offset,limit).asTable(TEMP_TABLE_NAME))
