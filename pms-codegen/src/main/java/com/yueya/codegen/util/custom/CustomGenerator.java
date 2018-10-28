@@ -20,6 +20,7 @@ public class CustomGenerator extends JavaGenerator {
         super.generateDaoClassFooter(table, out);
     }
 
+
     @Override
     protected void generateDao(TableDefinition table, JavaWriter out) {
         UniqueKeyDefinition key = table.getPrimaryKey();

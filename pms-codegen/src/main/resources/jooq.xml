@@ -3,9 +3,9 @@
     <!-- Configure the database connection here -->
     <jdbc>
         <driver>com.mysql.jdbc.Driver</driver>
-        <url>jdbc:mysql://localhost:3306/jeesite?useUnicode=true&amp;characterEncoding=UTF-8</url>
+        <url>jdbc:mysql://localhost:3308/jeesite?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8</url>
         <user>root</user>
-        <password>123456</password>
+        <password>root</password>
     </jdbc>
 
     <generator>
@@ -15,7 +15,7 @@
              - org.jooq.codegen.ScalaGenerator
              Defaults to org.jooq.codegen.JavaGenerator -->
         <name>com.yueya.codegen.util.custom.CustomGenerator</name>
-        <name>org.jooq.codegen.JavaGenerator</name>
+       <!-- <name>org.jooq.codegen.JavaGenerator</name>-->
         <strategy>
             <name>com.yueya.codegen.util.custom.CustomStrategy</name>
         </strategy>
@@ -44,10 +44,12 @@
             <packageName>com.yueya.system.dao</packageName>
 
             <!-- The destination directory of your generated classes. Using Maven directory layout here -->
-            <directory>/home/yueya/sql</directory>
+            <directory>D:/src/pms/</directory>
         </target>
         <generate>
             <daos>true</daos>
+            <generatedAnnotation>false</generatedAnnotation>
+            <springAnnotations>true</springAnnotations>
         </generate>
     </generator>
 </configuration>
