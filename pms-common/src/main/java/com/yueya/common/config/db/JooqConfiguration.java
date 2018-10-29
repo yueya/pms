@@ -2,18 +2,18 @@ package com.yueya.common.config.db;
 
 import com.yueya.common.config.datasource.DataSourceConfiguration;
 import org.jooq.SQLDialect;
-import org.jooq.impl.DataSourceConnectionProvider;
-import org.jooq.impl.DefaultConfiguration;
-import org.jooq.impl.DefaultDSLContext;
-import org.jooq.impl.DefaultExecuteListenerProvider;
+import org.jooq.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 @Configuration
 @AutoConfigureAfter(DataSourceConfiguration.class)
@@ -40,6 +40,7 @@ public class JooqConfiguration {
     }
     @Bean
     public org.jooq.Configuration configuration() {
+
         DefaultConfiguration jooqConfiguration = new DefaultConfiguration();
         jooqConfiguration.set(connectionProviderMaster());
         jooqConfiguration.set(new DefaultExecuteListenerProvider(dbListener));

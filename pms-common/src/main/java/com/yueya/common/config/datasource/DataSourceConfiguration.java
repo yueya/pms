@@ -11,6 +11,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -23,7 +24,7 @@ public class DataSourceConfiguration {
     @Bean(name = "masterDataSource")
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.druid.one")
-    public DataSource masterDataSource() throws SQLException {
+    public DataSource masterDataSource() {
         DataSource masterDataSource = DataSourceBuilder.create().type(dataSourceType).build();
         return masterDataSource;
     }
@@ -33,6 +34,19 @@ public class DataSourceConfiguration {
         DataSource slaveDataSource = DataSourceBuilder.create().type(dataSourceType).build();
         return slaveDataSource;
     }
+   /* @Primary
+    @Bean(name = "transactionManagerMaster")
+    public DataSourceTransactionManager transactionManagerMaster() {
+        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+        transactionManager.setDataSource(masterDataSource());
+        return transactionManager;
+    }
+    @Bean(name = "transactionManagerSlave")
+    public DataSourceTransactionManager transactionManagerSlave() {
+        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+        transactionManager.setDataSource(masterDataSource());
+        return transactionManager;
+    }*/
     @Bean
     public ServletRegistrationBean druidServlet() {
 
