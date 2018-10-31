@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50635
 File Encoding         : 65001
 
-Date: 2018-11-01 00:18:13
+Date: 2018-11-01 00:38:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,16 +37,6 @@ CREATE TABLE `sys_area` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='区域表';
 
 -- ----------------------------
--- Records of sys_area
--- ----------------------------
-INSERT INTO `sys_area` VALUES ('1', '0', '0,', '中国', '10', '100000', '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_area` VALUES ('2', '1', '0,1,', '山东省', '20', '110000', '2', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_area` VALUES ('3', '2', '0,1,2,', '济南市', '30', '110101', '3', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_area` VALUES ('4', '3', '0,1,2,3,', '历城区', '40', '110102', '4', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_area` VALUES ('5', '3', '0,1,2,3,', '历下区', '50', '110104', '4', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_area` VALUES ('6', '3', '0,1,2,3,', '高新区', '60', '110105', '4', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-
--- ----------------------------
 -- Table structure for sys_dict
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict`;
@@ -61,10 +51,6 @@ CREATE TABLE `sys_dict` (
   `del_flag` char(1) DEFAULT NULL COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of sys_dict
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_log
@@ -88,10 +74,6 @@ CREATE TABLE `sys_log` (
   KEY `sys_log_type` (`type`) USING BTREE,
   KEY `sys_log_create_date` (`create_date`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='日志表';
-
--- ----------------------------
--- Records of sys_log
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -120,10 +102,6 @@ CREATE TABLE `sys_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of sys_menu
--- ----------------------------
-
--- ----------------------------
 -- Table structure for sys_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_permission`;
@@ -139,10 +117,6 @@ CREATE TABLE `sys_permission` (
   `del_flag` char(1) DEFAULT NULL COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of sys_permission
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -162,10 +136,6 @@ CREATE TABLE `sys_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of sys_role
--- ----------------------------
-
--- ----------------------------
 -- Table structure for sys_role_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
@@ -177,10 +147,6 @@ CREATE TABLE `sys_role_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of sys_role_menu
--- ----------------------------
-
--- ----------------------------
 -- Table structure for sys_role_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_permission`;
@@ -190,10 +156,6 @@ CREATE TABLE `sys_role_permission` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of sys_role_permission
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_system
@@ -209,10 +171,6 @@ CREATE TABLE `sys_system` (
   `def_flag` varchar(45) DEFAULT NULL COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of sys_system
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -240,29 +198,11 @@ CREATE TABLE `sys_user` (
   `remarks` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
   `del_flag` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`),
-  KEY `sys_user_office_id` (`department_id`) USING BTREE,
   KEY `sys_user_login_name` (`login_name`) USING BTREE,
-  KEY `sys_user_company_id` (`organization_id`) USING BTREE,
-  KEY `sys_user_update_date` (`gmt_modified`) USING BTREE,
-  KEY `sys_user_del_flag` (`del_flag`) USING BTREE
+  KEY `sys_user_del_flag` (`del_flag`) USING BTREE,
+  KEY `sys_user_organization_id` (`organization_id`) USING BTREE,
+  KEY `sys_user_department_id` (`department_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户表';
-
--- ----------------------------
--- Records of sys_user
--- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', null, '1', '2', 'thinkgem', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0001', '系统管理员', 'thinkgem@163.com', '8675', '8675', null, null, '192.168.13.235', '2018-01-30 11:52:24', '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', '最高管理员', '0');
-INSERT INTO `sys_user` VALUES ('2', null, '1', '2', 'sd_admin', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0002', '管理员', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('3', null, '1', '3', 'sd_zhb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0003', '综合部', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('4', null, '1', '4', 'sd_scb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0004', '市场部', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('5', null, '1', '5', 'sd_jsb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0005', '技术部', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('6', null, '1', '6', 'sd_yfb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0006', '研发部', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('7', null, '7', '8', 'jn_admin', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0007', '济南领导', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('8', null, '7', '9', 'jn_zhb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0008', '济南综合部', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('9', null, '7', '10', 'jn_scb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0009', '济南市场部', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('10', null, '7', '11', 'jn_jsb', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0010', '济南技术部', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('11', null, '12', '13', 'lc_admin', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0011', '济南历城领导', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('12', null, '12', '18', 'lx_admin', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0012', '济南历下领导', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_user` VALUES ('13', null, '22', '23', 'gx_admin', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0013', '济南高新领导', null, null, null, null, null, null, null, '1', '2013-05-27 08:00:00', '2013-05-27 08:00:00', null, '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -274,7 +214,3 @@ CREATE TABLE `sys_user_role` (
   `role_id` int(11) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of sys_user_role
--- ----------------------------
