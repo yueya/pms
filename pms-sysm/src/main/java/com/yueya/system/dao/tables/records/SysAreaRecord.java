@@ -10,199 +10,172 @@ import java.sql.Timestamp;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record13;
-import org.jooq.Row13;
+import org.jooq.Record11;
+import org.jooq.Row11;
 import org.jooq.impl.UpdatableRecordImpl;
+import org.jooq.types.ULong;
 
 
 /**
  * 区域表
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements Record13<String, String, String, String, Long, String, String, String, Timestamp, String, Timestamp, String, String> {
+public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements Record11<ULong, Long, String, String, Integer, String, String, Timestamp, Timestamp, String, String> {
 
-    private static final long serialVersionUID = 197038631;
+    private static final long serialVersionUID = 318072800;
 
     /**
-     * Setter for <code>jeesite.sys_area.id</code>. 编号
+     * Setter for <code>pms.sys_area.id</code>. 编号
      */
-    public void setId(String value) {
+    public void setId(ULong value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.id</code>. 编号
+     * Getter for <code>pms.sys_area.id</code>. 编号
      */
-    public String getId() {
-        return (String) get(0);
+    public ULong getId() {
+        return (ULong) get(0);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.parent_id</code>. 父级编号
+     * Setter for <code>pms.sys_area.parent_id</code>. 父级编号
      */
-    public void setParentId(String value) {
+    public void setParentId(Long value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.parent_id</code>. 父级编号
+     * Getter for <code>pms.sys_area.parent_id</code>. 父级编号
      */
-    public String getParentId() {
-        return (String) get(1);
+    public Long getParentId() {
+        return (Long) get(1);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.parent_ids</code>. 所有父级编号
+     * Setter for <code>pms.sys_area.parent_ids</code>. 所有父级编号
      */
     public void setParentIds(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.parent_ids</code>. 所有父级编号
+     * Getter for <code>pms.sys_area.parent_ids</code>. 所有父级编号
      */
     public String getParentIds() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.name</code>. 名称
+     * Setter for <code>pms.sys_area.name</code>. 名称
      */
     public void setName(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.name</code>. 名称
+     * Getter for <code>pms.sys_area.name</code>. 名称
      */
     public String getName() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.sort</code>. 排序
+     * Setter for <code>pms.sys_area.sort</code>. 排序
      */
-    public void setSort(Long value) {
+    public void setSort(Integer value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.sort</code>. 排序
+     * Getter for <code>pms.sys_area.sort</code>. 排序
      */
-    public Long getSort() {
-        return (Long) get(4);
+    public Integer getSort() {
+        return (Integer) get(4);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.code</code>. 区域编码
+     * Setter for <code>pms.sys_area.code</code>. 区域编码
      */
     public void setCode(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.code</code>. 区域编码
+     * Getter for <code>pms.sys_area.code</code>. 区域编码
      */
     public String getCode() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.type</code>. 区域类型
+     * Setter for <code>pms.sys_area.type</code>. 区域类型
      */
     public void setType(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.type</code>. 区域类型
+     * Getter for <code>pms.sys_area.type</code>. 区域类型
      */
     public String getType() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.create_by</code>. 创建者
+     * Setter for <code>pms.sys_area.gmt_create</code>. 创建时间
      */
-    public void setCreateBy(String value) {
+    public void setGmtCreate(Timestamp value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.create_by</code>. 创建者
+     * Getter for <code>pms.sys_area.gmt_create</code>. 创建时间
      */
-    public String getCreateBy() {
-        return (String) get(7);
+    public Timestamp getGmtCreate() {
+        return (Timestamp) get(7);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.create_date</code>. 创建时间
+     * Setter for <code>pms.sys_area.gmt_modified</code>. 更新时间
      */
-    public void setCreateDate(Timestamp value) {
+    public void setGmtModified(Timestamp value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.create_date</code>. 创建时间
+     * Getter for <code>pms.sys_area.gmt_modified</code>. 更新时间
      */
-    public Timestamp getCreateDate() {
+    public Timestamp getGmtModified() {
         return (Timestamp) get(8);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.update_by</code>. 更新者
+     * Setter for <code>pms.sys_area.remarks</code>. 备注信息
      */
-    public void setUpdateBy(String value) {
+    public void setRemarks(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.update_by</code>. 更新者
+     * Getter for <code>pms.sys_area.remarks</code>. 备注信息
      */
-    public String getUpdateBy() {
+    public String getRemarks() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>jeesite.sys_area.update_date</code>. 更新时间
+     * Setter for <code>pms.sys_area.del_flag</code>. 删除标记
      */
-    public void setUpdateDate(Timestamp value) {
+    public void setDelFlag(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_area.update_date</code>. 更新时间
-     */
-    public Timestamp getUpdateDate() {
-        return (Timestamp) get(10);
-    }
-
-    /**
-     * Setter for <code>jeesite.sys_area.remarks</code>. 备注信息
-     */
-    public void setRemarks(String value) {
-        set(11, value);
-    }
-
-    /**
-     * Getter for <code>jeesite.sys_area.remarks</code>. 备注信息
-     */
-    public String getRemarks() {
-        return (String) get(11);
-    }
-
-    /**
-     * Setter for <code>jeesite.sys_area.del_flag</code>. 删除标记
-     */
-    public void setDelFlag(String value) {
-        set(12, value);
-    }
-
-    /**
-     * Getter for <code>jeesite.sys_area.del_flag</code>. 删除标记
+     * Getter for <code>pms.sys_area.del_flag</code>. 删除标记
      */
     public String getDelFlag() {
-        return (String) get(12);
+        return (String) get(10);
     }
 
     // -------------------------------------------------------------------------
@@ -213,35 +186,35 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Record1<String> key() {
+    public Record1<ULong> key() {
         return (Record1) super.key();
     }
 
     // -------------------------------------------------------------------------
-    // Record13 type implementation
+    // Record11 type implementation
     // -------------------------------------------------------------------------
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Row13<String, String, String, String, Long, String, String, String, Timestamp, String, Timestamp, String, String> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Row11<ULong, Long, String, String, Integer, String, String, Timestamp, Timestamp, String, String> fieldsRow() {
+        return (Row11) super.fieldsRow();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Row13<String, String, String, String, Long, String, String, String, Timestamp, String, Timestamp, String, String> valuesRow() {
-        return (Row13) super.valuesRow();
+    public Row11<ULong, Long, String, String, Integer, String, String, Timestamp, Timestamp, String, String> valuesRow() {
+        return (Row11) super.valuesRow();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field1() {
+    public Field<ULong> field1() {
         return SysArea.SYS_AREA.ID;
     }
 
@@ -249,7 +222,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field2() {
+    public Field<Long> field2() {
         return SysArea.SYS_AREA.PARENT_ID;
     }
 
@@ -273,7 +246,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<Long> field5() {
+    public Field<Integer> field5() {
         return SysArea.SYS_AREA.SORT;
     }
 
@@ -297,8 +270,8 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field8() {
-        return SysArea.SYS_AREA.CREATE_BY;
+    public Field<Timestamp> field8() {
+        return SysArea.SYS_AREA.GMT_CREATE;
     }
 
     /**
@@ -306,7 +279,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      */
     @Override
     public Field<Timestamp> field9() {
-        return SysArea.SYS_AREA.CREATE_DATE;
+        return SysArea.SYS_AREA.GMT_MODIFIED;
     }
 
     /**
@@ -314,22 +287,6 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      */
     @Override
     public Field<String> field10() {
-        return SysArea.SYS_AREA.UPDATE_BY;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Field<Timestamp> field11() {
-        return SysArea.SYS_AREA.UPDATE_DATE;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Field<String> field12() {
         return SysArea.SYS_AREA.REMARKS;
     }
 
@@ -337,7 +294,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field13() {
+    public Field<String> field11() {
         return SysArea.SYS_AREA.DEL_FLAG;
     }
 
@@ -345,7 +302,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String component1() {
+    public ULong component1() {
         return getId();
     }
 
@@ -353,7 +310,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String component2() {
+    public Long component2() {
         return getParentId();
     }
 
@@ -377,7 +334,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Long component5() {
+    public Integer component5() {
         return getSort();
     }
 
@@ -401,8 +358,8 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String component8() {
-        return getCreateBy();
+    public Timestamp component8() {
+        return getGmtCreate();
     }
 
     /**
@@ -410,7 +367,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      */
     @Override
     public Timestamp component9() {
-        return getCreateDate();
+        return getGmtModified();
     }
 
     /**
@@ -418,22 +375,6 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      */
     @Override
     public String component10() {
-        return getUpdateBy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Timestamp component11() {
-        return getUpdateDate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String component12() {
         return getRemarks();
     }
 
@@ -441,7 +382,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String component13() {
+    public String component11() {
         return getDelFlag();
     }
 
@@ -449,7 +390,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String value1() {
+    public ULong value1() {
         return getId();
     }
 
@@ -457,7 +398,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String value2() {
+    public Long value2() {
         return getParentId();
     }
 
@@ -481,7 +422,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Long value5() {
+    public Integer value5() {
         return getSort();
     }
 
@@ -505,8 +446,8 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String value8() {
-        return getCreateBy();
+    public Timestamp value8() {
+        return getGmtCreate();
     }
 
     /**
@@ -514,7 +455,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      */
     @Override
     public Timestamp value9() {
-        return getCreateDate();
+        return getGmtModified();
     }
 
     /**
@@ -522,22 +463,6 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      */
     @Override
     public String value10() {
-        return getUpdateBy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Timestamp value11() {
-        return getUpdateDate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String value12() {
         return getRemarks();
     }
 
@@ -545,7 +470,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String value13() {
+    public String value11() {
         return getDelFlag();
     }
 
@@ -553,7 +478,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysAreaRecord value1(String value) {
+    public SysAreaRecord value1(ULong value) {
         setId(value);
         return this;
     }
@@ -562,7 +487,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysAreaRecord value2(String value) {
+    public SysAreaRecord value2(Long value) {
         setParentId(value);
         return this;
     }
@@ -589,7 +514,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysAreaRecord value5(Long value) {
+    public SysAreaRecord value5(Integer value) {
         setSort(value);
         return this;
     }
@@ -616,8 +541,8 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysAreaRecord value8(String value) {
-        setCreateBy(value);
+    public SysAreaRecord value8(Timestamp value) {
+        setGmtCreate(value);
         return this;
     }
 
@@ -626,7 +551,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      */
     @Override
     public SysAreaRecord value9(Timestamp value) {
-        setCreateDate(value);
+        setGmtModified(value);
         return this;
     }
 
@@ -635,24 +560,6 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      */
     @Override
     public SysAreaRecord value10(String value) {
-        setUpdateBy(value);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public SysAreaRecord value11(Timestamp value) {
-        setUpdateDate(value);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public SysAreaRecord value12(String value) {
         setRemarks(value);
         return this;
     }
@@ -661,7 +568,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysAreaRecord value13(String value) {
+    public SysAreaRecord value11(String value) {
         setDelFlag(value);
         return this;
     }
@@ -670,7 +577,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysAreaRecord values(String value1, String value2, String value3, String value4, Long value5, String value6, String value7, String value8, Timestamp value9, String value10, Timestamp value11, String value12, String value13) {
+    public SysAreaRecord values(ULong value1, Long value2, String value3, String value4, Integer value5, String value6, String value7, Timestamp value8, Timestamp value9, String value10, String value11) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -682,8 +589,6 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
         value9(value9);
         value10(value10);
         value11(value11);
-        value12(value12);
-        value13(value13);
         return this;
     }
 
@@ -701,7 +606,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
     /**
      * Create a detached, initialised SysAreaRecord
      */
-    public SysAreaRecord(String id, String parentId, String parentIds, String name, Long sort, String code, String type, String createBy, Timestamp createDate, String updateBy, Timestamp updateDate, String remarks, String delFlag) {
+    public SysAreaRecord(ULong id, Long parentId, String parentIds, String name, Integer sort, String code, String type, Timestamp gmtCreate, Timestamp gmtModified, String remarks, String delFlag) {
         super(SysArea.SYS_AREA);
 
         set(0, id);
@@ -711,11 +616,9 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
         set(4, sort);
         set(5, code);
         set(6, type);
-        set(7, createBy);
-        set(8, createDate);
-        set(9, updateBy);
-        set(10, updateDate);
-        set(11, remarks);
-        set(12, delFlag);
+        set(7, gmtCreate);
+        set(8, gmtModified);
+        set(9, remarks);
+        set(10, delFlag);
     }
 }

@@ -8,10 +8,11 @@ import com.yueya.system.dao.tables.SysArea;
 import com.yueya.system.dao.tables.SysDict;
 import com.yueya.system.dao.tables.SysLog;
 import com.yueya.system.dao.tables.SysMenu;
-import com.yueya.system.dao.tables.SysOffice;
+import com.yueya.system.dao.tables.SysPermission;
 import com.yueya.system.dao.tables.SysRole;
 import com.yueya.system.dao.tables.SysRoleMenu;
-import com.yueya.system.dao.tables.SysRoleOffice;
+import com.yueya.system.dao.tables.SysRolePermission;
+import com.yueya.system.dao.tables.SysSystem;
 import com.yueya.system.dao.tables.SysUser;
 import com.yueya.system.dao.tables.SysUserRole;
 
@@ -21,7 +22,7 @@ import org.jooq.impl.Internal;
 
 
 /**
- * A class modelling indexes of tables of the <code>jeesite</code> schema.
+ * A class modelling indexes of tables of the <code>pms</code> schema.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Indexes {
@@ -34,32 +35,22 @@ public class Indexes {
     public static final Index SYS_AREA_SYS_AREA_DEL_FLAG = Indexes0.SYS_AREA_SYS_AREA_DEL_FLAG;
     public static final Index SYS_AREA_SYS_AREA_PARENT_ID = Indexes0.SYS_AREA_SYS_AREA_PARENT_ID;
     public static final Index SYS_DICT_PRIMARY = Indexes0.SYS_DICT_PRIMARY;
-    public static final Index SYS_DICT_SYS_DICT_DEL_FLAG = Indexes0.SYS_DICT_SYS_DICT_DEL_FLAG;
-    public static final Index SYS_DICT_SYS_DICT_LABEL = Indexes0.SYS_DICT_SYS_DICT_LABEL;
-    public static final Index SYS_DICT_SYS_DICT_VALUE = Indexes0.SYS_DICT_SYS_DICT_VALUE;
     public static final Index SYS_LOG_PRIMARY = Indexes0.SYS_LOG_PRIMARY;
     public static final Index SYS_LOG_SYS_LOG_CREATE_BY = Indexes0.SYS_LOG_SYS_LOG_CREATE_BY;
     public static final Index SYS_LOG_SYS_LOG_CREATE_DATE = Indexes0.SYS_LOG_SYS_LOG_CREATE_DATE;
     public static final Index SYS_LOG_SYS_LOG_REQUEST_URI = Indexes0.SYS_LOG_SYS_LOG_REQUEST_URI;
     public static final Index SYS_LOG_SYS_LOG_TYPE = Indexes0.SYS_LOG_SYS_LOG_TYPE;
     public static final Index SYS_MENU_PRIMARY = Indexes0.SYS_MENU_PRIMARY;
-    public static final Index SYS_MENU_SYS_MENU_DEL_FLAG = Indexes0.SYS_MENU_SYS_MENU_DEL_FLAG;
-    public static final Index SYS_MENU_SYS_MENU_PARENT_ID = Indexes0.SYS_MENU_SYS_MENU_PARENT_ID;
-    public static final Index SYS_OFFICE_PRIMARY = Indexes0.SYS_OFFICE_PRIMARY;
-    public static final Index SYS_OFFICE_SYS_OFFICE_DEL_FLAG = Indexes0.SYS_OFFICE_SYS_OFFICE_DEL_FLAG;
-    public static final Index SYS_OFFICE_SYS_OFFICE_PARENT_ID = Indexes0.SYS_OFFICE_SYS_OFFICE_PARENT_ID;
-    public static final Index SYS_OFFICE_SYS_OFFICE_TYPE = Indexes0.SYS_OFFICE_SYS_OFFICE_TYPE;
+    public static final Index SYS_PERMISSION_PRIMARY = Indexes0.SYS_PERMISSION_PRIMARY;
     public static final Index SYS_ROLE_PRIMARY = Indexes0.SYS_ROLE_PRIMARY;
-    public static final Index SYS_ROLE_SYS_ROLE_DEL_FLAG = Indexes0.SYS_ROLE_SYS_ROLE_DEL_FLAG;
-    public static final Index SYS_ROLE_SYS_ROLE_ENNAME = Indexes0.SYS_ROLE_SYS_ROLE_ENNAME;
     public static final Index SYS_ROLE_MENU_PRIMARY = Indexes0.SYS_ROLE_MENU_PRIMARY;
-    public static final Index SYS_ROLE_OFFICE_PRIMARY = Indexes0.SYS_ROLE_OFFICE_PRIMARY;
+    public static final Index SYS_ROLE_PERMISSION_PRIMARY = Indexes0.SYS_ROLE_PERMISSION_PRIMARY;
+    public static final Index SYS_SYSTEM_PRIMARY = Indexes0.SYS_SYSTEM_PRIMARY;
     public static final Index SYS_USER_PRIMARY = Indexes0.SYS_USER_PRIMARY;
-    public static final Index SYS_USER_SYS_USER_COMPANY_ID = Indexes0.SYS_USER_SYS_USER_COMPANY_ID;
     public static final Index SYS_USER_SYS_USER_DEL_FLAG = Indexes0.SYS_USER_SYS_USER_DEL_FLAG;
+    public static final Index SYS_USER_SYS_USER_DEPARTMENT_ID = Indexes0.SYS_USER_SYS_USER_DEPARTMENT_ID;
     public static final Index SYS_USER_SYS_USER_LOGIN_NAME = Indexes0.SYS_USER_SYS_USER_LOGIN_NAME;
-    public static final Index SYS_USER_SYS_USER_OFFICE_ID = Indexes0.SYS_USER_SYS_USER_OFFICE_ID;
-    public static final Index SYS_USER_SYS_USER_UPDATE_DATE = Indexes0.SYS_USER_SYS_USER_UPDATE_DATE;
+    public static final Index SYS_USER_SYS_USER_ORGANIZATION_ID = Indexes0.SYS_USER_SYS_USER_ORGANIZATION_ID;
     public static final Index SYS_USER_ROLE_PRIMARY = Indexes0.SYS_USER_ROLE_PRIMARY;
 
     // -------------------------------------------------------------------------
@@ -71,32 +62,22 @@ public class Indexes {
         public static Index SYS_AREA_SYS_AREA_DEL_FLAG = Internal.createIndex("sys_area_del_flag", SysArea.SYS_AREA, new OrderField[] { SysArea.SYS_AREA.DEL_FLAG }, false);
         public static Index SYS_AREA_SYS_AREA_PARENT_ID = Internal.createIndex("sys_area_parent_id", SysArea.SYS_AREA, new OrderField[] { SysArea.SYS_AREA.PARENT_ID }, false);
         public static Index SYS_DICT_PRIMARY = Internal.createIndex("PRIMARY", SysDict.SYS_DICT, new OrderField[] { SysDict.SYS_DICT.ID }, true);
-        public static Index SYS_DICT_SYS_DICT_DEL_FLAG = Internal.createIndex("sys_dict_del_flag", SysDict.SYS_DICT, new OrderField[] { SysDict.SYS_DICT.DEL_FLAG }, false);
-        public static Index SYS_DICT_SYS_DICT_LABEL = Internal.createIndex("sys_dict_label", SysDict.SYS_DICT, new OrderField[] { SysDict.SYS_DICT.LABEL }, false);
-        public static Index SYS_DICT_SYS_DICT_VALUE = Internal.createIndex("sys_dict_value", SysDict.SYS_DICT, new OrderField[] { SysDict.SYS_DICT.VALUE }, false);
         public static Index SYS_LOG_PRIMARY = Internal.createIndex("PRIMARY", SysLog.SYS_LOG, new OrderField[] { SysLog.SYS_LOG.ID }, true);
         public static Index SYS_LOG_SYS_LOG_CREATE_BY = Internal.createIndex("sys_log_create_by", SysLog.SYS_LOG, new OrderField[] { SysLog.SYS_LOG.CREATE_BY }, false);
         public static Index SYS_LOG_SYS_LOG_CREATE_DATE = Internal.createIndex("sys_log_create_date", SysLog.SYS_LOG, new OrderField[] { SysLog.SYS_LOG.CREATE_DATE }, false);
         public static Index SYS_LOG_SYS_LOG_REQUEST_URI = Internal.createIndex("sys_log_request_uri", SysLog.SYS_LOG, new OrderField[] { SysLog.SYS_LOG.REQUEST_URI }, false);
         public static Index SYS_LOG_SYS_LOG_TYPE = Internal.createIndex("sys_log_type", SysLog.SYS_LOG, new OrderField[] { SysLog.SYS_LOG.TYPE }, false);
         public static Index SYS_MENU_PRIMARY = Internal.createIndex("PRIMARY", SysMenu.SYS_MENU, new OrderField[] { SysMenu.SYS_MENU.ID }, true);
-        public static Index SYS_MENU_SYS_MENU_DEL_FLAG = Internal.createIndex("sys_menu_del_flag", SysMenu.SYS_MENU, new OrderField[] { SysMenu.SYS_MENU.DEL_FLAG }, false);
-        public static Index SYS_MENU_SYS_MENU_PARENT_ID = Internal.createIndex("sys_menu_parent_id", SysMenu.SYS_MENU, new OrderField[] { SysMenu.SYS_MENU.PARENT_ID }, false);
-        public static Index SYS_OFFICE_PRIMARY = Internal.createIndex("PRIMARY", SysOffice.SYS_OFFICE, new OrderField[] { SysOffice.SYS_OFFICE.ID }, true);
-        public static Index SYS_OFFICE_SYS_OFFICE_DEL_FLAG = Internal.createIndex("sys_office_del_flag", SysOffice.SYS_OFFICE, new OrderField[] { SysOffice.SYS_OFFICE.DEL_FLAG }, false);
-        public static Index SYS_OFFICE_SYS_OFFICE_PARENT_ID = Internal.createIndex("sys_office_parent_id", SysOffice.SYS_OFFICE, new OrderField[] { SysOffice.SYS_OFFICE.PARENT_ID }, false);
-        public static Index SYS_OFFICE_SYS_OFFICE_TYPE = Internal.createIndex("sys_office_type", SysOffice.SYS_OFFICE, new OrderField[] { SysOffice.SYS_OFFICE.TYPE }, false);
+        public static Index SYS_PERMISSION_PRIMARY = Internal.createIndex("PRIMARY", SysPermission.SYS_PERMISSION, new OrderField[] { SysPermission.SYS_PERMISSION.ID }, true);
         public static Index SYS_ROLE_PRIMARY = Internal.createIndex("PRIMARY", SysRole.SYS_ROLE, new OrderField[] { SysRole.SYS_ROLE.ID }, true);
-        public static Index SYS_ROLE_SYS_ROLE_DEL_FLAG = Internal.createIndex("sys_role_del_flag", SysRole.SYS_ROLE, new OrderField[] { SysRole.SYS_ROLE.DEL_FLAG }, false);
-        public static Index SYS_ROLE_SYS_ROLE_ENNAME = Internal.createIndex("sys_role_enname", SysRole.SYS_ROLE, new OrderField[] { SysRole.SYS_ROLE.ENNAME }, false);
-        public static Index SYS_ROLE_MENU_PRIMARY = Internal.createIndex("PRIMARY", SysRoleMenu.SYS_ROLE_MENU, new OrderField[] { SysRoleMenu.SYS_ROLE_MENU.ROLE_ID, SysRoleMenu.SYS_ROLE_MENU.MENU_ID }, true);
-        public static Index SYS_ROLE_OFFICE_PRIMARY = Internal.createIndex("PRIMARY", SysRoleOffice.SYS_ROLE_OFFICE, new OrderField[] { SysRoleOffice.SYS_ROLE_OFFICE.ROLE_ID, SysRoleOffice.SYS_ROLE_OFFICE.OFFICE_ID }, true);
+        public static Index SYS_ROLE_MENU_PRIMARY = Internal.createIndex("PRIMARY", SysRoleMenu.SYS_ROLE_MENU, new OrderField[] { SysRoleMenu.SYS_ROLE_MENU.ID }, true);
+        public static Index SYS_ROLE_PERMISSION_PRIMARY = Internal.createIndex("PRIMARY", SysRolePermission.SYS_ROLE_PERMISSION, new OrderField[] { SysRolePermission.SYS_ROLE_PERMISSION.ID }, true);
+        public static Index SYS_SYSTEM_PRIMARY = Internal.createIndex("PRIMARY", SysSystem.SYS_SYSTEM, new OrderField[] { SysSystem.SYS_SYSTEM.ID }, true);
         public static Index SYS_USER_PRIMARY = Internal.createIndex("PRIMARY", SysUser.SYS_USER, new OrderField[] { SysUser.SYS_USER.ID }, true);
-        public static Index SYS_USER_SYS_USER_COMPANY_ID = Internal.createIndex("sys_user_company_id", SysUser.SYS_USER, new OrderField[] { SysUser.SYS_USER.COMPANY_ID }, false);
         public static Index SYS_USER_SYS_USER_DEL_FLAG = Internal.createIndex("sys_user_del_flag", SysUser.SYS_USER, new OrderField[] { SysUser.SYS_USER.DEL_FLAG }, false);
+        public static Index SYS_USER_SYS_USER_DEPARTMENT_ID = Internal.createIndex("sys_user_department_id", SysUser.SYS_USER, new OrderField[] { SysUser.SYS_USER.DEPARTMENT_ID }, false);
         public static Index SYS_USER_SYS_USER_LOGIN_NAME = Internal.createIndex("sys_user_login_name", SysUser.SYS_USER, new OrderField[] { SysUser.SYS_USER.LOGIN_NAME }, false);
-        public static Index SYS_USER_SYS_USER_OFFICE_ID = Internal.createIndex("sys_user_office_id", SysUser.SYS_USER, new OrderField[] { SysUser.SYS_USER.OFFICE_ID }, false);
-        public static Index SYS_USER_SYS_USER_UPDATE_DATE = Internal.createIndex("sys_user_update_date", SysUser.SYS_USER, new OrderField[] { SysUser.SYS_USER.UPDATE_DATE }, false);
-        public static Index SYS_USER_ROLE_PRIMARY = Internal.createIndex("PRIMARY", SysUserRole.SYS_USER_ROLE, new OrderField[] { SysUserRole.SYS_USER_ROLE.USER_ID, SysUserRole.SYS_USER_ROLE.ROLE_ID }, true);
+        public static Index SYS_USER_SYS_USER_ORGANIZATION_ID = Internal.createIndex("sys_user_organization_id", SysUser.SYS_USER, new OrderField[] { SysUser.SYS_USER.ORGANIZATION_ID }, false);
+        public static Index SYS_USER_ROLE_PRIMARY = Internal.createIndex("PRIMARY", SysUserRole.SYS_USER_ROLE, new OrderField[] { SysUserRole.SYS_USER_ROLE.ID }, true);
     }
 }

@@ -8,16 +8,17 @@ import com.yueya.system.dao.tables.SysArea;
 import com.yueya.system.dao.tables.SysDict;
 import com.yueya.system.dao.tables.SysLog;
 import com.yueya.system.dao.tables.SysMenu;
-import com.yueya.system.dao.tables.SysOffice;
+import com.yueya.system.dao.tables.SysPermission;
 import com.yueya.system.dao.tables.SysRole;
 import com.yueya.system.dao.tables.SysRoleMenu;
-import com.yueya.system.dao.tables.SysRoleOffice;
+import com.yueya.system.dao.tables.SysRolePermission;
+import com.yueya.system.dao.tables.SysSystem;
 import com.yueya.system.dao.tables.SysUser;
 import com.yueya.system.dao.tables.SysUserRole;
 
 
 /**
- * Convenience access to all tables in jeesite
+ * Convenience access to all tables in pms
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
@@ -25,50 +26,55 @@ public class Tables {
     /**
      * 区域表
      */
-    public static final SysArea SYS_AREA = SysArea.SYS_AREA;
+    public static final SysArea SYS_AREA = com.yueya.system.dao.tables.SysArea.SYS_AREA;
 
     /**
-     * 字典表
+     * The table <code>pms.sys_dict</code>.
      */
-    public static final SysDict SYS_DICT = SysDict.SYS_DICT;
+    public static final SysDict SYS_DICT = com.yueya.system.dao.tables.SysDict.SYS_DICT;
 
     /**
      * 日志表
      */
-    public static final SysLog SYS_LOG = SysLog.SYS_LOG;
+    public static final SysLog SYS_LOG = com.yueya.system.dao.tables.SysLog.SYS_LOG;
 
     /**
-     * 菜单表
+     * The table <code>pms.sys_menu</code>.
      */
-    public static final SysMenu SYS_MENU = SysMenu.SYS_MENU;
+    public static final SysMenu SYS_MENU = com.yueya.system.dao.tables.SysMenu.SYS_MENU;
 
     /**
-     * 机构表
+     * The table <code>pms.sys_permission</code>.
      */
-    public static final SysOffice SYS_OFFICE = SysOffice.SYS_OFFICE;
+    public static final SysPermission SYS_PERMISSION = com.yueya.system.dao.tables.SysPermission.SYS_PERMISSION;
 
     /**
-     * 角色表
+     * The table <code>pms.sys_role</code>.
      */
-    public static final SysRole SYS_ROLE = SysRole.SYS_ROLE;
+    public static final SysRole SYS_ROLE = com.yueya.system.dao.tables.SysRole.SYS_ROLE;
 
     /**
-     * 角色-菜单
+     * The table <code>pms.sys_role_menu</code>.
      */
-    public static final SysRoleMenu SYS_ROLE_MENU = SysRoleMenu.SYS_ROLE_MENU;
+    public static final SysRoleMenu SYS_ROLE_MENU = com.yueya.system.dao.tables.SysRoleMenu.SYS_ROLE_MENU;
 
     /**
-     * 角色-机构
+     * The table <code>pms.sys_role_permission</code>.
      */
-    public static final SysRoleOffice SYS_ROLE_OFFICE = SysRoleOffice.SYS_ROLE_OFFICE;
+    public static final SysRolePermission SYS_ROLE_PERMISSION = com.yueya.system.dao.tables.SysRolePermission.SYS_ROLE_PERMISSION;
+
+    /**
+     * The table <code>pms.sys_system</code>.
+     */
+    public static final SysSystem SYS_SYSTEM = com.yueya.system.dao.tables.SysSystem.SYS_SYSTEM;
 
     /**
      * 用户表
      */
-    public static final SysUser SYS_USER = SysUser.SYS_USER;
+    public static final SysUser SYS_USER = com.yueya.system.dao.tables.SysUser.SYS_USER;
 
     /**
-     * 用户-角色
+     * The table <code>pms.sys_user_role</code>.
      */
-    public static final SysUserRole SYS_USER_ROLE = SysUserRole.SYS_USER_ROLE;
+    public static final SysUserRole SYS_USER_ROLE = com.yueya.system.dao.tables.SysUserRole.SYS_USER_ROLE;
 }

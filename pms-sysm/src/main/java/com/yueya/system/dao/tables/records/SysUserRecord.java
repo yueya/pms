@@ -10,311 +10,298 @@ import java.sql.Timestamp;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record21;
-import org.jooq.Row21;
+import org.jooq.Record20;
+import org.jooq.Row20;
 import org.jooq.impl.UpdatableRecordImpl;
+import org.jooq.types.ULong;
 
 
 /**
  * 用户表
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements Record21<String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, String, Timestamp, String, Timestamp, String, String> {
+public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements Record20<ULong, String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Timestamp, String, String> {
 
-    private static final long serialVersionUID = -747474939;
+    private static final long serialVersionUID = -936651574;
 
     /**
-     * Setter for <code>jeesite.sys_user.id</code>. 编号
+     * Setter for <code>pms.sys_user.id</code>. 编号
      */
-    public void setId(String value) {
+    public void setId(ULong value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.id</code>. 编号
+     * Getter for <code>pms.sys_user.id</code>. 编号
      */
-    public String getId() {
-        return (String) get(0);
+    public ULong getId() {
+        return (ULong) get(0);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.company_id</code>. 归属公司
+     * Setter for <code>pms.sys_user.user_code</code>. 用户标识码
      */
-    public void setCompanyId(String value) {
+    public void setUserCode(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.company_id</code>. 归属公司
+     * Getter for <code>pms.sys_user.user_code</code>. 用户标识码
      */
-    public String getCompanyId() {
+    public String getUserCode() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.office_id</code>. 归属部门
+     * Setter for <code>pms.sys_user.organization_id</code>. 归属组织
      */
-    public void setOfficeId(String value) {
+    public void setOrganizationId(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.office_id</code>. 归属部门
+     * Getter for <code>pms.sys_user.organization_id</code>. 归属组织
      */
-    public String getOfficeId() {
+    public String getOrganizationId() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.login_name</code>. 登录名
+     * Setter for <code>pms.sys_user.department_id</code>. 归属部门
      */
-    public void setLoginName(String value) {
+    public void setDepartmentId(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.login_name</code>. 登录名
+     * Getter for <code>pms.sys_user.department_id</code>. 归属部门
      */
-    public String getLoginName() {
+    public String getDepartmentId() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.password</code>. 密码
+     * Setter for <code>pms.sys_user.login_name</code>. 登录名
      */
-    public void setPassword(String value) {
+    public void setLoginName(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.password</code>. 密码
+     * Getter for <code>pms.sys_user.login_name</code>. 登录名
      */
-    public String getPassword() {
+    public String getLoginName() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.no</code>. 工号
+     * Setter for <code>pms.sys_user.password</code>. 密码
      */
-    public void setNo(String value) {
+    public void setPassword(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.no</code>. 工号
+     * Getter for <code>pms.sys_user.password</code>. 密码
      */
-    public String getNo() {
+    public String getPassword() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.name</code>. 姓名
+     * Setter for <code>pms.sys_user.user_no</code>. 工号
      */
-    public void setName(String value) {
+    public void setUserNo(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.name</code>. 姓名
+     * Getter for <code>pms.sys_user.user_no</code>. 工号
      */
-    public String getName() {
+    public String getUserNo() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.email</code>. 邮箱
+     * Setter for <code>pms.sys_user.name</code>. 姓名
      */
-    public void setEmail(String value) {
+    public void setName(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.email</code>. 邮箱
+     * Getter for <code>pms.sys_user.name</code>. 姓名
      */
-    public String getEmail() {
+    public String getName() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.phone</code>. 电话
+     * Setter for <code>pms.sys_user.email</code>. 邮箱
      */
-    public void setPhone(String value) {
+    public void setEmail(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.phone</code>. 电话
+     * Getter for <code>pms.sys_user.email</code>. 邮箱
      */
-    public String getPhone() {
+    public String getEmail() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.mobile</code>. 手机
+     * Setter for <code>pms.sys_user.phone</code>. 电话
      */
-    public void setMobile(String value) {
+    public void setPhone(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.mobile</code>. 手机
+     * Getter for <code>pms.sys_user.phone</code>. 电话
      */
-    public String getMobile() {
+    public String getPhone() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.user_type</code>. 用户类型
+     * Setter for <code>pms.sys_user.mobile</code>. 手机
      */
-    public void setUserType(String value) {
+    public void setMobile(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.user_type</code>. 用户类型
+     * Getter for <code>pms.sys_user.mobile</code>. 手机
      */
-    public String getUserType() {
+    public String getMobile() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.photo</code>. 用户头像
+     * Setter for <code>pms.sys_user.user_type</code>. 用户类型
      */
-    public void setPhoto(String value) {
+    public void setUserType(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.photo</code>. 用户头像
+     * Getter for <code>pms.sys_user.user_type</code>. 用户类型
      */
-    public String getPhoto() {
+    public String getUserType() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.login_ip</code>. 最后登陆IP
+     * Setter for <code>pms.sys_user.photo</code>. 用户头像
      */
-    public void setLoginIp(String value) {
+    public void setPhoto(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.login_ip</code>. 最后登陆IP
+     * Getter for <code>pms.sys_user.photo</code>. 用户头像
      */
-    public String getLoginIp() {
+    public String getPhoto() {
         return (String) get(12);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.login_date</code>. 最后登陆时间
+     * Setter for <code>pms.sys_user.login_ip</code>. 最后登陆IP
      */
-    public void setLoginDate(Timestamp value) {
+    public void setLoginIp(String value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.login_date</code>. 最后登陆时间
+     * Getter for <code>pms.sys_user.login_ip</code>. 最后登陆IP
      */
-    public Timestamp getLoginDate() {
-        return (Timestamp) get(13);
+    public String getLoginIp() {
+        return (String) get(13);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.login_flag</code>. 是否可登录
+     * Setter for <code>pms.sys_user.login_date</code>. 最后登陆时间
      */
-    public void setLoginFlag(String value) {
+    public void setLoginDate(Timestamp value) {
         set(14, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.login_flag</code>. 是否可登录
+     * Getter for <code>pms.sys_user.login_date</code>. 最后登陆时间
      */
-    public String getLoginFlag() {
-        return (String) get(14);
+    public Timestamp getLoginDate() {
+        return (Timestamp) get(14);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.create_by</code>. 创建者
+     * Setter for <code>pms.sys_user.login_flag</code>. 是否可登录
      */
-    public void setCreateBy(String value) {
+    public void setLoginFlag(String value) {
         set(15, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.create_by</code>. 创建者
+     * Getter for <code>pms.sys_user.login_flag</code>. 是否可登录
      */
-    public String getCreateBy() {
+    public String getLoginFlag() {
         return (String) get(15);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.create_date</code>. 创建时间
+     * Setter for <code>pms.sys_user.gmt_create</code>. 创建时间
      */
-    public void setCreateDate(Timestamp value) {
+    public void setGmtCreate(Timestamp value) {
         set(16, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.create_date</code>. 创建时间
+     * Getter for <code>pms.sys_user.gmt_create</code>. 创建时间
      */
-    public Timestamp getCreateDate() {
+    public Timestamp getGmtCreate() {
         return (Timestamp) get(16);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.update_by</code>. 更新者
+     * Setter for <code>pms.sys_user.gmt_modified</code>. 更新时间
      */
-    public void setUpdateBy(String value) {
+    public void setGmtModified(Timestamp value) {
         set(17, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.update_by</code>. 更新者
+     * Getter for <code>pms.sys_user.gmt_modified</code>. 更新时间
      */
-    public String getUpdateBy() {
-        return (String) get(17);
+    public Timestamp getGmtModified() {
+        return (Timestamp) get(17);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.update_date</code>. 更新时间
+     * Setter for <code>pms.sys_user.remarks</code>. 备注信息
      */
-    public void setUpdateDate(Timestamp value) {
+    public void setRemarks(String value) {
         set(18, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.update_date</code>. 更新时间
+     * Getter for <code>pms.sys_user.remarks</code>. 备注信息
      */
-    public Timestamp getUpdateDate() {
-        return (Timestamp) get(18);
+    public String getRemarks() {
+        return (String) get(18);
     }
 
     /**
-     * Setter for <code>jeesite.sys_user.remarks</code>. 备注信息
+     * Setter for <code>pms.sys_user.del_flag</code>. 删除标记
      */
-    public void setRemarks(String value) {
+    public void setDelFlag(String value) {
         set(19, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_user.remarks</code>. 备注信息
-     */
-    public String getRemarks() {
-        return (String) get(19);
-    }
-
-    /**
-     * Setter for <code>jeesite.sys_user.del_flag</code>. 删除标记
-     */
-    public void setDelFlag(String value) {
-        set(20, value);
-    }
-
-    /**
-     * Getter for <code>jeesite.sys_user.del_flag</code>. 删除标记
+     * Getter for <code>pms.sys_user.del_flag</code>. 删除标记
      */
     public String getDelFlag() {
-        return (String) get(20);
+        return (String) get(19);
     }
 
     // -------------------------------------------------------------------------
@@ -325,35 +312,35 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Record1<String> key() {
+    public Record1<ULong> key() {
         return (Record1) super.key();
     }
 
     // -------------------------------------------------------------------------
-    // Record21 type implementation
+    // Record20 type implementation
     // -------------------------------------------------------------------------
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Row21<String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, String, Timestamp, String, Timestamp, String, String> fieldsRow() {
-        return (Row21) super.fieldsRow();
+    public Row20<ULong, String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Timestamp, String, String> fieldsRow() {
+        return (Row20) super.fieldsRow();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Row21<String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, String, Timestamp, String, Timestamp, String, String> valuesRow() {
-        return (Row21) super.valuesRow();
+    public Row20<ULong, String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Timestamp, String, String> valuesRow() {
+        return (Row20) super.valuesRow();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field1() {
+    public Field<ULong> field1() {
         return SysUser.SYS_USER.ID;
     }
 
@@ -362,7 +349,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field2() {
-        return SysUser.SYS_USER.COMPANY_ID;
+        return SysUser.SYS_USER.USER_CODE;
     }
 
     /**
@@ -370,7 +357,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field3() {
-        return SysUser.SYS_USER.OFFICE_ID;
+        return SysUser.SYS_USER.ORGANIZATION_ID;
     }
 
     /**
@@ -378,7 +365,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field4() {
-        return SysUser.SYS_USER.LOGIN_NAME;
+        return SysUser.SYS_USER.DEPARTMENT_ID;
     }
 
     /**
@@ -386,7 +373,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field5() {
-        return SysUser.SYS_USER.PASSWORD;
+        return SysUser.SYS_USER.LOGIN_NAME;
     }
 
     /**
@@ -394,7 +381,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field6() {
-        return SysUser.SYS_USER.NO;
+        return SysUser.SYS_USER.PASSWORD;
     }
 
     /**
@@ -402,7 +389,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field7() {
-        return SysUser.SYS_USER.NAME;
+        return SysUser.SYS_USER.USER_NO;
     }
 
     /**
@@ -410,7 +397,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field8() {
-        return SysUser.SYS_USER.EMAIL;
+        return SysUser.SYS_USER.NAME;
     }
 
     /**
@@ -418,7 +405,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field9() {
-        return SysUser.SYS_USER.PHONE;
+        return SysUser.SYS_USER.EMAIL;
     }
 
     /**
@@ -426,7 +413,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field10() {
-        return SysUser.SYS_USER.MOBILE;
+        return SysUser.SYS_USER.PHONE;
     }
 
     /**
@@ -434,7 +421,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field11() {
-        return SysUser.SYS_USER.USER_TYPE;
+        return SysUser.SYS_USER.MOBILE;
     }
 
     /**
@@ -442,7 +429,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field12() {
-        return SysUser.SYS_USER.PHOTO;
+        return SysUser.SYS_USER.USER_TYPE;
     }
 
     /**
@@ -450,6 +437,14 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public Field<String> field13() {
+        return SysUser.SYS_USER.PHOTO;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Field<String> field14() {
         return SysUser.SYS_USER.LOGIN_IP;
     }
 
@@ -457,7 +452,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<Timestamp> field14() {
+    public Field<Timestamp> field15() {
         return SysUser.SYS_USER.LOGIN_DATE;
     }
 
@@ -465,7 +460,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field15() {
+    public Field<String> field16() {
         return SysUser.SYS_USER.LOGIN_FLAG;
     }
 
@@ -473,39 +468,23 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field16() {
-        return SysUser.SYS_USER.CREATE_BY;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Field<Timestamp> field17() {
-        return SysUser.SYS_USER.CREATE_DATE;
+        return SysUser.SYS_USER.GMT_CREATE;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field18() {
-        return SysUser.SYS_USER.UPDATE_BY;
+    public Field<Timestamp> field18() {
+        return SysUser.SYS_USER.GMT_MODIFIED;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Field<Timestamp> field19() {
-        return SysUser.SYS_USER.UPDATE_DATE;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Field<String> field20() {
+    public Field<String> field19() {
         return SysUser.SYS_USER.REMARKS;
     }
 
@@ -513,7 +492,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field21() {
+    public Field<String> field20() {
         return SysUser.SYS_USER.DEL_FLAG;
     }
 
@@ -521,7 +500,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String component1() {
+    public ULong component1() {
         return getId();
     }
 
@@ -530,7 +509,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component2() {
-        return getCompanyId();
+        return getUserCode();
     }
 
     /**
@@ -538,7 +517,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component3() {
-        return getOfficeId();
+        return getOrganizationId();
     }
 
     /**
@@ -546,7 +525,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component4() {
-        return getLoginName();
+        return getDepartmentId();
     }
 
     /**
@@ -554,7 +533,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component5() {
-        return getPassword();
+        return getLoginName();
     }
 
     /**
@@ -562,7 +541,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component6() {
-        return getNo();
+        return getPassword();
     }
 
     /**
@@ -570,7 +549,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component7() {
-        return getName();
+        return getUserNo();
     }
 
     /**
@@ -578,7 +557,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component8() {
-        return getEmail();
+        return getName();
     }
 
     /**
@@ -586,7 +565,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component9() {
-        return getPhone();
+        return getEmail();
     }
 
     /**
@@ -594,7 +573,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component10() {
-        return getMobile();
+        return getPhone();
     }
 
     /**
@@ -602,7 +581,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component11() {
-        return getUserType();
+        return getMobile();
     }
 
     /**
@@ -610,7 +589,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component12() {
-        return getPhoto();
+        return getUserType();
     }
 
     /**
@@ -618,6 +597,14 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String component13() {
+        return getPhoto();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String component14() {
         return getLoginIp();
     }
 
@@ -625,7 +612,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Timestamp component14() {
+    public Timestamp component15() {
         return getLoginDate();
     }
 
@@ -633,7 +620,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String component15() {
+    public String component16() {
         return getLoginFlag();
     }
 
@@ -641,39 +628,23 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String component16() {
-        return getCreateBy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Timestamp component17() {
-        return getCreateDate();
+        return getGmtCreate();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String component18() {
-        return getUpdateBy();
+    public Timestamp component18() {
+        return getGmtModified();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Timestamp component19() {
-        return getUpdateDate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String component20() {
+    public String component19() {
         return getRemarks();
     }
 
@@ -681,7 +652,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String component21() {
+    public String component20() {
         return getDelFlag();
     }
 
@@ -689,7 +660,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String value1() {
+    public ULong value1() {
         return getId();
     }
 
@@ -698,7 +669,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value2() {
-        return getCompanyId();
+        return getUserCode();
     }
 
     /**
@@ -706,7 +677,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value3() {
-        return getOfficeId();
+        return getOrganizationId();
     }
 
     /**
@@ -714,7 +685,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value4() {
-        return getLoginName();
+        return getDepartmentId();
     }
 
     /**
@@ -722,7 +693,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value5() {
-        return getPassword();
+        return getLoginName();
     }
 
     /**
@@ -730,7 +701,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value6() {
-        return getNo();
+        return getPassword();
     }
 
     /**
@@ -738,7 +709,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value7() {
-        return getName();
+        return getUserNo();
     }
 
     /**
@@ -746,7 +717,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value8() {
-        return getEmail();
+        return getName();
     }
 
     /**
@@ -754,7 +725,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value9() {
-        return getPhone();
+        return getEmail();
     }
 
     /**
@@ -762,7 +733,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value10() {
-        return getMobile();
+        return getPhone();
     }
 
     /**
@@ -770,7 +741,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value11() {
-        return getUserType();
+        return getMobile();
     }
 
     /**
@@ -778,7 +749,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value12() {
-        return getPhoto();
+        return getUserType();
     }
 
     /**
@@ -786,6 +757,14 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public String value13() {
+        return getPhoto();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String value14() {
         return getLoginIp();
     }
 
@@ -793,7 +772,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Timestamp value14() {
+    public Timestamp value15() {
         return getLoginDate();
     }
 
@@ -801,7 +780,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String value15() {
+    public String value16() {
         return getLoginFlag();
     }
 
@@ -809,39 +788,23 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String value16() {
-        return getCreateBy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Timestamp value17() {
-        return getCreateDate();
+        return getGmtCreate();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String value18() {
-        return getUpdateBy();
+    public Timestamp value18() {
+        return getGmtModified();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Timestamp value19() {
-        return getUpdateDate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String value20() {
+    public String value19() {
         return getRemarks();
     }
 
@@ -849,7 +812,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public String value21() {
+    public String value20() {
         return getDelFlag();
     }
 
@@ -857,7 +820,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord value1(String value) {
+    public SysUserRecord value1(ULong value) {
         setId(value);
         return this;
     }
@@ -867,7 +830,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value2(String value) {
-        setCompanyId(value);
+        setUserCode(value);
         return this;
     }
 
@@ -876,7 +839,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value3(String value) {
-        setOfficeId(value);
+        setOrganizationId(value);
         return this;
     }
 
@@ -885,7 +848,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value4(String value) {
-        setLoginName(value);
+        setDepartmentId(value);
         return this;
     }
 
@@ -894,7 +857,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value5(String value) {
-        setPassword(value);
+        setLoginName(value);
         return this;
     }
 
@@ -903,7 +866,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value6(String value) {
-        setNo(value);
+        setPassword(value);
         return this;
     }
 
@@ -912,7 +875,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value7(String value) {
-        setName(value);
+        setUserNo(value);
         return this;
     }
 
@@ -921,7 +884,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value8(String value) {
-        setEmail(value);
+        setName(value);
         return this;
     }
 
@@ -930,7 +893,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value9(String value) {
-        setPhone(value);
+        setEmail(value);
         return this;
     }
 
@@ -939,7 +902,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value10(String value) {
-        setMobile(value);
+        setPhone(value);
         return this;
     }
 
@@ -948,7 +911,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value11(String value) {
-        setUserType(value);
+        setMobile(value);
         return this;
     }
 
@@ -957,7 +920,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value12(String value) {
-        setPhoto(value);
+        setUserType(value);
         return this;
     }
 
@@ -966,6 +929,15 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      */
     @Override
     public SysUserRecord value13(String value) {
+        setPhoto(value);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SysUserRecord value14(String value) {
         setLoginIp(value);
         return this;
     }
@@ -974,7 +946,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord value14(Timestamp value) {
+    public SysUserRecord value15(Timestamp value) {
         setLoginDate(value);
         return this;
     }
@@ -983,7 +955,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord value15(String value) {
+    public SysUserRecord value16(String value) {
         setLoginFlag(value);
         return this;
     }
@@ -992,17 +964,8 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord value16(String value) {
-        setCreateBy(value);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public SysUserRecord value17(Timestamp value) {
-        setCreateDate(value);
+        setGmtCreate(value);
         return this;
     }
 
@@ -1010,8 +973,8 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord value18(String value) {
-        setUpdateBy(value);
+    public SysUserRecord value18(Timestamp value) {
+        setGmtModified(value);
         return this;
     }
 
@@ -1019,16 +982,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord value19(Timestamp value) {
-        setUpdateDate(value);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public SysUserRecord value20(String value) {
+    public SysUserRecord value19(String value) {
         setRemarks(value);
         return this;
     }
@@ -1037,7 +991,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord value21(String value) {
+    public SysUserRecord value20(String value) {
         setDelFlag(value);
         return this;
     }
@@ -1046,7 +1000,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord values(String value1, String value2, String value3, String value4, String value5, String value6, String value7, String value8, String value9, String value10, String value11, String value12, String value13, Timestamp value14, String value15, String value16, Timestamp value17, String value18, Timestamp value19, String value20, String value21) {
+    public SysUserRecord values(ULong value1, String value2, String value3, String value4, String value5, String value6, String value7, String value8, String value9, String value10, String value11, String value12, String value13, String value14, Timestamp value15, String value16, Timestamp value17, Timestamp value18, String value19, String value20) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -1067,7 +1021,6 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
         value18(value18);
         value19(value19);
         value20(value20);
-        value21(value21);
         return this;
     }
 
@@ -1085,29 +1038,28 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
     /**
      * Create a detached, initialised SysUserRecord
      */
-    public SysUserRecord(String id, String companyId, String officeId, String loginName, String password, String no, String name, String email, String phone, String mobile, String userType, String photo, String loginIp, Timestamp loginDate, String loginFlag, String createBy, Timestamp createDate, String updateBy, Timestamp updateDate, String remarks, String delFlag) {
+    public SysUserRecord(ULong id, String userCode, String organizationId, String departmentId, String loginName, String password, String userNo, String name, String email, String phone, String mobile, String userType, String photo, String loginIp, Timestamp loginDate, String loginFlag, Timestamp gmtCreate, Timestamp gmtModified, String remarks, String delFlag) {
         super(SysUser.SYS_USER);
 
         set(0, id);
-        set(1, companyId);
-        set(2, officeId);
-        set(3, loginName);
-        set(4, password);
-        set(5, no);
-        set(6, name);
-        set(7, email);
-        set(8, phone);
-        set(9, mobile);
-        set(10, userType);
-        set(11, photo);
-        set(12, loginIp);
-        set(13, loginDate);
-        set(14, loginFlag);
-        set(15, createBy);
-        set(16, createDate);
-        set(17, updateBy);
-        set(18, updateDate);
-        set(19, remarks);
-        set(20, delFlag);
+        set(1, userCode);
+        set(2, organizationId);
+        set(3, departmentId);
+        set(4, loginName);
+        set(5, password);
+        set(6, userNo);
+        set(7, name);
+        set(8, email);
+        set(9, phone);
+        set(10, mobile);
+        set(11, userType);
+        set(12, photo);
+        set(13, loginIp);
+        set(14, loginDate);
+        set(15, loginFlag);
+        set(16, gmtCreate);
+        set(17, gmtModified);
+        set(18, remarks);
+        set(19, delFlag);
     }
 }

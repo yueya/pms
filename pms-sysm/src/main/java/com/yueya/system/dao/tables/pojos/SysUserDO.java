@@ -7,6 +7,8 @@ package com.yueya.system.dao.tables.pojos;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import org.jooq.types.ULong;
+
 
 /**
  * 用户表
@@ -14,14 +16,15 @@ import java.sql.Timestamp;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysUserDO implements Serializable {
 
-    private static final long serialVersionUID = -1811191315;
+    private static final long serialVersionUID = -415066592;
 
-    private String    id;
-    private String    companyId;
-    private String    officeId;
+    private ULong     id;
+    private String    userCode;
+    private String    organizationId;
+    private String    departmentId;
     private String    loginName;
     private String    password;
-    private String    no;
+    private String    userNo;
     private String    name;
     private String    email;
     private String    phone;
@@ -31,10 +34,8 @@ public class SysUserDO implements Serializable {
     private String    loginIp;
     private Timestamp loginDate;
     private String    loginFlag;
-    private String    createBy;
-    private Timestamp createDate;
-    private String    updateBy;
-    private Timestamp updateDate;
+    private Timestamp gmtCreate;
+    private Timestamp gmtModified;
     private String    remarks;
     private String    delFlag;
 
@@ -42,11 +43,12 @@ public class SysUserDO implements Serializable {
 
     public SysUserDO(SysUserDO value) {
         this.id = value.id;
-        this.companyId = value.companyId;
-        this.officeId = value.officeId;
+        this.userCode = value.userCode;
+        this.organizationId = value.organizationId;
+        this.departmentId = value.departmentId;
         this.loginName = value.loginName;
         this.password = value.password;
-        this.no = value.no;
+        this.userNo = value.userNo;
         this.name = value.name;
         this.email = value.email;
         this.phone = value.phone;
@@ -56,21 +58,20 @@ public class SysUserDO implements Serializable {
         this.loginIp = value.loginIp;
         this.loginDate = value.loginDate;
         this.loginFlag = value.loginFlag;
-        this.createBy = value.createBy;
-        this.createDate = value.createDate;
-        this.updateBy = value.updateBy;
-        this.updateDate = value.updateDate;
+        this.gmtCreate = value.gmtCreate;
+        this.gmtModified = value.gmtModified;
         this.remarks = value.remarks;
         this.delFlag = value.delFlag;
     }
 
     public SysUserDO(
-        String    id,
-        String    companyId,
-        String    officeId,
+        ULong     id,
+        String    userCode,
+        String    organizationId,
+        String    departmentId,
         String    loginName,
         String    password,
-        String    no,
+        String    userNo,
         String    name,
         String    email,
         String    phone,
@@ -80,19 +81,18 @@ public class SysUserDO implements Serializable {
         String    loginIp,
         Timestamp loginDate,
         String    loginFlag,
-        String    createBy,
-        Timestamp createDate,
-        String    updateBy,
-        Timestamp updateDate,
+        Timestamp gmtCreate,
+        Timestamp gmtModified,
         String    remarks,
         String    delFlag
     ) {
         this.id = id;
-        this.companyId = companyId;
-        this.officeId = officeId;
+        this.userCode = userCode;
+        this.organizationId = organizationId;
+        this.departmentId = departmentId;
         this.loginName = loginName;
         this.password = password;
-        this.no = no;
+        this.userNo = userNo;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -102,36 +102,42 @@ public class SysUserDO implements Serializable {
         this.loginIp = loginIp;
         this.loginDate = loginDate;
         this.loginFlag = loginFlag;
-        this.createBy = createBy;
-        this.createDate = createDate;
-        this.updateBy = updateBy;
-        this.updateDate = updateDate;
+        this.gmtCreate = gmtCreate;
+        this.gmtModified = gmtModified;
         this.remarks = remarks;
         this.delFlag = delFlag;
     }
 
-    public String getId() {
+    public ULong getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(ULong id) {
         this.id = id;
     }
 
-    public String getCompanyId() {
-        return this.companyId;
+    public String getUserCode() {
+        return this.userCode;
     }
 
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 
-    public String getOfficeId() {
-        return this.officeId;
+    public String getOrganizationId() {
+        return this.organizationId;
     }
 
-    public void setOfficeId(String officeId) {
-        this.officeId = officeId;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    public String getDepartmentId() {
+        return this.departmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getLoginName() {
@@ -150,12 +156,12 @@ public class SysUserDO implements Serializable {
         this.password = password;
     }
 
-    public String getNo() {
-        return this.no;
+    public String getUserNo() {
+        return this.userNo;
     }
 
-    public void setNo(String no) {
-        this.no = no;
+    public void setUserNo(String userNo) {
+        this.userNo = userNo;
     }
 
     public String getName() {
@@ -230,36 +236,20 @@ public class SysUserDO implements Serializable {
         this.loginFlag = loginFlag;
     }
 
-    public String getCreateBy() {
-        return this.createBy;
+    public Timestamp getGmtCreate() {
+        return this.gmtCreate;
     }
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
+    public void setGmtCreate(Timestamp gmtCreate) {
+        this.gmtCreate = gmtCreate;
     }
 
-    public Timestamp getCreateDate() {
-        return this.createDate;
+    public Timestamp getGmtModified() {
+        return this.gmtModified;
     }
 
-    public void setCreateDate(Timestamp createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getUpdateBy() {
-        return this.updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public Timestamp getUpdateDate() {
-        return this.updateDate;
-    }
-
-    public void setUpdateDate(Timestamp updateDate) {
-        this.updateDate = updateDate;
+    public void setGmtModified(Timestamp gmtModified) {
+        this.gmtModified = gmtModified;
     }
 
     public String getRemarks() {
@@ -283,11 +273,12 @@ public class SysUserDO implements Serializable {
         StringBuilder sb = new StringBuilder("SysUserDO (");
 
         sb.append(id);
-        sb.append(", ").append(companyId);
-        sb.append(", ").append(officeId);
+        sb.append(", ").append(userCode);
+        sb.append(", ").append(organizationId);
+        sb.append(", ").append(departmentId);
         sb.append(", ").append(loginName);
         sb.append(", ").append(password);
-        sb.append(", ").append(no);
+        sb.append(", ").append(userNo);
         sb.append(", ").append(name);
         sb.append(", ").append(email);
         sb.append(", ").append(phone);
@@ -297,10 +288,8 @@ public class SysUserDO implements Serializable {
         sb.append(", ").append(loginIp);
         sb.append(", ").append(loginDate);
         sb.append(", ").append(loginFlag);
-        sb.append(", ").append(createBy);
-        sb.append(", ").append(createDate);
-        sb.append(", ").append(updateBy);
-        sb.append(", ").append(updateDate);
+        sb.append(", ").append(gmtCreate);
+        sb.append(", ").append(gmtModified);
         sb.append(", ").append(remarks);
         sb.append(", ").append(delFlag);
 

@@ -5,8 +5,8 @@ package com.yueya.system.dao.tables;
 
 
 import com.yueya.system.dao.Indexes;
-import com.yueya.system.dao.Jeesite;
 import com.yueya.system.dao.Keys;
+import com.yueya.system.dao.Pms;
 import com.yueya.system.dao.tables.records.SysAreaRecord;
 
 import java.sql.Timestamp;
@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
@@ -24,6 +25,7 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
+import org.jooq.types.ULong;
 
 
 /**
@@ -32,10 +34,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysArea extends TableImpl<SysAreaRecord> {
 
-    private static final long serialVersionUID = -1634053262;
+    private static final long serialVersionUID = 1157970041;
 
     /**
-     * The reference instance of <code>jeesite.sys_area</code>
+     * The reference instance of <code>pms.sys_area</code>
      */
     public static final SysArea SYS_AREA = new SysArea();
 
@@ -48,86 +50,76 @@ public class SysArea extends TableImpl<SysAreaRecord> {
     }
 
     /**
-     * The column <code>jeesite.sys_area.id</code>. 编号
+     * The column <code>pms.sys_area.id</code>. 编号
      */
-    public final TableField<SysAreaRecord, String> ID = createField("id", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "编号");
+    public final TableField<SysAreaRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "编号");
 
     /**
-     * The column <code>jeesite.sys_area.parent_id</code>. 父级编号
+     * The column <code>pms.sys_area.parent_id</code>. 父级编号
      */
-    public final TableField<SysAreaRecord, String> PARENT_ID = createField("parent_id", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "父级编号");
+    public final TableField<SysAreaRecord, Long> PARENT_ID = createField("parent_id", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "父级编号");
 
     /**
-     * The column <code>jeesite.sys_area.parent_ids</code>. 所有父级编号
+     * The column <code>pms.sys_area.parent_ids</code>. 所有父级编号
      */
     public final TableField<SysAreaRecord, String> PARENT_IDS = createField("parent_ids", org.jooq.impl.SQLDataType.VARCHAR(2000).nullable(false), this, "所有父级编号");
 
     /**
-     * The column <code>jeesite.sys_area.name</code>. 名称
+     * The column <code>pms.sys_area.name</code>. 名称
      */
     public final TableField<SysAreaRecord, String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR(100).nullable(false), this, "名称");
 
     /**
-     * The column <code>jeesite.sys_area.sort</code>. 排序
+     * The column <code>pms.sys_area.sort</code>. 排序
      */
-    public final TableField<SysAreaRecord, Long> SORT = createField("sort", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "排序");
+    public final TableField<SysAreaRecord, Integer> SORT = createField("sort", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "排序");
 
     /**
-     * The column <code>jeesite.sys_area.code</code>. 区域编码
+     * The column <code>pms.sys_area.code</code>. 区域编码
      */
     public final TableField<SysAreaRecord, String> CODE = createField("code", org.jooq.impl.SQLDataType.VARCHAR(100), this, "区域编码");
 
     /**
-     * The column <code>jeesite.sys_area.type</code>. 区域类型
+     * The column <code>pms.sys_area.type</code>. 区域类型
      */
     public final TableField<SysAreaRecord, String> TYPE = createField("type", org.jooq.impl.SQLDataType.CHAR(1), this, "区域类型");
 
     /**
-     * The column <code>jeesite.sys_area.create_by</code>. 创建者
+     * The column <code>pms.sys_area.gmt_create</code>. 创建时间
      */
-    public final TableField<SysAreaRecord, String> CREATE_BY = createField("create_by", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "创建者");
+    public final TableField<SysAreaRecord, Timestamp> GMT_CREATE = createField("gmt_create", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "创建时间");
 
     /**
-     * The column <code>jeesite.sys_area.create_date</code>. 创建时间
+     * The column <code>pms.sys_area.gmt_modified</code>. 更新时间
      */
-    public final TableField<SysAreaRecord, Timestamp> CREATE_DATE = createField("create_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "创建时间");
+    public final TableField<SysAreaRecord, Timestamp> GMT_MODIFIED = createField("gmt_modified", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "更新时间");
 
     /**
-     * The column <code>jeesite.sys_area.update_by</code>. 更新者
-     */
-    public final TableField<SysAreaRecord, String> UPDATE_BY = createField("update_by", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "更新者");
-
-    /**
-     * The column <code>jeesite.sys_area.update_date</code>. 更新时间
-     */
-    public final TableField<SysAreaRecord, Timestamp> UPDATE_DATE = createField("update_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "更新时间");
-
-    /**
-     * The column <code>jeesite.sys_area.remarks</code>. 备注信息
+     * The column <code>pms.sys_area.remarks</code>. 备注信息
      */
     public final TableField<SysAreaRecord, String> REMARKS = createField("remarks", org.jooq.impl.SQLDataType.VARCHAR(255), this, "备注信息");
 
     /**
-     * The column <code>jeesite.sys_area.del_flag</code>. 删除标记
+     * The column <code>pms.sys_area.del_flag</code>. 删除标记
      */
-    public final TableField<SysAreaRecord, String> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.CHAR(1).nullable(false).defaultValue(DSL.inline("0", org.jooq.impl.SQLDataType.CHAR)), this, "删除标记");
+    public final TableField<SysAreaRecord, String> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.CHAR(1).nullable(false).defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.CHAR)), this, "删除标记");
 
     /**
-     * Create a <code>jeesite.sys_area</code> table reference
+     * Create a <code>pms.sys_area</code> table reference
      */
     public SysArea() {
         this(DSL.name("sys_area"), null);
     }
 
     /**
-     * Create an aliased <code>jeesite.sys_area</code> table reference
+     * Create an aliased <code>pms.sys_area</code> table reference
      */
     public SysArea(String alias) {
         this(DSL.name(alias), SYS_AREA);
     }
 
     /**
-     * Create an aliased <code>jeesite.sys_area</code> table reference
+     * Create an aliased <code>pms.sys_area</code> table reference
      */
     public SysArea(Name alias) {
         this(alias, SYS_AREA);
@@ -150,7 +142,7 @@ public class SysArea extends TableImpl<SysAreaRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Jeesite.JEESITE;
+        return Pms.PMS;
     }
 
     /**
@@ -159,6 +151,14 @@ public class SysArea extends TableImpl<SysAreaRecord> {
     @Override
     public List<Index> getIndexes() {
         return Arrays.<Index>asList(Indexes.SYS_AREA_PRIMARY, Indexes.SYS_AREA_SYS_AREA_DEL_FLAG, Indexes.SYS_AREA_SYS_AREA_PARENT_ID);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Identity<SysAreaRecord, ULong> getIdentity() {
+        return Keys.IDENTITY_SYS_AREA;
     }
 
     /**

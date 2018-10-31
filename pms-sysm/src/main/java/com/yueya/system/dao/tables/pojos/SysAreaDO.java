@@ -7,6 +7,8 @@ package com.yueya.system.dao.tables.pojos;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import org.jooq.types.ULong;
+
 
 /**
  * 区域表
@@ -14,19 +16,17 @@ import java.sql.Timestamp;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysAreaDO implements Serializable {
 
-    private static final long serialVersionUID = -1200544251;
+    private static final long serialVersionUID = 1594681507;
 
-    private String    id;
-    private String    parentId;
+    private ULong     id;
+    private Long      parentId;
     private String    parentIds;
     private String    name;
-    private Long      sort;
+    private Integer   sort;
     private String    code;
     private String    type;
-    private String    createBy;
-    private Timestamp createDate;
-    private String    updateBy;
-    private Timestamp updateDate;
+    private Timestamp gmtCreate;
+    private Timestamp gmtModified;
     private String    remarks;
     private String    delFlag;
 
@@ -40,26 +40,22 @@ public class SysAreaDO implements Serializable {
         this.sort = value.sort;
         this.code = value.code;
         this.type = value.type;
-        this.createBy = value.createBy;
-        this.createDate = value.createDate;
-        this.updateBy = value.updateBy;
-        this.updateDate = value.updateDate;
+        this.gmtCreate = value.gmtCreate;
+        this.gmtModified = value.gmtModified;
         this.remarks = value.remarks;
         this.delFlag = value.delFlag;
     }
 
     public SysAreaDO(
-        String    id,
-        String    parentId,
+        ULong     id,
+        Long      parentId,
         String    parentIds,
         String    name,
-        Long      sort,
+        Integer   sort,
         String    code,
         String    type,
-        String    createBy,
-        Timestamp createDate,
-        String    updateBy,
-        Timestamp updateDate,
+        Timestamp gmtCreate,
+        Timestamp gmtModified,
         String    remarks,
         String    delFlag
     ) {
@@ -70,27 +66,25 @@ public class SysAreaDO implements Serializable {
         this.sort = sort;
         this.code = code;
         this.type = type;
-        this.createBy = createBy;
-        this.createDate = createDate;
-        this.updateBy = updateBy;
-        this.updateDate = updateDate;
+        this.gmtCreate = gmtCreate;
+        this.gmtModified = gmtModified;
         this.remarks = remarks;
         this.delFlag = delFlag;
     }
 
-    public String getId() {
+    public ULong getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(ULong id) {
         this.id = id;
     }
 
-    public String getParentId() {
+    public Long getParentId() {
         return this.parentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
@@ -110,11 +104,11 @@ public class SysAreaDO implements Serializable {
         this.name = name;
     }
 
-    public Long getSort() {
+    public Integer getSort() {
         return this.sort;
     }
 
-    public void setSort(Long sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 
@@ -134,36 +128,20 @@ public class SysAreaDO implements Serializable {
         this.type = type;
     }
 
-    public String getCreateBy() {
-        return this.createBy;
+    public Timestamp getGmtCreate() {
+        return this.gmtCreate;
     }
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
+    public void setGmtCreate(Timestamp gmtCreate) {
+        this.gmtCreate = gmtCreate;
     }
 
-    public Timestamp getCreateDate() {
-        return this.createDate;
+    public Timestamp getGmtModified() {
+        return this.gmtModified;
     }
 
-    public void setCreateDate(Timestamp createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getUpdateBy() {
-        return this.updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public Timestamp getUpdateDate() {
-        return this.updateDate;
-    }
-
-    public void setUpdateDate(Timestamp updateDate) {
-        this.updateDate = updateDate;
+    public void setGmtModified(Timestamp gmtModified) {
+        this.gmtModified = gmtModified;
     }
 
     public String getRemarks() {
@@ -193,10 +171,8 @@ public class SysAreaDO implements Serializable {
         sb.append(", ").append(sort);
         sb.append(", ").append(code);
         sb.append(", ").append(type);
-        sb.append(", ").append(createBy);
-        sb.append(", ").append(createDate);
-        sb.append(", ").append(updateBy);
-        sb.append(", ").append(updateDate);
+        sb.append(", ").append(gmtCreate);
+        sb.append(", ").append(gmtModified);
         sb.append(", ").append(remarks);
         sb.append(", ").append(delFlag);
 

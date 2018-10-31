@@ -5,8 +5,8 @@ package com.yueya.system.dao.tables;
 
 
 import com.yueya.system.dao.Indexes;
-import com.yueya.system.dao.Jeesite;
 import com.yueya.system.dao.Keys;
+import com.yueya.system.dao.Pms;
 import com.yueya.system.dao.tables.records.SysUserRecord;
 
 import java.sql.Timestamp;
@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
@@ -24,6 +25,7 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
+import org.jooq.types.ULong;
 
 
 /**
@@ -32,10 +34,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysUser extends TableImpl<SysUserRecord> {
 
-    private static final long serialVersionUID = -78739813;
+    private static final long serialVersionUID = 104527664;
 
     /**
-     * The reference instance of <code>jeesite.sys_user</code>
+     * The reference instance of <code>pms.sys_user</code>
      */
     public static final SysUser SYS_USER = new SysUser();
 
@@ -48,126 +50,121 @@ public class SysUser extends TableImpl<SysUserRecord> {
     }
 
     /**
-     * The column <code>jeesite.sys_user.id</code>. 编号
+     * The column <code>pms.sys_user.id</code>. 编号
      */
-    public final TableField<SysUserRecord, String> ID = createField("id", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "编号");
+    public final TableField<SysUserRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "编号");
 
     /**
-     * The column <code>jeesite.sys_user.company_id</code>. 归属公司
+     * The column <code>pms.sys_user.user_code</code>. 用户标识码
      */
-    public final TableField<SysUserRecord, String> COMPANY_ID = createField("company_id", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "归属公司");
+    public final TableField<SysUserRecord, String> USER_CODE = createField("user_code", org.jooq.impl.SQLDataType.VARCHAR(64), this, "用户标识码");
 
     /**
-     * The column <code>jeesite.sys_user.office_id</code>. 归属部门
+     * The column <code>pms.sys_user.organization_id</code>. 归属组织
      */
-    public final TableField<SysUserRecord, String> OFFICE_ID = createField("office_id", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "归属部门");
+    public final TableField<SysUserRecord, String> ORGANIZATION_ID = createField("organization_id", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "归属组织");
 
     /**
-     * The column <code>jeesite.sys_user.login_name</code>. 登录名
+     * The column <code>pms.sys_user.department_id</code>. 归属部门
+     */
+    public final TableField<SysUserRecord, String> DEPARTMENT_ID = createField("department_id", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "归属部门");
+
+    /**
+     * The column <code>pms.sys_user.login_name</code>. 登录名
      */
     public final TableField<SysUserRecord, String> LOGIN_NAME = createField("login_name", org.jooq.impl.SQLDataType.VARCHAR(100).nullable(false), this, "登录名");
 
     /**
-     * The column <code>jeesite.sys_user.password</code>. 密码
+     * The column <code>pms.sys_user.password</code>. 密码
      */
     public final TableField<SysUserRecord, String> PASSWORD = createField("password", org.jooq.impl.SQLDataType.VARCHAR(100).nullable(false), this, "密码");
 
     /**
-     * The column <code>jeesite.sys_user.no</code>. 工号
+     * The column <code>pms.sys_user.user_no</code>. 工号
      */
-    public final TableField<SysUserRecord, String> NO = createField("no", org.jooq.impl.SQLDataType.VARCHAR(100), this, "工号");
+    public final TableField<SysUserRecord, String> USER_NO = createField("user_no", org.jooq.impl.SQLDataType.VARCHAR(100), this, "工号");
 
     /**
-     * The column <code>jeesite.sys_user.name</code>. 姓名
+     * The column <code>pms.sys_user.name</code>. 姓名
      */
     public final TableField<SysUserRecord, String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR(100).nullable(false), this, "姓名");
 
     /**
-     * The column <code>jeesite.sys_user.email</code>. 邮箱
+     * The column <code>pms.sys_user.email</code>. 邮箱
      */
     public final TableField<SysUserRecord, String> EMAIL = createField("email", org.jooq.impl.SQLDataType.VARCHAR(200), this, "邮箱");
 
     /**
-     * The column <code>jeesite.sys_user.phone</code>. 电话
+     * The column <code>pms.sys_user.phone</code>. 电话
      */
     public final TableField<SysUserRecord, String> PHONE = createField("phone", org.jooq.impl.SQLDataType.VARCHAR(200), this, "电话");
 
     /**
-     * The column <code>jeesite.sys_user.mobile</code>. 手机
+     * The column <code>pms.sys_user.mobile</code>. 手机
      */
     public final TableField<SysUserRecord, String> MOBILE = createField("mobile", org.jooq.impl.SQLDataType.VARCHAR(200), this, "手机");
 
     /**
-     * The column <code>jeesite.sys_user.user_type</code>. 用户类型
+     * The column <code>pms.sys_user.user_type</code>. 用户类型
      */
     public final TableField<SysUserRecord, String> USER_TYPE = createField("user_type", org.jooq.impl.SQLDataType.CHAR(1), this, "用户类型");
 
     /**
-     * The column <code>jeesite.sys_user.photo</code>. 用户头像
+     * The column <code>pms.sys_user.photo</code>. 用户头像
      */
     public final TableField<SysUserRecord, String> PHOTO = createField("photo", org.jooq.impl.SQLDataType.VARCHAR(1000), this, "用户头像");
 
     /**
-     * The column <code>jeesite.sys_user.login_ip</code>. 最后登陆IP
+     * The column <code>pms.sys_user.login_ip</code>. 最后登陆IP
      */
     public final TableField<SysUserRecord, String> LOGIN_IP = createField("login_ip", org.jooq.impl.SQLDataType.VARCHAR(100), this, "最后登陆IP");
 
     /**
-     * The column <code>jeesite.sys_user.login_date</code>. 最后登陆时间
+     * The column <code>pms.sys_user.login_date</code>. 最后登陆时间
      */
     public final TableField<SysUserRecord, Timestamp> LOGIN_DATE = createField("login_date", org.jooq.impl.SQLDataType.TIMESTAMP, this, "最后登陆时间");
 
     /**
-     * The column <code>jeesite.sys_user.login_flag</code>. 是否可登录
+     * The column <code>pms.sys_user.login_flag</code>. 是否可登录
      */
     public final TableField<SysUserRecord, String> LOGIN_FLAG = createField("login_flag", org.jooq.impl.SQLDataType.VARCHAR(64), this, "是否可登录");
 
     /**
-     * The column <code>jeesite.sys_user.create_by</code>. 创建者
+     * The column <code>pms.sys_user.gmt_create</code>. 创建时间
      */
-    public final TableField<SysUserRecord, String> CREATE_BY = createField("create_by", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "创建者");
+    public final TableField<SysUserRecord, Timestamp> GMT_CREATE = createField("gmt_create", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "创建时间");
 
     /**
-     * The column <code>jeesite.sys_user.create_date</code>. 创建时间
+     * The column <code>pms.sys_user.gmt_modified</code>. 更新时间
      */
-    public final TableField<SysUserRecord, Timestamp> CREATE_DATE = createField("create_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "创建时间");
+    public final TableField<SysUserRecord, Timestamp> GMT_MODIFIED = createField("gmt_modified", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "更新时间");
 
     /**
-     * The column <code>jeesite.sys_user.update_by</code>. 更新者
-     */
-    public final TableField<SysUserRecord, String> UPDATE_BY = createField("update_by", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "更新者");
-
-    /**
-     * The column <code>jeesite.sys_user.update_date</code>. 更新时间
-     */
-    public final TableField<SysUserRecord, Timestamp> UPDATE_DATE = createField("update_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "更新时间");
-
-    /**
-     * The column <code>jeesite.sys_user.remarks</code>. 备注信息
+     * The column <code>pms.sys_user.remarks</code>. 备注信息
      */
     public final TableField<SysUserRecord, String> REMARKS = createField("remarks", org.jooq.impl.SQLDataType.VARCHAR(255), this, "备注信息");
 
     /**
-     * The column <code>jeesite.sys_user.del_flag</code>. 删除标记
+     * The column <code>pms.sys_user.del_flag</code>. 删除标记
      */
-    public final TableField<SysUserRecord, String> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.CHAR(1).nullable(false).defaultValue(DSL.inline("0", org.jooq.impl.SQLDataType.CHAR)), this, "删除标记");
+    public final TableField<SysUserRecord, String> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.CHAR(1).nullable(false).defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.CHAR)), this, "删除标记");
 
     /**
-     * Create a <code>jeesite.sys_user</code> table reference
+     * Create a <code>pms.sys_user</code> table reference
      */
     public SysUser() {
         this(DSL.name("sys_user"), null);
     }
 
     /**
-     * Create an aliased <code>jeesite.sys_user</code> table reference
+     * Create an aliased <code>pms.sys_user</code> table reference
      */
     public SysUser(String alias) {
         this(DSL.name(alias), SYS_USER);
     }
 
     /**
-     * Create an aliased <code>jeesite.sys_user</code> table reference
+     * Create an aliased <code>pms.sys_user</code> table reference
      */
     public SysUser(Name alias) {
         this(alias, SYS_USER);
@@ -190,7 +187,7 @@ public class SysUser extends TableImpl<SysUserRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Jeesite.JEESITE;
+        return Pms.PMS;
     }
 
     /**
@@ -198,7 +195,15 @@ public class SysUser extends TableImpl<SysUserRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.SYS_USER_PRIMARY, Indexes.SYS_USER_SYS_USER_COMPANY_ID, Indexes.SYS_USER_SYS_USER_DEL_FLAG, Indexes.SYS_USER_SYS_USER_LOGIN_NAME, Indexes.SYS_USER_SYS_USER_OFFICE_ID, Indexes.SYS_USER_SYS_USER_UPDATE_DATE);
+        return Arrays.<Index>asList(Indexes.SYS_USER_PRIMARY, Indexes.SYS_USER_SYS_USER_DEL_FLAG, Indexes.SYS_USER_SYS_USER_DEPARTMENT_ID, Indexes.SYS_USER_SYS_USER_LOGIN_NAME, Indexes.SYS_USER_SYS_USER_ORGANIZATION_ID);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Identity<SysUserRecord, ULong> getIdentity() {
+        return Keys.IDENTITY_SYS_USER;
     }
 
     /**

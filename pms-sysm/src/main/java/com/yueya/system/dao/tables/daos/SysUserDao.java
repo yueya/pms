@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.jooq.Configuration;
+import org.jooq.types.ULong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 @Repository
-public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, String> {
+public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, ULong> {
 
     /**
      * Create a new SysUserDao without any configuration
@@ -42,36 +43,43 @@ public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, String> {
      * {@inheritDoc}
      */
     @Override
-    protected String getId(SysUserDO object) {
+    protected ULong getId(SysUserDO object) {
         return object.getId();
     }
 
     /**
      * Fetch records that have <code>id IN (values)</code>
      */
-    public List<SysUserDO> fetchById(String... values) {
+    public List<SysUserDO> fetchById(ULong... values) {
         return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.ID, values);
     }
 
     /**
      * Fetch a unique record that has <code>id = value</code>
      */
-    public SysUserDO fetchOneById(String value) {
+    public SysUserDO fetchOneById(ULong value) {
         return fetchOne(com.yueya.system.dao.tables.SysUser.SYS_USER.ID, value);
     }
 
     /**
-     * Fetch records that have <code>company_id IN (values)</code>
+     * Fetch records that have <code>user_code IN (values)</code>
      */
-    public List<SysUserDO> fetchByCompanyId(String... values) {
-        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.COMPANY_ID, values);
+    public List<SysUserDO> fetchByUserCode(String... values) {
+        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.USER_CODE, values);
     }
 
     /**
-     * Fetch records that have <code>office_id IN (values)</code>
+     * Fetch records that have <code>organization_id IN (values)</code>
      */
-    public List<SysUserDO> fetchByOfficeId(String... values) {
-        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.OFFICE_ID, values);
+    public List<SysUserDO> fetchByOrganizationId(String... values) {
+        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.ORGANIZATION_ID, values);
+    }
+
+    /**
+     * Fetch records that have <code>department_id IN (values)</code>
+     */
+    public List<SysUserDO> fetchByDepartmentId(String... values) {
+        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.DEPARTMENT_ID, values);
     }
 
     /**
@@ -89,10 +97,10 @@ public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, String> {
     }
 
     /**
-     * Fetch records that have <code>no IN (values)</code>
+     * Fetch records that have <code>user_no IN (values)</code>
      */
-    public List<SysUserDO> fetchByNo(String... values) {
-        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.NO, values);
+    public List<SysUserDO> fetchByUserNo(String... values) {
+        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.USER_NO, values);
     }
 
     /**
@@ -159,31 +167,17 @@ public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, String> {
     }
 
     /**
-     * Fetch records that have <code>create_by IN (values)</code>
+     * Fetch records that have <code>gmt_create IN (values)</code>
      */
-    public List<SysUserDO> fetchByCreateBy(String... values) {
-        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.CREATE_BY, values);
+    public List<SysUserDO> fetchByGmtCreate(Timestamp... values) {
+        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.GMT_CREATE, values);
     }
 
     /**
-     * Fetch records that have <code>create_date IN (values)</code>
+     * Fetch records that have <code>gmt_modified IN (values)</code>
      */
-    public List<SysUserDO> fetchByCreateDate(Timestamp... values) {
-        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.CREATE_DATE, values);
-    }
-
-    /**
-     * Fetch records that have <code>update_by IN (values)</code>
-     */
-    public List<SysUserDO> fetchByUpdateBy(String... values) {
-        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.UPDATE_BY, values);
-    }
-
-    /**
-     * Fetch records that have <code>update_date IN (values)</code>
-     */
-    public List<SysUserDO> fetchByUpdateDate(Timestamp... values) {
-        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.UPDATE_DATE, values);
+    public List<SysUserDO> fetchByGmtModified(Timestamp... values) {
+        return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.GMT_MODIFIED, values);
     }
 
     /**

@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.jooq.Configuration;
+import org.jooq.types.ULong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 @Repository
-public class SysAreaDao extends BaseDao<SysAreaRecord, SysAreaDO, String> {
+public class SysAreaDao extends BaseDao<SysAreaRecord, SysAreaDO, ULong> {
 
     /**
      * Create a new SysAreaDao without any configuration
@@ -42,28 +43,28 @@ public class SysAreaDao extends BaseDao<SysAreaRecord, SysAreaDO, String> {
      * {@inheritDoc}
      */
     @Override
-    protected String getId(SysAreaDO object) {
+    protected ULong getId(SysAreaDO object) {
         return object.getId();
     }
 
     /**
      * Fetch records that have <code>id IN (values)</code>
      */
-    public List<SysAreaDO> fetchById(String... values) {
+    public List<SysAreaDO> fetchById(ULong... values) {
         return fetch(com.yueya.system.dao.tables.SysArea.SYS_AREA.ID, values);
     }
 
     /**
      * Fetch a unique record that has <code>id = value</code>
      */
-    public SysAreaDO fetchOneById(String value) {
+    public SysAreaDO fetchOneById(ULong value) {
         return fetchOne(com.yueya.system.dao.tables.SysArea.SYS_AREA.ID, value);
     }
 
     /**
      * Fetch records that have <code>parent_id IN (values)</code>
      */
-    public List<SysAreaDO> fetchByParentId(String... values) {
+    public List<SysAreaDO> fetchByParentId(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysArea.SYS_AREA.PARENT_ID, values);
     }
 
@@ -84,7 +85,7 @@ public class SysAreaDao extends BaseDao<SysAreaRecord, SysAreaDO, String> {
     /**
      * Fetch records that have <code>sort IN (values)</code>
      */
-    public List<SysAreaDO> fetchBySort(Long... values) {
+    public List<SysAreaDO> fetchBySort(Integer... values) {
         return fetch(com.yueya.system.dao.tables.SysArea.SYS_AREA.SORT, values);
     }
 
@@ -103,31 +104,17 @@ public class SysAreaDao extends BaseDao<SysAreaRecord, SysAreaDO, String> {
     }
 
     /**
-     * Fetch records that have <code>create_by IN (values)</code>
+     * Fetch records that have <code>gmt_create IN (values)</code>
      */
-    public List<SysAreaDO> fetchByCreateBy(String... values) {
-        return fetch(com.yueya.system.dao.tables.SysArea.SYS_AREA.CREATE_BY, values);
+    public List<SysAreaDO> fetchByGmtCreate(Timestamp... values) {
+        return fetch(com.yueya.system.dao.tables.SysArea.SYS_AREA.GMT_CREATE, values);
     }
 
     /**
-     * Fetch records that have <code>create_date IN (values)</code>
+     * Fetch records that have <code>gmt_modified IN (values)</code>
      */
-    public List<SysAreaDO> fetchByCreateDate(Timestamp... values) {
-        return fetch(com.yueya.system.dao.tables.SysArea.SYS_AREA.CREATE_DATE, values);
-    }
-
-    /**
-     * Fetch records that have <code>update_by IN (values)</code>
-     */
-    public List<SysAreaDO> fetchByUpdateBy(String... values) {
-        return fetch(com.yueya.system.dao.tables.SysArea.SYS_AREA.UPDATE_BY, values);
-    }
-
-    /**
-     * Fetch records that have <code>update_date IN (values)</code>
-     */
-    public List<SysAreaDO> fetchByUpdateDate(Timestamp... values) {
-        return fetch(com.yueya.system.dao.tables.SysArea.SYS_AREA.UPDATE_DATE, values);
+    public List<SysAreaDO> fetchByGmtModified(Timestamp... values) {
+        return fetch(com.yueya.system.dao.tables.SysArea.SYS_AREA.GMT_MODIFIED, values);
     }
 
     /**

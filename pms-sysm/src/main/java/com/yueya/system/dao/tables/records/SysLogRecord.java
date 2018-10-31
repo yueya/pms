@@ -13,165 +13,166 @@ import org.jooq.Record1;
 import org.jooq.Record11;
 import org.jooq.Row11;
 import org.jooq.impl.UpdatableRecordImpl;
+import org.jooq.types.ULong;
 
 
 /**
  * 日志表
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements Record11<String, String, String, String, Timestamp, String, String, String, String, String, String> {
+public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements Record11<ULong, String, String, String, Timestamp, String, String, String, String, String, String> {
 
-    private static final long serialVersionUID = 1885872939;
+    private static final long serialVersionUID = -2046695248;
 
     /**
-     * Setter for <code>jeesite.sys_log.id</code>. 编号
+     * Setter for <code>pms.sys_log.id</code>. 编号
      */
-    public void setId(String value) {
+    public void setId(ULong value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.id</code>. 编号
+     * Getter for <code>pms.sys_log.id</code>. 编号
      */
-    public String getId() {
-        return (String) get(0);
+    public ULong getId() {
+        return (ULong) get(0);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.type</code>. 日志类型
+     * Setter for <code>pms.sys_log.type</code>. 日志类型
      */
     public void setType(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.type</code>. 日志类型
+     * Getter for <code>pms.sys_log.type</code>. 日志类型
      */
     public String getType() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.title</code>. 日志标题
+     * Setter for <code>pms.sys_log.title</code>. 日志标题
      */
     public void setTitle(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.title</code>. 日志标题
+     * Getter for <code>pms.sys_log.title</code>. 日志标题
      */
     public String getTitle() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.create_by</code>. 创建者
+     * Setter for <code>pms.sys_log.create_by</code>. 创建者
      */
     public void setCreateBy(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.create_by</code>. 创建者
+     * Getter for <code>pms.sys_log.create_by</code>. 创建者
      */
     public String getCreateBy() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.create_date</code>. 创建时间
+     * Setter for <code>pms.sys_log.create_date</code>. 创建时间
      */
     public void setCreateDate(Timestamp value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.create_date</code>. 创建时间
+     * Getter for <code>pms.sys_log.create_date</code>. 创建时间
      */
     public Timestamp getCreateDate() {
         return (Timestamp) get(4);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.remote_addr</code>. 操作IP地址
+     * Setter for <code>pms.sys_log.remote_addr</code>. 操作IP地址
      */
     public void setRemoteAddr(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.remote_addr</code>. 操作IP地址
+     * Getter for <code>pms.sys_log.remote_addr</code>. 操作IP地址
      */
     public String getRemoteAddr() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.user_agent</code>. 用户代理
+     * Setter for <code>pms.sys_log.user_agent</code>. 用户代理
      */
     public void setUserAgent(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.user_agent</code>. 用户代理
+     * Getter for <code>pms.sys_log.user_agent</code>. 用户代理
      */
     public String getUserAgent() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.request_uri</code>. 请求URI
+     * Setter for <code>pms.sys_log.request_uri</code>. 请求URI
      */
     public void setRequestUri(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.request_uri</code>. 请求URI
+     * Getter for <code>pms.sys_log.request_uri</code>. 请求URI
      */
     public String getRequestUri() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.method</code>. 操作方式
+     * Setter for <code>pms.sys_log.method</code>. 操作方式
      */
     public void setMethod(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.method</code>. 操作方式
+     * Getter for <code>pms.sys_log.method</code>. 操作方式
      */
     public String getMethod() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.params</code>. 操作提交的数据
+     * Setter for <code>pms.sys_log.params</code>. 操作提交的数据
      */
     public void setParams(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.params</code>. 操作提交的数据
+     * Getter for <code>pms.sys_log.params</code>. 操作提交的数据
      */
     public String getParams() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>jeesite.sys_log.exception</code>. 异常信息
+     * Setter for <code>pms.sys_log.exception</code>. 异常信息
      */
     public void setException(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>jeesite.sys_log.exception</code>. 异常信息
+     * Getter for <code>pms.sys_log.exception</code>. 异常信息
      */
     public String getException() {
         return (String) get(10);
@@ -185,7 +186,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Record1<String> key() {
+    public Record1<ULong> key() {
         return (Record1) super.key();
     }
 
@@ -197,7 +198,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Row11<String, String, String, String, Timestamp, String, String, String, String, String, String> fieldsRow() {
+    public Row11<ULong, String, String, String, Timestamp, String, String, String, String, String, String> fieldsRow() {
         return (Row11) super.fieldsRow();
     }
 
@@ -205,7 +206,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Row11<String, String, String, String, Timestamp, String, String, String, String, String, String> valuesRow() {
+    public Row11<ULong, String, String, String, Timestamp, String, String, String, String, String, String> valuesRow() {
         return (Row11) super.valuesRow();
     }
 
@@ -213,7 +214,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field1() {
+    public Field<ULong> field1() {
         return SysLog.SYS_LOG.ID;
     }
 
@@ -301,7 +302,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String component1() {
+    public ULong component1() {
         return getId();
     }
 
@@ -389,7 +390,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String value1() {
+    public ULong value1() {
         return getId();
     }
 
@@ -477,7 +478,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value1(String value) {
+    public SysLogRecord value1(ULong value) {
         setId(value);
         return this;
     }
@@ -576,7 +577,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord values(String value1, String value2, String value3, String value4, Timestamp value5, String value6, String value7, String value8, String value9, String value10, String value11) {
+    public SysLogRecord values(ULong value1, String value2, String value3, String value4, Timestamp value5, String value6, String value7, String value8, String value9, String value10, String value11) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -605,7 +606,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
     /**
      * Create a detached, initialised SysLogRecord
      */
-    public SysLogRecord(String id, String type, String title, String createBy, Timestamp createDate, String remoteAddr, String userAgent, String requestUri, String method, String params, String exception) {
+    public SysLogRecord(ULong id, String type, String title, String createBy, Timestamp createDate, String remoteAddr, String userAgent, String requestUri, String method, String params, String exception) {
         super(SysLog.SYS_LOG);
 
         set(0, id);

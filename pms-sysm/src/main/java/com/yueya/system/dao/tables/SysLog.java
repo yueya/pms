@@ -5,8 +5,8 @@ package com.yueya.system.dao.tables;
 
 
 import com.yueya.system.dao.Indexes;
-import com.yueya.system.dao.Jeesite;
 import com.yueya.system.dao.Keys;
+import com.yueya.system.dao.Pms;
 import com.yueya.system.dao.tables.records.SysLogRecord;
 
 import java.sql.Timestamp;
@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
@@ -24,6 +25,7 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
+import org.jooq.types.ULong;
 
 
 /**
@@ -32,10 +34,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysLog extends TableImpl<SysLogRecord> {
 
-    private static final long serialVersionUID = -705467875;
+    private static final long serialVersionUID = 1154676274;
 
     /**
-     * The reference instance of <code>jeesite.sys_log</code>
+     * The reference instance of <code>pms.sys_log</code>
      */
     public static final SysLog SYS_LOG = new SysLog();
 
@@ -48,76 +50,76 @@ public class SysLog extends TableImpl<SysLogRecord> {
     }
 
     /**
-     * The column <code>jeesite.sys_log.id</code>. 编号
+     * The column <code>pms.sys_log.id</code>. 编号
      */
-    public final TableField<SysLogRecord, String> ID = createField("id", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "编号");
+    public final TableField<SysLogRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "编号");
 
     /**
-     * The column <code>jeesite.sys_log.type</code>. 日志类型
+     * The column <code>pms.sys_log.type</code>. 日志类型
      */
-    public final TableField<SysLogRecord, String> TYPE = createField("type", org.jooq.impl.SQLDataType.CHAR(1).defaultValue(DSL.inline("1", org.jooq.impl.SQLDataType.CHAR)), this, "日志类型");
+    public final TableField<SysLogRecord, String> TYPE = createField("type", org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.inline("1", org.jooq.impl.SQLDataType.CHAR)), this, "日志类型");
 
     /**
-     * The column <code>jeesite.sys_log.title</code>. 日志标题
+     * The column <code>pms.sys_log.title</code>. 日志标题
      */
-    public final TableField<SysLogRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR(255).defaultValue(DSL.inline("", org.jooq.impl.SQLDataType.VARCHAR)), this, "日志标题");
+    public final TableField<SysLogRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR(255).defaultValue(org.jooq.impl.DSL.inline("", org.jooq.impl.SQLDataType.VARCHAR)), this, "日志标题");
 
     /**
-     * The column <code>jeesite.sys_log.create_by</code>. 创建者
+     * The column <code>pms.sys_log.create_by</code>. 创建者
      */
     public final TableField<SysLogRecord, String> CREATE_BY = createField("create_by", org.jooq.impl.SQLDataType.VARCHAR(64), this, "创建者");
 
     /**
-     * The column <code>jeesite.sys_log.create_date</code>. 创建时间
+     * The column <code>pms.sys_log.create_date</code>. 创建时间
      */
     public final TableField<SysLogRecord, Timestamp> CREATE_DATE = createField("create_date", org.jooq.impl.SQLDataType.TIMESTAMP, this, "创建时间");
 
     /**
-     * The column <code>jeesite.sys_log.remote_addr</code>. 操作IP地址
+     * The column <code>pms.sys_log.remote_addr</code>. 操作IP地址
      */
     public final TableField<SysLogRecord, String> REMOTE_ADDR = createField("remote_addr", org.jooq.impl.SQLDataType.VARCHAR(255), this, "操作IP地址");
 
     /**
-     * The column <code>jeesite.sys_log.user_agent</code>. 用户代理
+     * The column <code>pms.sys_log.user_agent</code>. 用户代理
      */
     public final TableField<SysLogRecord, String> USER_AGENT = createField("user_agent", org.jooq.impl.SQLDataType.VARCHAR(255), this, "用户代理");
 
     /**
-     * The column <code>jeesite.sys_log.request_uri</code>. 请求URI
+     * The column <code>pms.sys_log.request_uri</code>. 请求URI
      */
     public final TableField<SysLogRecord, String> REQUEST_URI = createField("request_uri", org.jooq.impl.SQLDataType.VARCHAR(255), this, "请求URI");
 
     /**
-     * The column <code>jeesite.sys_log.method</code>. 操作方式
+     * The column <code>pms.sys_log.method</code>. 操作方式
      */
     public final TableField<SysLogRecord, String> METHOD = createField("method", org.jooq.impl.SQLDataType.VARCHAR(5), this, "操作方式");
 
     /**
-     * The column <code>jeesite.sys_log.params</code>. 操作提交的数据
+     * The column <code>pms.sys_log.params</code>. 操作提交的数据
      */
     public final TableField<SysLogRecord, String> PARAMS = createField("params", org.jooq.impl.SQLDataType.CLOB, this, "操作提交的数据");
 
     /**
-     * The column <code>jeesite.sys_log.exception</code>. 异常信息
+     * The column <code>pms.sys_log.exception</code>. 异常信息
      */
     public final TableField<SysLogRecord, String> EXCEPTION = createField("exception", org.jooq.impl.SQLDataType.CLOB, this, "异常信息");
 
     /**
-     * Create a <code>jeesite.sys_log</code> table reference
+     * Create a <code>pms.sys_log</code> table reference
      */
     public SysLog() {
         this(DSL.name("sys_log"), null);
     }
 
     /**
-     * Create an aliased <code>jeesite.sys_log</code> table reference
+     * Create an aliased <code>pms.sys_log</code> table reference
      */
     public SysLog(String alias) {
         this(DSL.name(alias), SYS_LOG);
     }
 
     /**
-     * Create an aliased <code>jeesite.sys_log</code> table reference
+     * Create an aliased <code>pms.sys_log</code> table reference
      */
     public SysLog(Name alias) {
         this(alias, SYS_LOG);
@@ -140,7 +142,7 @@ public class SysLog extends TableImpl<SysLogRecord> {
      */
     @Override
     public Schema getSchema() {
-        return Jeesite.JEESITE;
+        return Pms.PMS;
     }
 
     /**
@@ -149,6 +151,14 @@ public class SysLog extends TableImpl<SysLogRecord> {
     @Override
     public List<Index> getIndexes() {
         return Arrays.<Index>asList(Indexes.SYS_LOG_PRIMARY, Indexes.SYS_LOG_SYS_LOG_CREATE_BY, Indexes.SYS_LOG_SYS_LOG_CREATE_DATE, Indexes.SYS_LOG_SYS_LOG_REQUEST_URI, Indexes.SYS_LOG_SYS_LOG_TYPE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Identity<SysLogRecord, ULong> getIdentity() {
+        return Keys.IDENTITY_SYS_LOG;
     }
 
     /**
