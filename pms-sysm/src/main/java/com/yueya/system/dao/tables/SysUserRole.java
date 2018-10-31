@@ -24,7 +24,6 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.ULong;
 
 
 /**
@@ -33,7 +32,7 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysUserRole extends TableImpl<SysUserRoleRecord> {
 
-    private static final long serialVersionUID = 523129430;
+    private static final long serialVersionUID = -403877512;
 
     /**
      * The reference instance of <code>pms.sys_user_role</code>
@@ -51,7 +50,7 @@ public class SysUserRole extends TableImpl<SysUserRoleRecord> {
     /**
      * The column <code>pms.sys_user_role.id</code>.
      */
-    public final TableField<SysUserRoleRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "");
+    public final TableField<SysUserRoleRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>pms.sys_user_role.user_id</code>. 用户id
@@ -116,7 +115,7 @@ public class SysUserRole extends TableImpl<SysUserRoleRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<SysUserRoleRecord, ULong> getIdentity() {
+    public Identity<SysUserRoleRecord, Long> getIdentity() {
         return Keys.IDENTITY_SYS_USER_ROLE;
     }
 

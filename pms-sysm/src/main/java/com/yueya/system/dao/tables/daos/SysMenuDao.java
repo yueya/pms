@@ -12,7 +12,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.jooq.Configuration;
-import org.jooq.types.ULong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +21,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 @Repository
-public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, ULong> {
+public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
 
     /**
      * Create a new SysMenuDao without any configuration
@@ -43,21 +42,21 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, ULong> {
      * {@inheritDoc}
      */
     @Override
-    protected ULong getId(SysMenuDO object) {
+    protected Long getId(SysMenuDO object) {
         return object.getId();
     }
 
     /**
      * Fetch records that have <code>id IN (values)</code>
      */
-    public List<SysMenuDO> fetchById(ULong... values) {
+    public List<SysMenuDO> fetchById(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysMenu.SYS_MENU.ID, values);
     }
 
     /**
      * Fetch a unique record that has <code>id = value</code>
      */
-    public SysMenuDO fetchOneById(ULong value) {
+    public SysMenuDO fetchOneById(Long value) {
         return fetchOne(com.yueya.system.dao.tables.SysMenu.SYS_MENU.ID, value);
     }
 

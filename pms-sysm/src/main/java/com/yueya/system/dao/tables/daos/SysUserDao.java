@@ -12,7 +12,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.jooq.Configuration;
-import org.jooq.types.ULong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +21,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 @Repository
-public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, ULong> {
+public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, Long> {
 
     /**
      * Create a new SysUserDao without any configuration
@@ -43,21 +42,21 @@ public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, ULong> {
      * {@inheritDoc}
      */
     @Override
-    protected ULong getId(SysUserDO object) {
+    protected Long getId(SysUserDO object) {
         return object.getId();
     }
 
     /**
      * Fetch records that have <code>id IN (values)</code>
      */
-    public List<SysUserDO> fetchById(ULong... values) {
+    public List<SysUserDO> fetchById(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.ID, values);
     }
 
     /**
      * Fetch a unique record that has <code>id = value</code>
      */
-    public SysUserDO fetchOneById(ULong value) {
+    public SysUserDO fetchOneById(Long value) {
         return fetchOne(com.yueya.system.dao.tables.SysUser.SYS_USER.ID, value);
     }
 

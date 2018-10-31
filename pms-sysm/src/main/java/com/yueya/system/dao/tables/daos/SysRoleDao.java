@@ -12,7 +12,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.jooq.Configuration;
-import org.jooq.types.ULong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +21,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 @Repository
-public class SysRoleDao extends BaseDao<SysRoleRecord, SysRoleDO, ULong> {
+public class SysRoleDao extends BaseDao<SysRoleRecord, SysRoleDO, Long> {
 
     /**
      * Create a new SysRoleDao without any configuration
@@ -43,21 +42,21 @@ public class SysRoleDao extends BaseDao<SysRoleRecord, SysRoleDO, ULong> {
      * {@inheritDoc}
      */
     @Override
-    protected ULong getId(SysRoleDO object) {
+    protected Long getId(SysRoleDO object) {
         return object.getId();
     }
 
     /**
      * Fetch records that have <code>id IN (values)</code>
      */
-    public List<SysRoleDO> fetchById(ULong... values) {
+    public List<SysRoleDO> fetchById(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysRole.SYS_ROLE.ID, values);
     }
 
     /**
      * Fetch a unique record that has <code>id = value</code>
      */
-    public SysRoleDO fetchOneById(ULong value) {
+    public SysRoleDO fetchOneById(Long value) {
         return fetchOne(com.yueya.system.dao.tables.SysRole.SYS_ROLE.ID, value);
     }
 

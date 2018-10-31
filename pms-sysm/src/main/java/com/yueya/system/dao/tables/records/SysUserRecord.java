@@ -13,29 +13,28 @@ import org.jooq.Record1;
 import org.jooq.Record20;
 import org.jooq.Row20;
 import org.jooq.impl.UpdatableRecordImpl;
-import org.jooq.types.ULong;
 
 
 /**
  * 用户表
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements Record20<ULong, String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Timestamp, String, String> {
+public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements Record20<Long, String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Timestamp, String, String> {
 
-    private static final long serialVersionUID = -936651574;
+    private static final long serialVersionUID = 985909354;
 
     /**
      * Setter for <code>pms.sys_user.id</code>. 编号
      */
-    public void setId(ULong value) {
+    public void setId(Long value) {
         set(0, value);
     }
 
     /**
      * Getter for <code>pms.sys_user.id</code>. 编号
      */
-    public ULong getId() {
-        return (ULong) get(0);
+    public Long getId() {
+        return (Long) get(0);
     }
 
     /**
@@ -312,7 +311,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Record1<ULong> key() {
+    public Record1<Long> key() {
         return (Record1) super.key();
     }
 
@@ -324,7 +323,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Row20<ULong, String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Timestamp, String, String> fieldsRow() {
+    public Row20<Long, String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Timestamp, String, String> fieldsRow() {
         return (Row20) super.fieldsRow();
     }
 
@@ -332,7 +331,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Row20<ULong, String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Timestamp, String, String> valuesRow() {
+    public Row20<Long, String, String, String, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Timestamp, String, String> valuesRow() {
         return (Row20) super.valuesRow();
     }
 
@@ -340,7 +339,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<ULong> field1() {
+    public Field<Long> field1() {
         return SysUser.SYS_USER.ID;
     }
 
@@ -500,7 +499,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public ULong component1() {
+    public Long component1() {
         return getId();
     }
 
@@ -660,7 +659,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public ULong value1() {
+    public Long value1() {
         return getId();
     }
 
@@ -820,7 +819,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord value1(ULong value) {
+    public SysUserRecord value1(Long value) {
         setId(value);
         return this;
     }
@@ -1000,7 +999,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysUserRecord values(ULong value1, String value2, String value3, String value4, String value5, String value6, String value7, String value8, String value9, String value10, String value11, String value12, String value13, String value14, Timestamp value15, String value16, Timestamp value17, Timestamp value18, String value19, String value20) {
+    public SysUserRecord values(Long value1, String value2, String value3, String value4, String value5, String value6, String value7, String value8, String value9, String value10, String value11, String value12, String value13, String value14, Timestamp value15, String value16, Timestamp value17, Timestamp value18, String value19, String value20) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -1038,7 +1037,7 @@ public class SysUserRecord extends UpdatableRecordImpl<SysUserRecord> implements
     /**
      * Create a detached, initialised SysUserRecord
      */
-    public SysUserRecord(ULong id, String userCode, String organizationId, String departmentId, String loginName, String password, String userNo, String name, String email, String phone, String mobile, String userType, String photo, String loginIp, Timestamp loginDate, String loginFlag, Timestamp gmtCreate, Timestamp gmtModified, String remarks, String delFlag) {
+    public SysUserRecord(Long id, String userCode, String organizationId, String departmentId, String loginName, String password, String userNo, String name, String email, String phone, String mobile, String userType, String photo, String loginIp, Timestamp loginDate, String loginFlag, Timestamp gmtCreate, Timestamp gmtModified, String remarks, String delFlag) {
         super(SysUser.SYS_USER);
 
         set(0, id);

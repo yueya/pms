@@ -30,7 +30,6 @@ import com.yueya.system.dao.tables.records.SysUserRoleRecord;
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.Internal;
-import org.jooq.types.ULong;
 
 
 /**
@@ -44,17 +43,17 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
-    public static final Identity<SysAreaRecord, ULong> IDENTITY_SYS_AREA = Identities0.IDENTITY_SYS_AREA;
-    public static final Identity<SysDictRecord, ULong> IDENTITY_SYS_DICT = Identities0.IDENTITY_SYS_DICT;
-    public static final Identity<SysLogRecord, ULong> IDENTITY_SYS_LOG = Identities0.IDENTITY_SYS_LOG;
-    public static final Identity<SysMenuRecord, ULong> IDENTITY_SYS_MENU = Identities0.IDENTITY_SYS_MENU;
-    public static final Identity<SysPermissionRecord, ULong> IDENTITY_SYS_PERMISSION = Identities0.IDENTITY_SYS_PERMISSION;
-    public static final Identity<SysRoleRecord, ULong> IDENTITY_SYS_ROLE = Identities0.IDENTITY_SYS_ROLE;
-    public static final Identity<SysRoleMenuRecord, ULong> IDENTITY_SYS_ROLE_MENU = Identities0.IDENTITY_SYS_ROLE_MENU;
-    public static final Identity<SysRolePermissionRecord, ULong> IDENTITY_SYS_ROLE_PERMISSION = Identities0.IDENTITY_SYS_ROLE_PERMISSION;
-    public static final Identity<SysSystemRecord, ULong> IDENTITY_SYS_SYSTEM = Identities0.IDENTITY_SYS_SYSTEM;
-    public static final Identity<SysUserRecord, ULong> IDENTITY_SYS_USER = Identities0.IDENTITY_SYS_USER;
-    public static final Identity<SysUserRoleRecord, ULong> IDENTITY_SYS_USER_ROLE = Identities0.IDENTITY_SYS_USER_ROLE;
+    public static final Identity<SysAreaRecord, Long> IDENTITY_SYS_AREA = Identities0.IDENTITY_SYS_AREA;
+    public static final Identity<SysDictRecord, Long> IDENTITY_SYS_DICT = Identities0.IDENTITY_SYS_DICT;
+    public static final Identity<SysLogRecord, Long> IDENTITY_SYS_LOG = Identities0.IDENTITY_SYS_LOG;
+    public static final Identity<SysMenuRecord, Long> IDENTITY_SYS_MENU = Identities0.IDENTITY_SYS_MENU;
+    public static final Identity<SysPermissionRecord, Long> IDENTITY_SYS_PERMISSION = Identities0.IDENTITY_SYS_PERMISSION;
+    public static final Identity<SysRoleRecord, Long> IDENTITY_SYS_ROLE = Identities0.IDENTITY_SYS_ROLE;
+    public static final Identity<SysRoleMenuRecord, Long> IDENTITY_SYS_ROLE_MENU = Identities0.IDENTITY_SYS_ROLE_MENU;
+    public static final Identity<SysRolePermissionRecord, Long> IDENTITY_SYS_ROLE_PERMISSION = Identities0.IDENTITY_SYS_ROLE_PERMISSION;
+    public static final Identity<SysSystemRecord, Long> IDENTITY_SYS_SYSTEM = Identities0.IDENTITY_SYS_SYSTEM;
+    public static final Identity<SysUserRecord, Long> IDENTITY_SYS_USER = Identities0.IDENTITY_SYS_USER;
+    public static final Identity<SysUserRoleRecord, Long> IDENTITY_SYS_USER_ROLE = Identities0.IDENTITY_SYS_USER_ROLE;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -82,17 +81,17 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class Identities0 {
-        public static Identity<SysAreaRecord, ULong> IDENTITY_SYS_AREA = Internal.createIdentity(SysArea.SYS_AREA, SysArea.SYS_AREA.ID);
-        public static Identity<SysDictRecord, ULong> IDENTITY_SYS_DICT = Internal.createIdentity(SysDict.SYS_DICT, SysDict.SYS_DICT.ID);
-        public static Identity<SysLogRecord, ULong> IDENTITY_SYS_LOG = Internal.createIdentity(SysLog.SYS_LOG, SysLog.SYS_LOG.ID);
-        public static Identity<SysMenuRecord, ULong> IDENTITY_SYS_MENU = Internal.createIdentity(SysMenu.SYS_MENU, SysMenu.SYS_MENU.ID);
-        public static Identity<SysPermissionRecord, ULong> IDENTITY_SYS_PERMISSION = Internal.createIdentity(SysPermission.SYS_PERMISSION, SysPermission.SYS_PERMISSION.ID);
-        public static Identity<SysRoleRecord, ULong> IDENTITY_SYS_ROLE = Internal.createIdentity(SysRole.SYS_ROLE, SysRole.SYS_ROLE.ID);
-        public static Identity<SysRoleMenuRecord, ULong> IDENTITY_SYS_ROLE_MENU = Internal.createIdentity(SysRoleMenu.SYS_ROLE_MENU, SysRoleMenu.SYS_ROLE_MENU.ID);
-        public static Identity<SysRolePermissionRecord, ULong> IDENTITY_SYS_ROLE_PERMISSION = Internal.createIdentity(SysRolePermission.SYS_ROLE_PERMISSION, SysRolePermission.SYS_ROLE_PERMISSION.ID);
-        public static Identity<SysSystemRecord, ULong> IDENTITY_SYS_SYSTEM = Internal.createIdentity(SysSystem.SYS_SYSTEM, SysSystem.SYS_SYSTEM.ID);
-        public static Identity<SysUserRecord, ULong> IDENTITY_SYS_USER = Internal.createIdentity(SysUser.SYS_USER, SysUser.SYS_USER.ID);
-        public static Identity<SysUserRoleRecord, ULong> IDENTITY_SYS_USER_ROLE = Internal.createIdentity(SysUserRole.SYS_USER_ROLE, SysUserRole.SYS_USER_ROLE.ID);
+        public static Identity<SysAreaRecord, Long> IDENTITY_SYS_AREA = Internal.createIdentity(SysArea.SYS_AREA, SysArea.SYS_AREA.ID);
+        public static Identity<SysDictRecord, Long> IDENTITY_SYS_DICT = Internal.createIdentity(SysDict.SYS_DICT, SysDict.SYS_DICT.ID);
+        public static Identity<SysLogRecord, Long> IDENTITY_SYS_LOG = Internal.createIdentity(SysLog.SYS_LOG, SysLog.SYS_LOG.ID);
+        public static Identity<SysMenuRecord, Long> IDENTITY_SYS_MENU = Internal.createIdentity(SysMenu.SYS_MENU, SysMenu.SYS_MENU.ID);
+        public static Identity<SysPermissionRecord, Long> IDENTITY_SYS_PERMISSION = Internal.createIdentity(SysPermission.SYS_PERMISSION, SysPermission.SYS_PERMISSION.ID);
+        public static Identity<SysRoleRecord, Long> IDENTITY_SYS_ROLE = Internal.createIdentity(SysRole.SYS_ROLE, SysRole.SYS_ROLE.ID);
+        public static Identity<SysRoleMenuRecord, Long> IDENTITY_SYS_ROLE_MENU = Internal.createIdentity(SysRoleMenu.SYS_ROLE_MENU, SysRoleMenu.SYS_ROLE_MENU.ID);
+        public static Identity<SysRolePermissionRecord, Long> IDENTITY_SYS_ROLE_PERMISSION = Internal.createIdentity(SysRolePermission.SYS_ROLE_PERMISSION, SysRolePermission.SYS_ROLE_PERMISSION.ID);
+        public static Identity<SysSystemRecord, Long> IDENTITY_SYS_SYSTEM = Internal.createIdentity(SysSystem.SYS_SYSTEM, SysSystem.SYS_SYSTEM.ID);
+        public static Identity<SysUserRecord, Long> IDENTITY_SYS_USER = Internal.createIdentity(SysUser.SYS_USER, SysUser.SYS_USER.ID);
+        public static Identity<SysUserRoleRecord, Long> IDENTITY_SYS_USER_ROLE = Internal.createIdentity(SysUserRole.SYS_USER_ROLE, SysUserRole.SYS_USER_ROLE.ID);
     }
 
     private static class UniqueKeys0 {

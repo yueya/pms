@@ -25,7 +25,6 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.ULong;
 
 
 /**
@@ -34,7 +33,7 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysLog extends TableImpl<SysLogRecord> {
 
-    private static final long serialVersionUID = 1154676274;
+    private static final long serialVersionUID = -147468582;
 
     /**
      * The reference instance of <code>pms.sys_log</code>
@@ -52,7 +51,7 @@ public class SysLog extends TableImpl<SysLogRecord> {
     /**
      * The column <code>pms.sys_log.id</code>. 编号
      */
-    public final TableField<SysLogRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "编号");
+    public final TableField<SysLogRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "编号");
 
     /**
      * The column <code>pms.sys_log.type</code>. 日志类型
@@ -157,7 +156,7 @@ public class SysLog extends TableImpl<SysLogRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<SysLogRecord, ULong> getIdentity() {
+    public Identity<SysLogRecord, Long> getIdentity() {
         return Keys.IDENTITY_SYS_LOG;
     }
 

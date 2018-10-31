@@ -13,29 +13,28 @@ import org.jooq.Record1;
 import org.jooq.Record11;
 import org.jooq.Row11;
 import org.jooq.impl.UpdatableRecordImpl;
-import org.jooq.types.ULong;
 
 
 /**
  * 区域表
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements Record11<ULong, Long, String, String, Integer, String, String, Timestamp, Timestamp, String, String> {
+public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements Record11<Long, Long, String, String, Integer, String, String, Timestamp, Timestamp, String, String> {
 
-    private static final long serialVersionUID = 318072800;
+    private static final long serialVersionUID = -1578165158;
 
     /**
      * Setter for <code>pms.sys_area.id</code>. 编号
      */
-    public void setId(ULong value) {
+    public void setId(Long value) {
         set(0, value);
     }
 
     /**
      * Getter for <code>pms.sys_area.id</code>. 编号
      */
-    public ULong getId() {
-        return (ULong) get(0);
+    public Long getId() {
+        return (Long) get(0);
     }
 
     /**
@@ -186,7 +185,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Record1<ULong> key() {
+    public Record1<Long> key() {
         return (Record1) super.key();
     }
 
@@ -198,7 +197,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Row11<ULong, Long, String, String, Integer, String, String, Timestamp, Timestamp, String, String> fieldsRow() {
+    public Row11<Long, Long, String, String, Integer, String, String, Timestamp, Timestamp, String, String> fieldsRow() {
         return (Row11) super.fieldsRow();
     }
 
@@ -206,7 +205,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Row11<ULong, Long, String, String, Integer, String, String, Timestamp, Timestamp, String, String> valuesRow() {
+    public Row11<Long, Long, String, String, Integer, String, String, Timestamp, Timestamp, String, String> valuesRow() {
         return (Row11) super.valuesRow();
     }
 
@@ -214,7 +213,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public Field<ULong> field1() {
+    public Field<Long> field1() {
         return SysArea.SYS_AREA.ID;
     }
 
@@ -302,7 +301,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public ULong component1() {
+    public Long component1() {
         return getId();
     }
 
@@ -390,7 +389,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public ULong value1() {
+    public Long value1() {
         return getId();
     }
 
@@ -478,7 +477,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysAreaRecord value1(ULong value) {
+    public SysAreaRecord value1(Long value) {
         setId(value);
         return this;
     }
@@ -577,7 +576,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
      * {@inheritDoc}
      */
     @Override
-    public SysAreaRecord values(ULong value1, Long value2, String value3, String value4, Integer value5, String value6, String value7, Timestamp value8, Timestamp value9, String value10, String value11) {
+    public SysAreaRecord values(Long value1, Long value2, String value3, String value4, Integer value5, String value6, String value7, Timestamp value8, Timestamp value9, String value10, String value11) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -606,7 +605,7 @@ public class SysAreaRecord extends UpdatableRecordImpl<SysAreaRecord> implements
     /**
      * Create a detached, initialised SysAreaRecord
      */
-    public SysAreaRecord(ULong id, Long parentId, String parentIds, String name, Integer sort, String code, String type, Timestamp gmtCreate, Timestamp gmtModified, String remarks, String delFlag) {
+    public SysAreaRecord(Long id, Long parentId, String parentIds, String name, Integer sort, String code, String type, Timestamp gmtCreate, Timestamp gmtModified, String remarks, String delFlag) {
         super(SysArea.SYS_AREA);
 
         set(0, id);

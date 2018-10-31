@@ -13,29 +13,28 @@ import org.jooq.Record1;
 import org.jooq.Record11;
 import org.jooq.Row11;
 import org.jooq.impl.UpdatableRecordImpl;
-import org.jooq.types.ULong;
 
 
 /**
  * 日志表
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements Record11<ULong, String, String, String, Timestamp, String, String, String, String, String, String> {
+public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements Record11<Long, String, String, String, Timestamp, String, String, String, String, String, String> {
 
-    private static final long serialVersionUID = -2046695248;
+    private static final long serialVersionUID = 1047697666;
 
     /**
      * Setter for <code>pms.sys_log.id</code>. 编号
      */
-    public void setId(ULong value) {
+    public void setId(Long value) {
         set(0, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.id</code>. 编号
      */
-    public ULong getId() {
-        return (ULong) get(0);
+    public Long getId() {
+        return (Long) get(0);
     }
 
     /**
@@ -186,7 +185,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Record1<ULong> key() {
+    public Record1<Long> key() {
         return (Record1) super.key();
     }
 
@@ -198,7 +197,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Row11<ULong, String, String, String, Timestamp, String, String, String, String, String, String> fieldsRow() {
+    public Row11<Long, String, String, String, Timestamp, String, String, String, String, String, String> fieldsRow() {
         return (Row11) super.fieldsRow();
     }
 
@@ -206,7 +205,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Row11<ULong, String, String, String, Timestamp, String, String, String, String, String, String> valuesRow() {
+    public Row11<Long, String, String, String, Timestamp, String, String, String, String, String, String> valuesRow() {
         return (Row11) super.valuesRow();
     }
 
@@ -214,7 +213,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<ULong> field1() {
+    public Field<Long> field1() {
         return SysLog.SYS_LOG.ID;
     }
 
@@ -302,7 +301,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public ULong component1() {
+    public Long component1() {
         return getId();
     }
 
@@ -390,7 +389,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public ULong value1() {
+    public Long value1() {
         return getId();
     }
 
@@ -478,7 +477,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value1(ULong value) {
+    public SysLogRecord value1(Long value) {
         setId(value);
         return this;
     }
@@ -577,7 +576,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord values(ULong value1, String value2, String value3, String value4, Timestamp value5, String value6, String value7, String value8, String value9, String value10, String value11) {
+    public SysLogRecord values(Long value1, String value2, String value3, String value4, Timestamp value5, String value6, String value7, String value8, String value9, String value10, String value11) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -606,7 +605,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
     /**
      * Create a detached, initialised SysLogRecord
      */
-    public SysLogRecord(ULong id, String type, String title, String createBy, Timestamp createDate, String remoteAddr, String userAgent, String requestUri, String method, String params, String exception) {
+    public SysLogRecord(Long id, String type, String title, String createBy, Timestamp createDate, String remoteAddr, String userAgent, String requestUri, String method, String params, String exception) {
         super(SysLog.SYS_LOG);
 
         set(0, id);

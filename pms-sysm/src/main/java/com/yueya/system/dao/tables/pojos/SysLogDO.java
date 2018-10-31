@@ -7,8 +7,6 @@ package com.yueya.system.dao.tables.pojos;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import org.jooq.types.ULong;
-
 
 /**
  * 日志表
@@ -16,9 +14,9 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysLogDO implements Serializable {
 
-    private static final long serialVersionUID = 2070691837;
+    private static final long serialVersionUID = -936021058;
 
-    private ULong     id;
+    private Long      id;
     private String    type;
     private String    title;
     private String    createBy;
@@ -47,7 +45,7 @@ public class SysLogDO implements Serializable {
     }
 
     public SysLogDO(
-        ULong     id,
+        Long      id,
         String    type,
         String    title,
         String    createBy,
@@ -72,11 +70,11 @@ public class SysLogDO implements Serializable {
         this.exception = exception;
     }
 
-    public ULong getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(ULong id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

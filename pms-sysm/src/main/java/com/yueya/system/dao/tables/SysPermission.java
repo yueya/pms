@@ -25,7 +25,6 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.ULong;
 
 
 /**
@@ -34,7 +33,7 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysPermission extends TableImpl<SysPermissionRecord> {
 
-    private static final long serialVersionUID = 279570473;
+    private static final long serialVersionUID = -1558461921;
 
     /**
      * The reference instance of <code>pms.sys_permission</code>
@@ -52,7 +51,7 @@ public class SysPermission extends TableImpl<SysPermissionRecord> {
     /**
      * The column <code>pms.sys_permission.id</code>. id
      */
-    public final TableField<SysPermissionRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "id");
+    public final TableField<SysPermissionRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "id");
 
     /**
      * The column <code>pms.sys_permission.name</code>. 权限名称
@@ -147,7 +146,7 @@ public class SysPermission extends TableImpl<SysPermissionRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<SysPermissionRecord, ULong> getIdentity() {
+    public Identity<SysPermissionRecord, Long> getIdentity() {
         return Keys.IDENTITY_SYS_PERMISSION;
     }
 

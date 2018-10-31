@@ -25,7 +25,6 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.ULong;
 
 
 /**
@@ -34,7 +33,7 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysUser extends TableImpl<SysUserRecord> {
 
-    private static final long serialVersionUID = 104527664;
+    private static final long serialVersionUID = 774076358;
 
     /**
      * The reference instance of <code>pms.sys_user</code>
@@ -52,7 +51,7 @@ public class SysUser extends TableImpl<SysUserRecord> {
     /**
      * The column <code>pms.sys_user.id</code>. 编号
      */
-    public final TableField<SysUserRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "编号");
+    public final TableField<SysUserRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "编号");
 
     /**
      * The column <code>pms.sys_user.user_code</code>. 用户标识码
@@ -202,7 +201,7 @@ public class SysUser extends TableImpl<SysUserRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<SysUserRecord, ULong> getIdentity() {
+    public Identity<SysUserRecord, Long> getIdentity() {
         return Keys.IDENTITY_SYS_USER;
     }
 

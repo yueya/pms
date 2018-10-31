@@ -7,8 +7,6 @@ package com.yueya.system.dao.tables.pojos;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import org.jooq.types.ULong;
-
 
 /**
  * 用户表
@@ -16,9 +14,9 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysUserDO implements Serializable {
 
-    private static final long serialVersionUID = -415066592;
+    private static final long serialVersionUID = 2075211331;
 
-    private ULong     id;
+    private Long      id;
     private String    userCode;
     private String    organizationId;
     private String    departmentId;
@@ -65,7 +63,7 @@ public class SysUserDO implements Serializable {
     }
 
     public SysUserDO(
-        ULong     id,
+        Long      id,
         String    userCode,
         String    organizationId,
         String    departmentId,
@@ -108,11 +106,11 @@ public class SysUserDO implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public ULong getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(ULong id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

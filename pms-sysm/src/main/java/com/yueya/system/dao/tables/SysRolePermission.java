@@ -24,7 +24,6 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.ULong;
 
 
 /**
@@ -33,7 +32,7 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysRolePermission extends TableImpl<SysRolePermissionRecord> {
 
-    private static final long serialVersionUID = -362809828;
+    private static final long serialVersionUID = -2037960008;
 
     /**
      * The reference instance of <code>pms.sys_role_permission</code>
@@ -61,7 +60,7 @@ public class SysRolePermission extends TableImpl<SysRolePermissionRecord> {
     /**
      * The column <code>pms.sys_role_permission.id</code>. id
      */
-    public final TableField<SysRolePermissionRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "id");
+    public final TableField<SysRolePermissionRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "id");
 
     /**
      * Create a <code>pms.sys_role_permission</code> table reference
@@ -116,7 +115,7 @@ public class SysRolePermission extends TableImpl<SysRolePermissionRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<SysRolePermissionRecord, ULong> getIdentity() {
+    public Identity<SysRolePermissionRecord, Long> getIdentity() {
         return Keys.IDENTITY_SYS_ROLE_PERMISSION;
     }
 

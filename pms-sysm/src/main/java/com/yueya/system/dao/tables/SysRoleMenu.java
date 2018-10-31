@@ -24,7 +24,6 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.ULong;
 
 
 /**
@@ -33,7 +32,7 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysRoleMenu extends TableImpl<SysRoleMenuRecord> {
 
-    private static final long serialVersionUID = -1563192898;
+    private static final long serialVersionUID = 649044656;
 
     /**
      * The reference instance of <code>pms.sys_role_menu</code>
@@ -51,7 +50,7 @@ public class SysRoleMenu extends TableImpl<SysRoleMenuRecord> {
     /**
      * The column <code>pms.sys_role_menu.id</code>.
      */
-    public final TableField<SysRoleMenuRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "");
+    public final TableField<SysRoleMenuRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>pms.sys_role_menu.menu_id</code>. 菜单id
@@ -116,7 +115,7 @@ public class SysRoleMenu extends TableImpl<SysRoleMenuRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<SysRoleMenuRecord, ULong> getIdentity() {
+    public Identity<SysRoleMenuRecord, Long> getIdentity() {
         return Keys.IDENTITY_SYS_ROLE_MENU;
     }
 

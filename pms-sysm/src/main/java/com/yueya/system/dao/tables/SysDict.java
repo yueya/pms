@@ -25,7 +25,6 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.ULong;
 
 
 /**
@@ -34,7 +33,7 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysDict extends TableImpl<SysDictRecord> {
 
-    private static final long serialVersionUID = -628600395;
+    private static final long serialVersionUID = 1482032547;
 
     /**
      * The reference instance of <code>pms.sys_dict</code>
@@ -52,7 +51,7 @@ public class SysDict extends TableImpl<SysDictRecord> {
     /**
      * The column <code>pms.sys_dict.id</code>. id
      */
-    public final TableField<SysDictRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "id");
+    public final TableField<SysDictRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "id");
 
     /**
      * The column <code>pms.sys_dict.name</code>. 字典名称
@@ -142,7 +141,7 @@ public class SysDict extends TableImpl<SysDictRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<SysDictRecord, ULong> getIdentity() {
+    public Identity<SysDictRecord, Long> getIdentity() {
         return Keys.IDENTITY_SYS_DICT;
     }
 

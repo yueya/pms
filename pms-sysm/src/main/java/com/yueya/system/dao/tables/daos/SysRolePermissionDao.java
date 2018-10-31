@@ -11,7 +11,6 @@ import com.yueya.system.dao.tables.records.SysRolePermissionRecord;
 import java.util.List;
 
 import org.jooq.Configuration;
-import org.jooq.types.ULong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 @Repository
-public class SysRolePermissionDao extends BaseDao<SysRolePermissionRecord, SysRolePermissionDO, ULong> {
+public class SysRolePermissionDao extends BaseDao<SysRolePermissionRecord, SysRolePermissionDO, Long> {
 
     /**
      * Create a new SysRolePermissionDao without any configuration
@@ -42,7 +41,7 @@ public class SysRolePermissionDao extends BaseDao<SysRolePermissionRecord, SysRo
      * {@inheritDoc}
      */
     @Override
-    protected ULong getId(SysRolePermissionDO object) {
+    protected Long getId(SysRolePermissionDO object) {
         return object.getId();
     }
 
@@ -63,14 +62,14 @@ public class SysRolePermissionDao extends BaseDao<SysRolePermissionRecord, SysRo
     /**
      * Fetch records that have <code>id IN (values)</code>
      */
-    public List<SysRolePermissionDO> fetchById(ULong... values) {
+    public List<SysRolePermissionDO> fetchById(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysRolePermission.SYS_ROLE_PERMISSION.ID, values);
     }
 
     /**
      * Fetch a unique record that has <code>id = value</code>
      */
-    public SysRolePermissionDO fetchOneById(ULong value) {
+    public SysRolePermissionDO fetchOneById(Long value) {
         return fetchOne(com.yueya.system.dao.tables.SysRolePermission.SYS_ROLE_PERMISSION.ID, value);
     }
 }

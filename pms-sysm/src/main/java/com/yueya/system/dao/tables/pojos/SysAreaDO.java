@@ -7,8 +7,6 @@ package com.yueya.system.dao.tables.pojos;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import org.jooq.types.ULong;
-
 
 /**
  * 区域表
@@ -16,9 +14,9 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysAreaDO implements Serializable {
 
-    private static final long serialVersionUID = 1594681507;
+    private static final long serialVersionUID = 1788586400;
 
-    private ULong     id;
+    private Long      id;
     private Long      parentId;
     private String    parentIds;
     private String    name;
@@ -47,7 +45,7 @@ public class SysAreaDO implements Serializable {
     }
 
     public SysAreaDO(
-        ULong     id,
+        Long      id,
         Long      parentId,
         String    parentIds,
         String    name,
@@ -72,11 +70,11 @@ public class SysAreaDO implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public ULong getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(ULong id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

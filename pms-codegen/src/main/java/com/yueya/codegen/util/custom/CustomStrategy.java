@@ -12,4 +12,5 @@ public class CustomStrategy extends DefaultGeneratorStrategy {
         }
         return super.getJavaClassName(definition, mode);
     }
+
 }

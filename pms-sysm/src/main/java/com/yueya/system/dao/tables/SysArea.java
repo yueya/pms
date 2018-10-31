@@ -25,7 +25,6 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.ULong;
 
 
 /**
@@ -34,7 +33,7 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysArea extends TableImpl<SysAreaRecord> {
 
-    private static final long serialVersionUID = 1157970041;
+    private static final long serialVersionUID = -886385177;
 
     /**
      * The reference instance of <code>pms.sys_area</code>
@@ -52,7 +51,7 @@ public class SysArea extends TableImpl<SysAreaRecord> {
     /**
      * The column <code>pms.sys_area.id</code>. 编号
      */
-    public final TableField<SysAreaRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "编号");
+    public final TableField<SysAreaRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "编号");
 
     /**
      * The column <code>pms.sys_area.parent_id</code>. 父级编号
@@ -157,7 +156,7 @@ public class SysArea extends TableImpl<SysAreaRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<SysAreaRecord, ULong> getIdentity() {
+    public Identity<SysAreaRecord, Long> getIdentity() {
         return Keys.IDENTITY_SYS_AREA;
     }
 

@@ -25,7 +25,6 @@ import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.TableImpl;
-import org.jooq.types.ULong;
 
 
 /**
@@ -34,7 +33,7 @@ import org.jooq.types.ULong;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysMenu extends TableImpl<SysMenuRecord> {
 
-    private static final long serialVersionUID = 109124664;
+    private static final long serialVersionUID = 447645296;
 
     /**
      * The reference instance of <code>pms.sys_menu</code>
@@ -52,7 +51,7 @@ public class SysMenu extends TableImpl<SysMenuRecord> {
     /**
      * The column <code>pms.sys_menu.id</code>. id
      */
-    public final TableField<SysMenuRecord, ULong> ID = createField("id", org.jooq.impl.SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "id");
+    public final TableField<SysMenuRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "id");
 
     /**
      * The column <code>pms.sys_menu.name</code>. 菜单名称
@@ -192,7 +191,7 @@ public class SysMenu extends TableImpl<SysMenuRecord> {
      * {@inheritDoc}
      */
     @Override
-    public Identity<SysMenuRecord, ULong> getIdentity() {
+    public Identity<SysMenuRecord, Long> getIdentity() {
         return Keys.IDENTITY_SYS_MENU;
     }
 

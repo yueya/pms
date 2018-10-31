@@ -11,7 +11,6 @@ import com.yueya.system.dao.tables.records.SysUserRoleRecord;
 import java.util.List;
 
 import org.jooq.Configuration;
-import org.jooq.types.ULong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 @Repository
-public class SysUserRoleDao extends BaseDao<SysUserRoleRecord, SysUserRoleDO, ULong> {
+public class SysUserRoleDao extends BaseDao<SysUserRoleRecord, SysUserRoleDO, Long> {
 
     /**
      * Create a new SysUserRoleDao without any configuration
@@ -42,21 +41,21 @@ public class SysUserRoleDao extends BaseDao<SysUserRoleRecord, SysUserRoleDO, UL
      * {@inheritDoc}
      */
     @Override
-    protected ULong getId(SysUserRoleDO object) {
+    protected Long getId(SysUserRoleDO object) {
         return object.getId();
     }
 
     /**
      * Fetch records that have <code>id IN (values)</code>
      */
-    public List<SysUserRoleDO> fetchById(ULong... values) {
+    public List<SysUserRoleDO> fetchById(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysUserRole.SYS_USER_ROLE.ID, values);
     }
 
     /**
      * Fetch a unique record that has <code>id = value</code>
      */
-    public SysUserRoleDO fetchOneById(ULong value) {
+    public SysUserRoleDO fetchOneById(Long value) {
         return fetchOne(com.yueya.system.dao.tables.SysUserRole.SYS_USER_ROLE.ID, value);
     }
 
