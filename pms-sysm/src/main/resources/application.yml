@@ -1,3 +1,6 @@
+auth:
+  adminPath: /a
+  frontPath: /f
 logging:
   config: classpath:logback-dev.xml
 spring:
