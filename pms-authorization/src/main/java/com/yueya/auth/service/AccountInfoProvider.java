@@ -1,9 +1,18 @@
 package com.yueya.auth.service;
 
-import javax.naming.AuthenticationException;
+import com.yueya.auth.model.Account;
+import org.apache.shiro.authc.AuthenticationException;
+
 import java.util.Set;
 
 public interface AccountInfoProvider {
+    /**
+     * 根据用户名获取账号信息
+     * @param account
+     * @return
+     * @throws AuthenticationException
+     */
+    public Account loadAccount(String account) throws AuthenticationException;
     /**
      * 检查账号是否正常
      * <br>如果返回false或抛出AuthenticationException则不予通过认证
