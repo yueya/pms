@@ -1,6 +1,9 @@
 auth:
   adminPath: /a
   frontPath: /f
+  loginUrl: http://127.0.0.1:8080/login
+  successUrl: http://127.0.0.1:8080/index
+  type: server
 logging:
   config: classpath:logback-dev.xml
 spring:
@@ -9,7 +12,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     druid:
       one:
-        url: jdbc:mysql://localhost:3308/jeesite?characterEncoding=UTF-8&autoReconnect=true&useUnicode=true&serverTimezone=UTC
+        url: jdbc:mysql://localhost:3308/pms?characterEncoding=UTF-8&autoReconnect=true&useUnicode=true&serverTimezone=UTC
         username: root
         password: root
         initial-size: 10
@@ -21,7 +24,7 @@ spring:
         time-between-eviction-runs-millis: 60000
         min-evictable-idle-time-millis: 300000
       two:
-        url: jdbc:mysql://localhost:3308/jeesite?characterEncoding=UTF-8&autoReconnect=true&useUnicode=true&serverTimezone=UTC
+        url: jdbc:mysql://localhost:3308/pms?characterEncoding=UTF-8&autoReconnect=true&useUnicode=true&serverTimezone=UTC
         username: root
         password: root
         initial-size: 10

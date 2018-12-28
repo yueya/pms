@@ -3,7 +3,7 @@
     <!-- Configure the database connection here -->
     <jdbc>
         <driver>com.mysql.jdbc.Driver</driver>
-        <url>jdbc:mysql://localhost:3308/jeesite?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8</url>
+        <url>jdbc:mysql://localhost:3308/pms?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8</url>
         <user>root</user>
         <password>root</password>
     </jdbc>
@@ -26,7 +26,7 @@
 
             <!-- The database schema (or in the absence of schema support, in your RDBMS this
                  can be the owner, user, database name) to be generated -->
-            <inputSchema>jeesite</inputSchema>
+            <inputSchema>pms</inputSchema>
 
             <!-- All elements that are generated from your schema
                  (A Java regular expression. Use the pipe to separate several expressions)
@@ -37,6 +37,7 @@
                  (A Java regular expression. Use the pipe to separate several expressions).
                  Excludes match before includes, i.e. excludes have a higher priority -->
             <excludes></excludes>
+            <unsignedTypes>false</unsignedTypes>
         </database>
 
         <target>
