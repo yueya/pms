@@ -18,7 +18,18 @@ public class AuthProperties {
     private String successUrl=null;
 
     private String type=null;
+    /**
+     * 认证的模式：normal/jwt/sso 默认是normal
+     */
+    private String mode="normal";
 
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
     public String getLoginUrl() {
         return loginUrl;
     }

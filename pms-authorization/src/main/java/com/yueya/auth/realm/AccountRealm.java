@@ -7,26 +7,39 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.codec.Hex;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
+
 import java.util.Set;
 
-public class AccountRealm extends AuthorizingRealm {
+import static com.yueya.auth.utils.CredentialsHelper.HASH_ALGORITHM;
+import static com.yueya.auth.utils.CredentialsHelper.HASH_INTERATIONS;
 
+public class AccountRealm extends AuthorizingRealm {
     private AccountInfoProvider provider;
     private MessageConfig messageConfig;
+
+    public AccountRealm(){
+        initCredentialsMatcher();
+    }
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String account = (String) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo info =  new SimpleAuthorizationInfo();
         Set<String> roles = provider.loadRoles(account);
         Set<String> permissions = provider.loadPermissions(account);
-        if(null!=roles&&!roles.isEmpty())
+        if(null!=roles&&!roles.isEmpty()){
             info.setRoles(roles);
-        if(null!=permissions&&!permissions.isEmpty())
+        }
+        if(null!=permissions&&!permissions.isEmpty()){
             info.setStringPermissions(permissions);
+        }
+        info.addStringPermission("user");
         return info;
     }
 
@@ -40,7 +53,12 @@ public class AccountRealm extends AuthorizingRealm {
         if (null == accountEntity) {
             throw new AuthenticationException(messageConfig.getMsgAccountNotExist());
         }
-        return new SimpleAuthenticationInfo(account,accountEntity.getPassword(), getName());
+        //盐就是密码的前16位
+        byte[] salt = Hex.decode(accountEntity.getPassword().substring(0,16));
+        return new SimpleAuthenticationInfo(new Principal(accountEntity.getId(),accountEntity.getAccount()),
+                accountEntity.getPassword().substring(16),
+                ByteSource.Util.bytes(salt),
+                getName());
     }
 
     public void setProvider(AccountInfoProvider provider) {
@@ -53,5 +71,13 @@ public class AccountRealm extends AuthorizingRealm {
 
     public void setMessageConfig(MessageConfig messageConfig) {
         this.messageConfig = messageConfig;
+    }
+    /**
+     * 设定密码校验的Hash算法与迭代次数
+     */
+    public void initCredentialsMatcher() {
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(HASH_ALGORITHM);
+        matcher.setHashIterations(HASH_INTERATIONS);
+        setCredentialsMatcher(matcher);
     }
 }

@@ -1,6 +1,7 @@
 package com.yueya.auth.model;
 
 public class Account {
+    private String id;
     private String account;
     private String password;
 
@@ -18,5 +19,13 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
