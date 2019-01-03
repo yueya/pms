@@ -1,5 +1,6 @@
 package com.yueya.auth.config;
 import com.yueya.auth.filter.AccountFilter;
+import com.yueya.auth.filter.ForceLogoutFilter;
 import com.yueya.auth.realm.AccountRealm;
 import com.yueya.auth.realm.CookieTokenRealm;
 import com.yueya.auth.service.AccountInfoProvider;
@@ -52,7 +53,7 @@ public class AuthConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         Map<String,String> filters=new HashMap<>();
         filters.put(properties.getAdminPath()+"/logout","logout");
-        filters.put(properties.getAdminPath()+"/**","user");
+        filters.put(properties.getAdminPath()+"/**","forceLogout,user");
         filters.put(properties.getFrontPath()+"/**","anon");
         filters.put(properties.getLoginUrl(),"authc");
         shiroFilterFactoryBean.setLoginUrl(properties.getLoginUrl());
@@ -60,6 +61,7 @@ public class AuthConfig {
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filters);
         shiroFilterFactoryBean.setSecurityManager(manager);
         shiroFilterFactoryBean.getFilters().put("authc",new AccountFilter());
+        shiroFilterFactoryBean.getFilters().put("forceLogout",new ForceLogoutFilter());
         return shiroFilterFactoryBean;
     }
 

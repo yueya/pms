@@ -3,6 +3,7 @@ package com.yueya.auth.session;
 import com.yueya.auth.model.SessionPage;
 import org.apache.shiro.dao.DataAccessException;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.SimpleSession;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
@@ -66,7 +67,15 @@ public class PmsSessionDao extends EnterpriseCacheSessionDAO implements SessionD
                 return redisOperations.exec();
             }
         };
-        List<Session> list =redisTemplate.execute(sessionCallback);
+        List<Session> list =redisTemplate.execute(sessionCallback)
+                .stream().map(r->{
+                    SimpleSession session=new SimpleSession();
+                    session.setId(r.getId());
+                    session.setHost(r.getHost());
+                    session.setStartTimestamp(r.getStartTimestamp());
+                    session.setLastAccessTime(r.getLastAccessTime());
+                    return session;
+                }).collect(Collectors.toList());
         SessionPage page=new SessionPage();
         page.setCount(keys.size());
         page.setList(list);
