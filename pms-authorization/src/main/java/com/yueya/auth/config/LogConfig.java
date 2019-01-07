@@ -17,10 +17,14 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Configuration
 @Import(JedisConfig.class)
 public class LogConfig implements WebMvcConfigurer{
-    public final String LOG_CHANNEL="pubsub:log";
+    public final static String LOG_CHANNEL="pubsub:log";
     private Logger logger= LoggerFactory.getLogger(getClass());
     @Autowired
     private AuthProperties properties;
@@ -38,7 +42,7 @@ public class LogConfig implements WebMvcConfigurer{
         container.setConnectionFactory(redisConnectionFactory);
         if("server".equals(properties.getType())){
             if(listener==null){
-                throw new NullPointerException("未实现MessageListener");
+                throw new NullPointerException("未实现org.springframework.data.redis.connection.MessageListener");
             }
             MessageListenerAdapter adapter=new MessageListenerAdapter(listener);
             container.addMessageListener(adapter, new ChannelTopic(LOG_CHANNEL));
@@ -47,7 +51,11 @@ public class LogConfig implements WebMvcConfigurer{
     }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(logInterceptor).addPathPatterns(properties.getAdminPath()+"/**");
+        List<String> patterns= Stream.of(
+                properties.getAdminPath()+"/**",
+                properties.getLoginUrl())
+                .collect(Collectors.toList());
+        registry.addInterceptor(logInterceptor).addPathPatterns(patterns);
         logger.info("log interceptor");
     }
 

@@ -24,16 +24,18 @@ public class LogService {
             StringBuilder params = new StringBuilder();
             request.getParameterMap()
                     .forEach((k,v)->{
-                        params.append(k+"="+Stream.of(v).collect(Collectors.joining(",")));
+                        params.append(k+"="+Stream.of(v).collect(Collectors.joining(","))).append("&");
                     });
             log.setParams(params.toString());
         }
         log.setRemoteAddress(RequestUtil.getRemoteAddr(request));
         log.setRequestUri(request.getRequestURI());
         log.setUserAgent(request.getHeader("user-agent"));
+        log.setUserName(principal.getUserName());
         if(ex==null){
             log.setType(PmsLog.TYPE_ACCESS);
         }else{
+            log.setException(ex.getMessage());
             log.setType(PmsLog.TYPE_EXCEPTION);
         }
         messagePublisher.publish(log);

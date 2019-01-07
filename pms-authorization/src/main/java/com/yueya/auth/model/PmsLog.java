@@ -15,6 +15,8 @@ public class PmsLog implements Serializable {
     private String requestUri;
     private String params;
     private String method;
+    private String userName;
+    private String exception;
 
     public String getTitle() {
         return title;
@@ -70,5 +72,22 @@ public class PmsLog implements Serializable {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+
+    public String getException() {
+        return exception;
+    }
+
+    public void setException(String exception) {
+        this.exception = exception;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
