@@ -14,13 +14,14 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import sun.rmi.runtime.Log;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
 @EnableConfigurationProperties(AuthProperties.class)
-@Import(JedisConfig.class)
+@Import(LogConfig.class)
 public class AuthConfig {
     @Autowired
     private AuthProperties properties;
@@ -28,6 +29,7 @@ public class AuthConfig {
     private AccountInfoProvider provider;
     @Autowired
     private PmsSessionDao sessionDao;
+
     @Bean
     public SecurityManager securityManager(){
         DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
@@ -64,5 +66,6 @@ public class AuthConfig {
         shiroFilterFactoryBean.getFilters().put("forceLogout",new ForceLogoutFilter());
         return shiroFilterFactoryBean;
     }
+
 
 }
