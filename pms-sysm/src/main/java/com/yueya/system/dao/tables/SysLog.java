@@ -33,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysLog extends TableImpl<SysLogRecord> {
 
-    private static final long serialVersionUID = -147468582;
+    private static final long serialVersionUID = 1538366561;
 
     /**
      * The reference instance of <code>pms.sys_log</code>
@@ -54,14 +54,19 @@ public class SysLog extends TableImpl<SysLogRecord> {
     public final TableField<SysLogRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "编号");
 
     /**
+     * The column <code>pms.sys_log.app_id</code>. 系统id
+     */
+    public final TableField<SysLogRecord, Long> APP_ID = createField("app_id", org.jooq.impl.SQLDataType.BIGINT, this, "系统id");
+
+    /**
      * The column <code>pms.sys_log.type</code>. 日志类型
      */
-    public final TableField<SysLogRecord, String> TYPE = createField("type", org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.inline("1", org.jooq.impl.SQLDataType.CHAR)), this, "日志类型");
+    public final TableField<SysLogRecord, String> TYPE = createField("type", org.jooq.impl.SQLDataType.CHAR(1).defaultValue(DSL.inline("1", org.jooq.impl.SQLDataType.CHAR)), this, "日志类型");
 
     /**
      * The column <code>pms.sys_log.title</code>. 日志标题
      */
-    public final TableField<SysLogRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR(255).defaultValue(org.jooq.impl.DSL.inline("", org.jooq.impl.SQLDataType.VARCHAR)), this, "日志标题");
+    public final TableField<SysLogRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR(255).defaultValue(DSL.inline("", org.jooq.impl.SQLDataType.VARCHAR)), this, "日志标题");
 
     /**
      * The column <code>pms.sys_log.create_by</code>. 创建者

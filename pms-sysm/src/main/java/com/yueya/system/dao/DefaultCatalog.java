@@ -28,7 +28,7 @@ public class DefaultCatalog extends CatalogImpl {
     /**
      * The schema <code>pms</code>.
      */
-    public final Pms PMS = com.yueya.system.dao.Pms.PMS;
+    public final Pms PMS = Pms.PMS;
 
     /**
      * No further instances allowed

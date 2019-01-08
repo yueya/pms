@@ -10,8 +10,8 @@ import java.sql.Timestamp;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record11;
-import org.jooq.Row11;
+import org.jooq.Record12;
+import org.jooq.Row12;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
@@ -19,9 +19,9 @@ import org.jooq.impl.UpdatableRecordImpl;
  * 日志表
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
-public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements Record11<Long, String, String, String, Timestamp, String, String, String, String, String, String> {
+public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements Record12<Long, Long, String, String, String, Timestamp, String, String, String, String, String, String> {
 
-    private static final long serialVersionUID = 1047697666;
+    private static final long serialVersionUID = -1678057466;
 
     /**
      * Setter for <code>pms.sys_log.id</code>. 编号
@@ -38,143 +38,157 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
     }
 
     /**
+     * Setter for <code>pms.sys_log.app_id</code>. 系统id
+     */
+    public void setAppId(Long value) {
+        set(1, value);
+    }
+
+    /**
+     * Getter for <code>pms.sys_log.app_id</code>. 系统id
+     */
+    public Long getAppId() {
+        return (Long) get(1);
+    }
+
+    /**
      * Setter for <code>pms.sys_log.type</code>. 日志类型
      */
     public void setType(String value) {
-        set(1, value);
+        set(2, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.type</code>. 日志类型
      */
     public String getType() {
-        return (String) get(1);
+        return (String) get(2);
     }
 
     /**
      * Setter for <code>pms.sys_log.title</code>. 日志标题
      */
     public void setTitle(String value) {
-        set(2, value);
+        set(3, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.title</code>. 日志标题
      */
     public String getTitle() {
-        return (String) get(2);
+        return (String) get(3);
     }
 
     /**
      * Setter for <code>pms.sys_log.create_by</code>. 创建者
      */
     public void setCreateBy(String value) {
-        set(3, value);
+        set(4, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.create_by</code>. 创建者
      */
     public String getCreateBy() {
-        return (String) get(3);
+        return (String) get(4);
     }
 
     /**
      * Setter for <code>pms.sys_log.create_date</code>. 创建时间
      */
     public void setCreateDate(Timestamp value) {
-        set(4, value);
+        set(5, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.create_date</code>. 创建时间
      */
     public Timestamp getCreateDate() {
-        return (Timestamp) get(4);
+        return (Timestamp) get(5);
     }
 
     /**
      * Setter for <code>pms.sys_log.remote_addr</code>. 操作IP地址
      */
     public void setRemoteAddr(String value) {
-        set(5, value);
+        set(6, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.remote_addr</code>. 操作IP地址
      */
     public String getRemoteAddr() {
-        return (String) get(5);
+        return (String) get(6);
     }
 
     /**
      * Setter for <code>pms.sys_log.user_agent</code>. 用户代理
      */
     public void setUserAgent(String value) {
-        set(6, value);
+        set(7, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.user_agent</code>. 用户代理
      */
     public String getUserAgent() {
-        return (String) get(6);
+        return (String) get(7);
     }
 
     /**
      * Setter for <code>pms.sys_log.request_uri</code>. 请求URI
      */
     public void setRequestUri(String value) {
-        set(7, value);
+        set(8, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.request_uri</code>. 请求URI
      */
     public String getRequestUri() {
-        return (String) get(7);
+        return (String) get(8);
     }
 
     /**
      * Setter for <code>pms.sys_log.method</code>. 操作方式
      */
     public void setMethod(String value) {
-        set(8, value);
+        set(9, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.method</code>. 操作方式
      */
     public String getMethod() {
-        return (String) get(8);
+        return (String) get(9);
     }
 
     /**
      * Setter for <code>pms.sys_log.params</code>. 操作提交的数据
      */
     public void setParams(String value) {
-        set(9, value);
+        set(10, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.params</code>. 操作提交的数据
      */
     public String getParams() {
-        return (String) get(9);
+        return (String) get(10);
     }
 
     /**
      * Setter for <code>pms.sys_log.exception</code>. 异常信息
      */
     public void setException(String value) {
-        set(10, value);
+        set(11, value);
     }
 
     /**
      * Getter for <code>pms.sys_log.exception</code>. 异常信息
      */
     public String getException() {
-        return (String) get(10);
+        return (String) get(11);
     }
 
     // -------------------------------------------------------------------------
@@ -190,23 +204,23 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
     }
 
     // -------------------------------------------------------------------------
-    // Record11 type implementation
+    // Record12 type implementation
     // -------------------------------------------------------------------------
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Row11<Long, String, String, String, Timestamp, String, String, String, String, String, String> fieldsRow() {
-        return (Row11) super.fieldsRow();
+    public Row12<Long, Long, String, String, String, Timestamp, String, String, String, String, String, String> fieldsRow() {
+        return (Row12) super.fieldsRow();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Row11<Long, String, String, String, Timestamp, String, String, String, String, String, String> valuesRow() {
-        return (Row11) super.valuesRow();
+    public Row12<Long, Long, String, String, String, Timestamp, String, String, String, String, String, String> valuesRow() {
+        return (Row12) super.valuesRow();
     }
 
     /**
@@ -221,8 +235,8 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field2() {
-        return SysLog.SYS_LOG.TYPE;
+    public Field<Long> field2() {
+        return SysLog.SYS_LOG.APP_ID;
     }
 
     /**
@@ -230,7 +244,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      */
     @Override
     public Field<String> field3() {
-        return SysLog.SYS_LOG.TITLE;
+        return SysLog.SYS_LOG.TYPE;
     }
 
     /**
@@ -238,6 +252,14 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      */
     @Override
     public Field<String> field4() {
+        return SysLog.SYS_LOG.TITLE;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Field<String> field5() {
         return SysLog.SYS_LOG.CREATE_BY;
     }
 
@@ -245,7 +267,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<Timestamp> field5() {
+    public Field<Timestamp> field6() {
         return SysLog.SYS_LOG.CREATE_DATE;
     }
 
@@ -253,7 +275,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field6() {
+    public Field<String> field7() {
         return SysLog.SYS_LOG.REMOTE_ADDR;
     }
 
@@ -261,7 +283,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field7() {
+    public Field<String> field8() {
         return SysLog.SYS_LOG.USER_AGENT;
     }
 
@@ -269,7 +291,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field8() {
+    public Field<String> field9() {
         return SysLog.SYS_LOG.REQUEST_URI;
     }
 
@@ -277,7 +299,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field9() {
+    public Field<String> field10() {
         return SysLog.SYS_LOG.METHOD;
     }
 
@@ -285,7 +307,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field10() {
+    public Field<String> field11() {
         return SysLog.SYS_LOG.PARAMS;
     }
 
@@ -293,7 +315,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Field<String> field11() {
+    public Field<String> field12() {
         return SysLog.SYS_LOG.EXCEPTION;
     }
 
@@ -309,8 +331,8 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String component2() {
-        return getType();
+    public Long component2() {
+        return getAppId();
     }
 
     /**
@@ -318,7 +340,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      */
     @Override
     public String component3() {
-        return getTitle();
+        return getType();
     }
 
     /**
@@ -326,6 +348,14 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      */
     @Override
     public String component4() {
+        return getTitle();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String component5() {
         return getCreateBy();
     }
 
@@ -333,7 +363,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Timestamp component5() {
+    public Timestamp component6() {
         return getCreateDate();
     }
 
@@ -341,7 +371,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String component6() {
+    public String component7() {
         return getRemoteAddr();
     }
 
@@ -349,7 +379,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String component7() {
+    public String component8() {
         return getUserAgent();
     }
 
@@ -357,7 +387,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String component8() {
+    public String component9() {
         return getRequestUri();
     }
 
@@ -365,7 +395,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String component9() {
+    public String component10() {
         return getMethod();
     }
 
@@ -373,7 +403,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String component10() {
+    public String component11() {
         return getParams();
     }
 
@@ -381,7 +411,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String component11() {
+    public String component12() {
         return getException();
     }
 
@@ -397,8 +427,8 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String value2() {
-        return getType();
+    public Long value2() {
+        return getAppId();
     }
 
     /**
@@ -406,7 +436,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      */
     @Override
     public String value3() {
-        return getTitle();
+        return getType();
     }
 
     /**
@@ -414,6 +444,14 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      */
     @Override
     public String value4() {
+        return getTitle();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String value5() {
         return getCreateBy();
     }
 
@@ -421,7 +459,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public Timestamp value5() {
+    public Timestamp value6() {
         return getCreateDate();
     }
 
@@ -429,7 +467,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String value6() {
+    public String value7() {
         return getRemoteAddr();
     }
 
@@ -437,7 +475,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String value7() {
+    public String value8() {
         return getUserAgent();
     }
 
@@ -445,7 +483,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String value8() {
+    public String value9() {
         return getRequestUri();
     }
 
@@ -453,7 +491,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String value9() {
+    public String value10() {
         return getMethod();
     }
 
@@ -461,7 +499,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String value10() {
+    public String value11() {
         return getParams();
     }
 
@@ -469,7 +507,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public String value11() {
+    public String value12() {
         return getException();
     }
 
@@ -486,8 +524,8 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value2(String value) {
-        setType(value);
+    public SysLogRecord value2(Long value) {
+        setAppId(value);
         return this;
     }
 
@@ -496,7 +534,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      */
     @Override
     public SysLogRecord value3(String value) {
-        setTitle(value);
+        setType(value);
         return this;
     }
 
@@ -505,6 +543,15 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      */
     @Override
     public SysLogRecord value4(String value) {
+        setTitle(value);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SysLogRecord value5(String value) {
         setCreateBy(value);
         return this;
     }
@@ -513,7 +560,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value5(Timestamp value) {
+    public SysLogRecord value6(Timestamp value) {
         setCreateDate(value);
         return this;
     }
@@ -522,7 +569,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value6(String value) {
+    public SysLogRecord value7(String value) {
         setRemoteAddr(value);
         return this;
     }
@@ -531,7 +578,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value7(String value) {
+    public SysLogRecord value8(String value) {
         setUserAgent(value);
         return this;
     }
@@ -540,7 +587,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value8(String value) {
+    public SysLogRecord value9(String value) {
         setRequestUri(value);
         return this;
     }
@@ -549,7 +596,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value9(String value) {
+    public SysLogRecord value10(String value) {
         setMethod(value);
         return this;
     }
@@ -558,7 +605,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value10(String value) {
+    public SysLogRecord value11(String value) {
         setParams(value);
         return this;
     }
@@ -567,7 +614,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord value11(String value) {
+    public SysLogRecord value12(String value) {
         setException(value);
         return this;
     }
@@ -576,7 +623,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
      * {@inheritDoc}
      */
     @Override
-    public SysLogRecord values(Long value1, String value2, String value3, String value4, Timestamp value5, String value6, String value7, String value8, String value9, String value10, String value11) {
+    public SysLogRecord values(Long value1, Long value2, String value3, String value4, String value5, Timestamp value6, String value7, String value8, String value9, String value10, String value11, String value12) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -588,6 +635,7 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
         value9(value9);
         value10(value10);
         value11(value11);
+        value12(value12);
         return this;
     }
 
@@ -605,19 +653,20 @@ public class SysLogRecord extends UpdatableRecordImpl<SysLogRecord> implements R
     /**
      * Create a detached, initialised SysLogRecord
      */
-    public SysLogRecord(Long id, String type, String title, String createBy, Timestamp createDate, String remoteAddr, String userAgent, String requestUri, String method, String params, String exception) {
+    public SysLogRecord(Long id, Long appId, String type, String title, String createBy, Timestamp createDate, String remoteAddr, String userAgent, String requestUri, String method, String params, String exception) {
         super(SysLog.SYS_LOG);
 
         set(0, id);
-        set(1, type);
-        set(2, title);
-        set(3, createBy);
-        set(4, createDate);
-        set(5, remoteAddr);
-        set(6, userAgent);
-        set(7, requestUri);
-        set(8, method);
-        set(9, params);
-        set(10, exception);
+        set(1, appId);
+        set(2, type);
+        set(3, title);
+        set(4, createBy);
+        set(5, createDate);
+        set(6, remoteAddr);
+        set(7, userAgent);
+        set(8, requestUri);
+        set(9, method);
+        set(10, params);
+        set(11, exception);
     }
 }

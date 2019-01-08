@@ -14,9 +14,10 @@ import java.sql.Timestamp;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysLogDO implements Serializable {
 
-    private static final long serialVersionUID = -936021058;
+    private static final long serialVersionUID = -1384799870;
 
     private Long      id;
+    private Long      appId;
     private String    type;
     private String    title;
     private String    createBy;
@@ -32,6 +33,7 @@ public class SysLogDO implements Serializable {
 
     public SysLogDO(SysLogDO value) {
         this.id = value.id;
+        this.appId = value.appId;
         this.type = value.type;
         this.title = value.title;
         this.createBy = value.createBy;
@@ -46,6 +48,7 @@ public class SysLogDO implements Serializable {
 
     public SysLogDO(
         Long      id,
+        Long      appId,
         String    type,
         String    title,
         String    createBy,
@@ -58,6 +61,7 @@ public class SysLogDO implements Serializable {
         String    exception
     ) {
         this.id = id;
+        this.appId = appId;
         this.type = type;
         this.title = title;
         this.createBy = createBy;
@@ -76,6 +80,14 @@ public class SysLogDO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getAppId() {
+        return this.appId;
+    }
+
+    public void setAppId(Long appId) {
+        this.appId = appId;
     }
 
     public String getType() {
@@ -163,6 +175,7 @@ public class SysLogDO implements Serializable {
         StringBuilder sb = new StringBuilder("SysLogDO (");
 
         sb.append(id);
+        sb.append(", ").append(appId);
         sb.append(", ").append(type);
         sb.append(", ").append(title);
         sb.append(", ").append(createBy);
