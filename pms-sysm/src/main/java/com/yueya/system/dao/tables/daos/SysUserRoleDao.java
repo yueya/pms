@@ -62,14 +62,14 @@ public class SysUserRoleDao extends BaseDao<SysUserRoleRecord, SysUserRoleDO, Lo
     /**
      * Fetch records that have <code>user_id IN (values)</code>
      */
-    public List<SysUserRoleDO> fetchByUserId(Integer... values) {
+    public List<SysUserRoleDO> fetchByUserId(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysUserRole.SYS_USER_ROLE.USER_ID, values);
     }
 
     /**
      * Fetch records that have <code>role_id IN (values)</code>
      */
-    public List<SysUserRoleDO> fetchByRoleId(Integer... values) {
+    public List<SysUserRoleDO> fetchByRoleId(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysUserRole.SYS_USER_ROLE.ROLE_ID, values);
     }
 }

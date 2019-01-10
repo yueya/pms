@@ -48,14 +48,14 @@ public class SysRolePermissionDao extends BaseDao<SysRolePermissionRecord, SysRo
     /**
      * Fetch records that have <code>role_id IN (values)</code>
      */
-    public List<SysRolePermissionDO> fetchByRoleId(Integer... values) {
+    public List<SysRolePermissionDO> fetchByRoleId(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysRolePermission.SYS_ROLE_PERMISSION.ROLE_ID, values);
     }
 
     /**
      * Fetch records that have <code>permission_id IN (values)</code>
      */
-    public List<SysRolePermissionDO> fetchByPermissionId(Integer... values) {
+    public List<SysRolePermissionDO> fetchByPermissionId(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysRolePermission.SYS_ROLE_PERMISSION.PERMISSION_ID, values);
     }
 

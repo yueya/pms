@@ -62,14 +62,14 @@ public class SysRoleMenuDao extends BaseDao<SysRoleMenuRecord, SysRoleMenuDO, Lo
     /**
      * Fetch records that have <code>menu_id IN (values)</code>
      */
-    public List<SysRoleMenuDO> fetchByMenuId(Integer... values) {
+    public List<SysRoleMenuDO> fetchByMenuId(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysRoleMenu.SYS_ROLE_MENU.MENU_ID, values);
     }
 
     /**
      * Fetch records that have <code>role_id IN (values)</code>
      */
-    public List<SysRoleMenuDO> fetchByRoleId(Integer... values) {
+    public List<SysRoleMenuDO> fetchByRoleId(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysRoleMenu.SYS_ROLE_MENU.ROLE_ID, values);
     }
 }

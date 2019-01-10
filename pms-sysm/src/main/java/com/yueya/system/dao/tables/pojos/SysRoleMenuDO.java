@@ -13,11 +13,11 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysRoleMenuDO implements Serializable {
 
-    private static final long serialVersionUID = 635961655;
+    private static final long serialVersionUID = -503667615;
 
-    private Long    id;
-    private Integer menuId;
-    private Integer roleId;
+    private Long id;
+    private Long menuId;
+    private Long roleId;
 
     public SysRoleMenuDO() {}
 
@@ -28,9 +28,9 @@ public class SysRoleMenuDO implements Serializable {
     }
 
     public SysRoleMenuDO(
-        Long    id,
-        Integer menuId,
-        Integer roleId
+        Long id,
+        Long menuId,
+        Long roleId
     ) {
         this.id = id;
         this.menuId = menuId;
@@ -45,19 +45,19 @@ public class SysRoleMenuDO implements Serializable {
         this.id = id;
     }
 
-    public Integer getMenuId() {
+    public Long getMenuId() {
         return this.menuId;
     }
 
-    public void setMenuId(Integer menuId) {
+    public void setMenuId(Long menuId) {
         this.menuId = menuId;
     }
 
-    public Integer getRoleId() {
+    public Long getRoleId() {
         return this.roleId;
     }
 
-    public void setRoleId(Integer roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 

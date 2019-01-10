@@ -13,11 +13,11 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysRolePermissionDO implements Serializable {
 
-    private static final long serialVersionUID = 660502727;
+    private static final long serialVersionUID = 170751537;
 
-    private Integer roleId;
-    private Integer permissionId;
-    private Long    id;
+    private Long roleId;
+    private Long permissionId;
+    private Long id;
 
     public SysRolePermissionDO() {}
 
@@ -28,28 +28,28 @@ public class SysRolePermissionDO implements Serializable {
     }
 
     public SysRolePermissionDO(
-        Integer roleId,
-        Integer permissionId,
-        Long    id
+        Long roleId,
+        Long permissionId,
+        Long id
     ) {
         this.roleId = roleId;
         this.permissionId = permissionId;
         this.id = id;
     }
 
-    public Integer getRoleId() {
+    public Long getRoleId() {
         return this.roleId;
     }
 
-    public void setRoleId(Integer roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 
-    public Integer getPermissionId() {
+    public Long getPermissionId() {
         return this.permissionId;
     }
 
-    public void setPermissionId(Integer permissionId) {
+    public void setPermissionId(Long permissionId) {
         this.permissionId = permissionId;
     }
 

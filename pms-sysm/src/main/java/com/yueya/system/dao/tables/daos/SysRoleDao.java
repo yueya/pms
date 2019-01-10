@@ -5,6 +5,8 @@ package com.yueya.system.dao.tables.daos;
 
 
 import com.yueya.common.base.BaseDao;
+import com.yueya.system.dao.Tables;
+import com.yueya.system.dao.tables.SysRole;
 import com.yueya.system.dao.tables.pojos.SysRoleDO;
 import com.yueya.system.dao.tables.records.SysRoleRecord;
 
@@ -12,6 +14,8 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.jooq.Configuration;
+import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -114,5 +118,16 @@ public class SysRoleDao extends BaseDao<SysRoleRecord, SysRoleDO, Long> {
      */
     public List<SysRoleDO> fetchByDelFlag(String... values) {
         return fetch(com.yueya.system.dao.tables.SysRole.SYS_ROLE.DEL_FLAG, values);
+    }
+
+    public List<SysRoleDO> fetchByUserId(long userId) {
+        DSLContext create= DSL.using(super.configuration());
+        List<SysRoleDO> list=create.select().from(getTable())
+                .join(Tables.SYS_USER_ROLE)
+                .on(Tables.SYS_ROLE.ID.eq(Tables.SYS_USER_ROLE.ROLE_ID))
+                .where(Tables.SYS_USER_ROLE.USER_ID.eq(userId)
+                        .and(Tables.SYS_ROLE.DEL_FLAG.equal(DEL_NORMAL)))
+                .fetchInto(getType());
+        return list;
     }
 }

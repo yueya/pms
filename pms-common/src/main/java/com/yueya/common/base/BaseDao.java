@@ -11,6 +11,8 @@ import static org.jooq.impl.DSL.name;
 public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T> {
 
     private final String TEMP_TABLE_NAME="query_temp";
+    protected final String DEL_NORMAL="0";
+    protected final String DEL_DELETED="1";
     protected BaseDao(Table table, Class type) {
         super(table, type);
     }
@@ -24,7 +26,14 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
     protected T getId(P object) {
         return null;
     }
-
+    public List<P> fetchByCondition(Condition... conditions){
+        DSLContext create=DSL.using(super.configuration());
+        Table<R> table=getTable();
+        List<P> result=create.select().from(table)
+                .where(conditions)
+                .fetchInto(getType());
+        return result;
+    }
     public List<P> page(int offset,int limit,Condition... conditions){
         DSLContext create=DSL.using(super.configuration());
         Table<R> table=getTable();

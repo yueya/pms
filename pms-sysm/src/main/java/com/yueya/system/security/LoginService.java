@@ -2,12 +2,14 @@ package com.yueya.system.security;
 
 import com.yueya.auth.model.Account;
 import com.yueya.auth.service.AccountInfoProvider;
+import com.yueya.system.dao.tables.pojos.SysRoleDO;
 import com.yueya.system.dao.tables.pojos.SysUserDO;
 import com.yueya.system.service.SysUserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,7 +39,8 @@ public class LoginService implements AccountInfoProvider {
 
     @Override
     public Set<String> loadRoles(String appId) {
-        return Stream.of("a","b").collect(Collectors.toSet());
+        List<SysRoleDO> list= userService.findRoles(appId);
+        return list.stream().map(r->r.getEnName()).collect(Collectors.toSet());
     }
 
     @Override

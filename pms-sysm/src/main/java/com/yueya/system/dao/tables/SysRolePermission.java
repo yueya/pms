@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysRolePermission extends TableImpl<SysRolePermissionRecord> {
 
-    private static final long serialVersionUID = -2037960008;
+    private static final long serialVersionUID = 1012313048;
 
     /**
      * The reference instance of <code>pms.sys_role_permission</code>
@@ -50,12 +50,12 @@ public class SysRolePermission extends TableImpl<SysRolePermissionRecord> {
     /**
      * The column <code>pms.sys_role_permission.role_id</code>. 角色id
      */
-    public final TableField<SysRolePermissionRecord, Integer> ROLE_ID = createField("role_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "角色id");
+    public final TableField<SysRolePermissionRecord, Long> ROLE_ID = createField("role_id", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "角色id");
 
     /**
      * The column <code>pms.sys_role_permission.permission_id</code>. 权限id
      */
-    public final TableField<SysRolePermissionRecord, Integer> PERMISSION_ID = createField("permission_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "权限id");
+    public final TableField<SysRolePermissionRecord, Long> PERMISSION_ID = createField("permission_id", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "权限id");
 
     /**
      * The column <code>pms.sys_role_permission.id</code>. id

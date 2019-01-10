@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysRoleMenu extends TableImpl<SysRoleMenuRecord> {
 
-    private static final long serialVersionUID = 649044656;
+    private static final long serialVersionUID = -1504853424;
 
     /**
      * The reference instance of <code>pms.sys_role_menu</code>
@@ -55,12 +55,12 @@ public class SysRoleMenu extends TableImpl<SysRoleMenuRecord> {
     /**
      * The column <code>pms.sys_role_menu.menu_id</code>. 菜单id
      */
-    public final TableField<SysRoleMenuRecord, Integer> MENU_ID = createField("menu_id", org.jooq.impl.SQLDataType.INTEGER, this, "菜单id");
+    public final TableField<SysRoleMenuRecord, Long> MENU_ID = createField("menu_id", org.jooq.impl.SQLDataType.BIGINT, this, "菜单id");
 
     /**
      * The column <code>pms.sys_role_menu.role_id</code>. 角色id
      */
-    public final TableField<SysRoleMenuRecord, Integer> ROLE_ID = createField("role_id", org.jooq.impl.SQLDataType.INTEGER, this, "角色id");
+    public final TableField<SysRoleMenuRecord, Long> ROLE_ID = createField("role_id", org.jooq.impl.SQLDataType.BIGINT, this, "角色id");
 
     /**
      * Create a <code>pms.sys_role_menu</code> table reference

@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysUserRole extends TableImpl<SysUserRoleRecord> {
 
-    private static final long serialVersionUID = -403877512;
+    private static final long serialVersionUID = -1117518312;
 
     /**
      * The reference instance of <code>pms.sys_user_role</code>
@@ -55,12 +55,12 @@ public class SysUserRole extends TableImpl<SysUserRoleRecord> {
     /**
      * The column <code>pms.sys_user_role.user_id</code>. 用户id
      */
-    public final TableField<SysUserRoleRecord, Integer> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.INTEGER, this, "用户id");
+    public final TableField<SysUserRoleRecord, Long> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.BIGINT, this, "用户id");
 
     /**
      * The column <code>pms.sys_user_role.role_id</code>. 角色id
      */
-    public final TableField<SysUserRoleRecord, Integer> ROLE_ID = createField("role_id", org.jooq.impl.SQLDataType.INTEGER, this, "角色id");
+    public final TableField<SysUserRoleRecord, Long> ROLE_ID = createField("role_id", org.jooq.impl.SQLDataType.BIGINT, this, "角色id");
 
     /**
      * Create a <code>pms.sys_user_role</code> table reference

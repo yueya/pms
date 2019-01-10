@@ -13,11 +13,11 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysUserRoleDO implements Serializable {
 
-    private static final long serialVersionUID = -1425958197;
+    private static final long serialVersionUID = -1877184955;
 
-    private Long    id;
-    private Integer userId;
-    private Integer roleId;
+    private Long id;
+    private Long userId;
+    private Long roleId;
 
     public SysUserRoleDO() {}
 
@@ -28,9 +28,9 @@ public class SysUserRoleDO implements Serializable {
     }
 
     public SysUserRoleDO(
-        Long    id,
-        Integer userId,
-        Integer roleId
+        Long id,
+        Long userId,
+        Long roleId
     ) {
         this.id = id;
         this.userId = userId;
@@ -45,19 +45,19 @@ public class SysUserRoleDO implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getRoleId() {
+    public Long getRoleId() {
         return this.roleId;
     }
 
-    public void setRoleId(Integer roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 
