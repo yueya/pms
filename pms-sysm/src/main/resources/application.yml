@@ -1,4 +1,5 @@
 auth:
+  appId: auth-sys
   adminPath: /a
   frontPath: /f
   loginUrl: /login

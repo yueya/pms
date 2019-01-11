@@ -19,6 +19,10 @@ public class AuthProperties {
 
     private String type=null;
     /**
+     * 应用标识
+     */
+    private String appId=null;
+    /**
      * 认证的模式：normal/jwt/sso 默认是normal
      */
     private String mode="normal";
@@ -70,5 +74,13 @@ public class AuthProperties {
 
     public  void setSuccessUrl(String successUrl) {
         this.successUrl = successUrl;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 }
