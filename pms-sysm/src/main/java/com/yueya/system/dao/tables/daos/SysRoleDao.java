@@ -7,12 +7,15 @@ package com.yueya.system.dao.tables.daos;
 import com.yueya.common.base.BaseDao;
 import com.yueya.system.dao.Tables;
 import com.yueya.system.dao.tables.SysRole;
+import com.yueya.system.dao.tables.SysUser;
 import com.yueya.system.dao.tables.pojos.SysRoleDO;
 import com.yueya.system.dao.tables.records.SysRoleRecord;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
+import org.jooq.Condition;
 import org.jooq.Configuration;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
