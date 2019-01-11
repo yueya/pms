@@ -38,6 +38,7 @@ public class AuthConfig {
         securityManager.setSessionManager(sessionManager);
         if(properties.getType().equals("server")){
             AccountRealm realm=new AccountRealm();
+            realm.setProperties(properties);
             if(provider==null){
                 throw new NullPointerException("未实现AccountInfoProvider");
             }

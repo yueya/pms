@@ -2,8 +2,10 @@ package com.yueya.system.service;
 
 import com.yueya.common.base.BaseService;
 import com.yueya.system.dao.tables.SysUser;
+import com.yueya.system.dao.tables.daos.SysPermissionDao;
 import com.yueya.system.dao.tables.daos.SysRoleDao;
 import com.yueya.system.dao.tables.daos.SysUserDao;
+import com.yueya.system.dao.tables.pojos.SysPermissionDO;
 import com.yueya.system.dao.tables.pojos.SysRoleDO;
 import com.yueya.system.dao.tables.pojos.SysUserDO;
 import org.jooq.Condition;
@@ -17,6 +19,8 @@ public class SysUserService extends BaseService {
     private SysUserDao dao;
     @Autowired
     private SysRoleDao roleDao;
+    @Autowired
+    private SysPermissionDao permissionDao;
     public List<SysUserDO> findAll(){
         return dao.findAll();
     }
@@ -26,5 +30,9 @@ public class SysUserService extends BaseService {
 
     public List<SysRoleDO> findRoles(String userId) {
         return roleDao.fetchByUserId(Long.valueOf(userId));
+    }
+
+    public List<SysPermissionDO> findPermissionsByUser(String userId, String appId) {
+        return permissionDao.fetchByUser(Long.valueOf(userId),appId);
     }
 }

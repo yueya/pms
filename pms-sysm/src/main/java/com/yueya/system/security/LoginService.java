@@ -2,6 +2,7 @@ package com.yueya.system.security;
 
 import com.yueya.auth.model.Account;
 import com.yueya.auth.service.AccountInfoProvider;
+import com.yueya.system.dao.tables.pojos.SysPermissionDO;
 import com.yueya.system.dao.tables.pojos.SysRoleDO;
 import com.yueya.system.dao.tables.pojos.SysUserDO;
 import com.yueya.system.service.SysUserService;
@@ -38,13 +39,14 @@ public class LoginService implements AccountInfoProvider {
     }
 
     @Override
-    public Set<String> loadRoles(String appId) {
-        List<SysRoleDO> list= userService.findRoles(appId);
+    public Set<String> loadRoles(String userId) {
+        List<SysRoleDO> list= userService.findRoles(userId);
         return list.stream().map(r->r.getEnName()).collect(Collectors.toSet());
     }
 
     @Override
-    public Set<String> loadPermissions(String appId) {
-        return Stream.of("a","b").collect(Collectors.toSet());
+    public Set<String> loadPermissions(String userId,String appCode) {
+        List<SysPermissionDO> list=userService.findPermissionsByUser(userId,appCode);
+        return list.stream().map(r->r.getIdentification()).collect(Collectors.toSet());
     }
 }

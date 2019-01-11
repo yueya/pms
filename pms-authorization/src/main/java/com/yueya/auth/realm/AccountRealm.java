@@ -1,5 +1,6 @@
 package com.yueya.auth.realm;
 
+import com.yueya.auth.config.AuthProperties;
 import com.yueya.auth.config.MessageConfig;
 import com.yueya.auth.model.Account;
 import com.yueya.auth.service.AccountInfoProvider;
@@ -23,7 +24,7 @@ import static com.yueya.auth.utils.CredentialsHelper.HASH_INTERATIONS;
 public class AccountRealm extends AuthorizingRealm {
     private AccountInfoProvider provider;
     private MessageConfig messageConfig;
-
+    private AuthProperties properties;
     public AccountRealm(){
         initCredentialsMatcher();
     }
@@ -32,7 +33,7 @@ public class AccountRealm extends AuthorizingRealm {
         String account = (String) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo info =  new SimpleAuthorizationInfo();
         Set<String> roles = provider.loadRoles(account);
-        Set<String> permissions = provider.loadPermissions(account);
+        Set<String> permissions = provider.loadPermissions(account,properties.getAppId());
         if(null!=roles&&!roles.isEmpty()){
             info.setRoles(roles);
         }
@@ -79,5 +80,9 @@ public class AccountRealm extends AuthorizingRealm {
         HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(HASH_ALGORITHM);
         matcher.setHashIterations(HASH_INTERATIONS);
         setCredentialsMatcher(matcher);
+    }
+
+    public void setProperties(AuthProperties properties) {
+        this.properties = properties;
     }
 }

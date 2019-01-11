@@ -21,10 +21,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.yueya.auth.config.AuthConstant.LOG_CHANNEL;
+
 @Configuration
 @Import(JedisConfig.class)
 public class LogConfig implements WebMvcConfigurer{
-    public final static String LOG_CHANNEL="pubsub:log";
     private Logger logger= LoggerFactory.getLogger(getClass());
     @Autowired
     private AuthProperties properties;

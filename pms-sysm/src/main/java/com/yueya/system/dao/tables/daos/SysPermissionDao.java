@@ -5,6 +5,7 @@ package com.yueya.system.dao.tables.daos;
 
 
 import com.yueya.common.base.BaseDao;
+import com.yueya.system.dao.Tables;
 import com.yueya.system.dao.tables.pojos.SysPermissionDO;
 import com.yueya.system.dao.tables.records.SysPermissionRecord;
 
@@ -12,8 +13,11 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.jooq.Configuration;
+import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import sun.util.resources.ga.LocaleNames_ga;
 
 
 /**
@@ -114,5 +118,22 @@ public class SysPermissionDao extends BaseDao<SysPermissionRecord, SysPermission
      */
     public List<SysPermissionDO> fetchByDelFlag(String... values) {
         return fetch(com.yueya.system.dao.tables.SysPermission.SYS_PERMISSION.DEL_FLAG, values);
+    }
+
+    public List<SysPermissionDO> fetchByUser(long userId, String appCode) {
+        DSLContext create= DSL.using(super.configuration());
+        List<SysPermissionDO> list= create.select()
+                .from(getTable())
+                .join(Tables.SYS_ROLE_PERMISSION)
+                .on(Tables.SYS_PERMISSION.ID.eq(Tables.SYS_ROLE_PERMISSION.ID))
+                .join(Tables.SYS_USER_ROLE)
+                .on(Tables.SYS_USER_ROLE.ROLE_ID.eq(Tables.SYS_ROLE_PERMISSION.ROLE_ID))
+                .where(Tables.SYS_USER_ROLE.USER_ID.eq(userId)
+                        .and(Tables.SYS_SYSTEM.CODE.eq(appCode))
+                        .and(Tables.SYS_SYSTEM.DEF_FLAG.eq(DEL_NORMAL)
+                        .and(Tables.SYS_SYSTEM.USEABLE.eq(ENABLE))
+                        ))
+                .fetchInto(getType());
+        return list;
     }
 }

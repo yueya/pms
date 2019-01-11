@@ -11,8 +11,10 @@ import static org.jooq.impl.DSL.name;
 public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T> {
 
     private final String TEMP_TABLE_NAME="query_temp";
-    protected final String DEL_NORMAL="0";
-    protected final String DEL_DELETED="1";
+    public static final String DEL_NORMAL="0";
+    public static final String DEL_DELETED="1";
+    public static final String ENABLE="0";
+    public static final String DISABLE="1";
     protected BaseDao(Table table, Class type) {
         super(table, type);
     }

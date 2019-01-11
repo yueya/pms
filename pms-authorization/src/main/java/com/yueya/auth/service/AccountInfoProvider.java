@@ -21,9 +21,16 @@ public interface AccountInfoProvider {
     public boolean checkAccount(String appId) throws AuthenticationException;
     /**
      * 根据客户标识加载持有角色
-     * @param appId 客户标识
+     * @param userId 客户标识
      * @return 角色列表
      */
-    public Set<String> loadRoles(String appId);
-    public Set<String> loadPermissions(String appId);
+    public Set<String> loadRoles(String userId);
+
+    /**
+     * 根据用户和系统加载持有的权限
+     * @param userId
+     * @param appCode 系统标识码
+     * @return
+     */
+    public Set<String> loadPermissions(String userId,String appCode);
 }
