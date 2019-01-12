@@ -133,4 +133,6 @@ public class SysRoleDao extends BaseDao<SysRoleRecord, SysRoleDO, Long> {
                 .fetchInto(getType());
         return list;
     }
+    public void update(SysRoleDO sysRoleDO){
+    }
 }

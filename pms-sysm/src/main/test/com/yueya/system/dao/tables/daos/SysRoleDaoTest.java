@@ -14,7 +14,7 @@ public class SysRoleDaoTest extends BaseTest{
     SysRoleDao dao;
     @Test
     public void fetchByUserId() {
-        List<SysRoleDO> list=dao.fetchByUserId("1");
+        List<SysRoleDO> list=dao.fetchByUserId(Long.valueOf("1"));
        assertNotNull(list);
     }
 }

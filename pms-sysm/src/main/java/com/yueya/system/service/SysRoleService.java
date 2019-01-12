@@ -9,4 +9,5 @@ import org.springframework.stereotype.Service;
 public class SysRoleService extends BaseService {
     @Autowired
     private SysRoleDao sysRoleDao;
+
 }

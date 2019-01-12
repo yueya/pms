@@ -35,4 +35,18 @@ public class SysUserService extends BaseService {
     public List<SysPermissionDO> findPermissionsByUser(String userId, String appId) {
         return permissionDao.fetchByUser(Long.valueOf(userId),appId);
     }
+    public void insert(SysUserDO userDO){
+        dao.insert(userDO);
+    }
+
+    public void delete(long id){
+        dao.deleteById(id);
+    }
+    public void update(SysUserDO userDO){
+        dao.update(userDO);
+    }
+
+    public List<SysUserDO> page(int offset,int limit,Condition... conditions){
+        return dao.page(offset,limit,conditions);
+    }
 }

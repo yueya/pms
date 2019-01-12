@@ -53,8 +53,9 @@ public class LogConfig implements WebMvcConfigurer{
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         List<String> patterns= Stream.of(
-                properties.getAdminPath()+"/**",
-                properties.getLoginUrl())
+                properties.getAdminPath()+"/**"
+               // properties.getLoginUrl()
+                        )
                 .collect(Collectors.toList());
         registry.addInterceptor(logInterceptor).addPathPatterns(patterns);
         logger.info("log interceptor");

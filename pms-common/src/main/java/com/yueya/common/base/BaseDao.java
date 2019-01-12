@@ -4,6 +4,7 @@ import org.jooq.impl.DAOImpl;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
 import java.util.List;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.name;
@@ -36,6 +37,7 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
                 .fetchInto(getType());
         return result;
     }
+
     public List<P> page(int offset,int limit,Condition... conditions){
         DSLContext create=DSL.using(super.configuration());
         Table<R> table=getTable();
