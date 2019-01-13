@@ -5,6 +5,9 @@ package com.yueya.system.dao.tables.daos;
 
 
 import com.yueya.common.base.BaseDao;
+import com.yueya.system.dao.model.UserInfo;
+import com.yueya.system.dao.tables.SysOrganization;
+import com.yueya.system.dao.tables.pojos.SysOrganizationDO;
 import com.yueya.system.dao.tables.pojos.SysUserDO;
 import com.yueya.system.dao.tables.records.SysUserRecord;
 
@@ -12,6 +15,8 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.jooq.Configuration;
+import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +27,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 @Repository
 public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, Long> {
+
 
     /**
      * Create a new SysUserDao without any configuration
@@ -191,5 +197,19 @@ public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, Long> {
      */
     public List<SysUserDO> fetchByDelFlag(String... values) {
         return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.DEL_FLAG, values);
+    }
+    public UserInfo fetchUserInfo(long id){
+        DSLContext create= DSL.using(super.configuration());
+        SysUserDO userDO=fetchOneById(id);
+        List<SysOrganizationDO> orgs=create.select()
+                .from(SysOrganization.SYS_ORGANIZATION)
+                .where(SysOrganization.SYS_ORGANIZATION.ID.in(Long.valueOf(userDO.getOrganizationId()),
+                        Long.valueOf(userDO.getDepartmentId())))
+                .fetchInto(SysOrganizationDO.class);
+        UserInfo info=new UserInfo();
+        info.name=userDO.getName();
+        info.email=userDO.getEmail();
+        info.photo=userDO.getPhoto();
+        return info;
     }
 }

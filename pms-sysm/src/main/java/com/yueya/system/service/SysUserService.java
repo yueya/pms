@@ -1,6 +1,7 @@
 package com.yueya.system.service;
 
 import com.yueya.common.base.BaseService;
+import com.yueya.system.dao.model.UserInfo;
 import com.yueya.system.dao.tables.SysUser;
 import com.yueya.system.dao.tables.daos.SysPermissionDao;
 import com.yueya.system.dao.tables.daos.SysRoleDao;
@@ -14,15 +15,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class SysUserService extends BaseService {
+public class SysUserService extends BaseService<SysUserDO> {
     @Autowired
     private SysUserDao dao;
     @Autowired
     private SysRoleDao roleDao;
     @Autowired
     private SysPermissionDao permissionDao;
-    public List<SysUserDO> findAll(){
-        return dao.findAll();
+    public SysUserDO findById(String id){
+        return dao.fetchOne(SysUser.SYS_USER.ID,Long.valueOf(id));
+    }
+    public UserInfo info(String id){
+        return dao.fetchUserInfo(Long.valueOf(id));
     }
     public SysUserDO findByUserName(String userName){
         return dao.fetchOne(SysUser.SYS_USER.LOGIN_NAME,userName);
@@ -46,7 +50,12 @@ public class SysUserService extends BaseService {
         dao.update(userDO);
     }
 
-    public List<SysUserDO> page(int offset,int limit,Condition... conditions){
+    public List<SysUserDO> page(int offset,int limit,List<Condition> conditions){
         return dao.page(offset,limit,conditions);
+    }
+
+    @Override
+    public List<Condition> getConditions(SysUserDO userDO) {
+        return null;
     }
 }

@@ -5,6 +5,9 @@ package com.yueya.system.dao.tables.daos;
 
 
 import com.yueya.common.base.BaseDao;
+import com.yueya.system.dao.tables.SysMenu;
+import com.yueya.system.dao.tables.SysRoleMenu;
+import com.yueya.system.dao.tables.SysUserRole;
 import com.yueya.system.dao.tables.pojos.SysMenuDO;
 import com.yueya.system.dao.tables.records.SysMenuRecord;
 
@@ -12,6 +15,8 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.jooq.Configuration;
+import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -177,5 +182,19 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
      */
     public List<SysMenuDO> fetchByDelFlag(String... values) {
         return fetch(com.yueya.system.dao.tables.SysMenu.SYS_MENU.DEL_FLAG, values);
+    }
+
+    public List<SysMenuDO> fetchMenusByUserId(Long userId) {
+        DSLContext create= DSL.using(super.configuration());
+        List<SysMenuDO> list=create.select()
+                .from(getTable())
+                .innerJoin(SysRoleMenu.SYS_ROLE_MENU)
+                .on(SysRoleMenu.SYS_ROLE_MENU.MENU_ID.eq(SysMenu.SYS_MENU.ID))
+                .innerJoin(SysUserRole.SYS_USER_ROLE)
+                .on(SysUserRole.SYS_USER_ROLE.ROLE_ID.eq(SysRoleMenu.SYS_ROLE_MENU.ROLE_ID))
+                .where(SysUserRole.SYS_USER_ROLE.USER_ID.equal(userId)
+                .and(SysMenu.SYS_MENU.DEL_FLAG.equal(DEL_NORMAL)))
+                .fetchInto(getType());
+        return list;
     }
 }

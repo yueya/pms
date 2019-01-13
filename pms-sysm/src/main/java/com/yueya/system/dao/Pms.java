@@ -8,9 +8,11 @@ import com.yueya.system.dao.tables.SysArea;
 import com.yueya.system.dao.tables.SysDict;
 import com.yueya.system.dao.tables.SysLog;
 import com.yueya.system.dao.tables.SysMenu;
+import com.yueya.system.dao.tables.SysOrganization;
 import com.yueya.system.dao.tables.SysPermission;
 import com.yueya.system.dao.tables.SysRole;
 import com.yueya.system.dao.tables.SysRoleMenu;
+import com.yueya.system.dao.tables.SysRoleOrg;
 import com.yueya.system.dao.tables.SysRolePermission;
 import com.yueya.system.dao.tables.SysSystem;
 import com.yueya.system.dao.tables.SysUser;
@@ -31,7 +33,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Pms extends SchemaImpl {
 
-    private static final long serialVersionUID = 1318942474;
+    private static final long serialVersionUID = 2023662092;
 
     /**
      * The reference instance of <code>pms</code>
@@ -59,6 +61,11 @@ public class Pms extends SchemaImpl {
     public final SysMenu SYS_MENU = SysMenu.SYS_MENU;
 
     /**
+     * The table <code>pms.sys_organization</code>.
+     */
+    public final SysOrganization SYS_ORGANIZATION = SysOrganization.SYS_ORGANIZATION;
+
+    /**
      * The table <code>pms.sys_permission</code>.
      */
     public final SysPermission SYS_PERMISSION = SysPermission.SYS_PERMISSION;
@@ -72,6 +79,11 @@ public class Pms extends SchemaImpl {
      * The table <code>pms.sys_role_menu</code>.
      */
     public final SysRoleMenu SYS_ROLE_MENU = SysRoleMenu.SYS_ROLE_MENU;
+
+    /**
+     * The table <code>pms.sys_role_org</code>.
+     */
+    public final SysRoleOrg SYS_ROLE_ORG = SysRoleOrg.SYS_ROLE_ORG;
 
     /**
      * The table <code>pms.sys_role_permission</code>.
@@ -122,9 +134,11 @@ public class Pms extends SchemaImpl {
             SysDict.SYS_DICT,
             SysLog.SYS_LOG,
             SysMenu.SYS_MENU,
+            SysOrganization.SYS_ORGANIZATION,
             SysPermission.SYS_PERMISSION,
             SysRole.SYS_ROLE,
             SysRoleMenu.SYS_ROLE_MENU,
+            SysRoleOrg.SYS_ROLE_ORG,
             SysRolePermission.SYS_ROLE_PERMISSION,
             SysSystem.SYS_SYSTEM,
             SysUser.SYS_USER,

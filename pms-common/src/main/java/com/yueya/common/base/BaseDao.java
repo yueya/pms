@@ -16,6 +16,7 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
     public static final String DEL_DELETED="1";
     public static final String ENABLE="0";
     public static final String DISABLE="1";
+
     protected BaseDao(Table table, Class type) {
         super(table, type);
     }
@@ -38,7 +39,14 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
         return result;
     }
 
-    public List<P> page(int offset,int limit,Condition... conditions){
+    public long countByCondition(List<Condition> conditions){
+        DSLContext create=DSL.using(super.configuration());
+        return create.selectCount()
+                .from(getTable())
+                .where(conditions)
+                .fetchOne(0,Long.class);
+    }
+    public List<P> page(int offset,int limit,List<Condition> conditions){
         DSLContext create=DSL.using(super.configuration());
         Table<R> table=getTable();
         List<P> result;
