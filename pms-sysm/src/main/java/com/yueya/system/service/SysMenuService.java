@@ -7,7 +7,11 @@ import org.jooq.Condition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class SysMenuService extends BaseService<SysMenuDO> {
     @Autowired
@@ -21,8 +25,10 @@ public class SysMenuService extends BaseService<SysMenuDO> {
         menuDao.update(menuDO);
     }
 
-    public void delete(String id){
-        menuDao.deleteById(Long.valueOf(id));
+    public void delete(String ids){
+        List<Long> list= Arrays.stream(ids.split(","))
+                .map(r->Long.valueOf(r)).collect(Collectors.toList());
+        menuDao.deleteById(list);
     }
 
     /**
@@ -37,5 +43,9 @@ public class SysMenuService extends BaseService<SysMenuDO> {
     @Override
     public List<Condition> getConditions(SysMenuDO menuDO) {
         return null;
+    }
+
+    public List<SysMenuDO> page(int offset, int limit, SysMenuDO menuDO) {
+        return menuDao.page(offset,limit,getConditions(menuDO));
     }
 }
