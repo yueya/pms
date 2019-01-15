@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("${adminPath}/menu")
 public class SysMenuController extends BaseController {
@@ -35,6 +37,8 @@ public class SysMenuController extends BaseController {
     @RequestMapping("list")
     public RestResult list(@RequestParam(defaultValue = "0") int offset,
                            @RequestParam(defaultValue = "10") int limit, SysMenuDO menuDO){
-        return RestResult.OK("success");
+        List<SysMenuDO> list=menuService.findAll();
+        return RestResult.OkWithData(list);
     }
+
 }

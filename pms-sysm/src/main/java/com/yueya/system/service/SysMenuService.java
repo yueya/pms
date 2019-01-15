@@ -48,4 +48,8 @@ public class SysMenuService extends BaseService<SysMenuDO> {
     public List<SysMenuDO> page(int offset, int limit, SysMenuDO menuDO) {
         return menuDao.page(offset,limit,getConditions(menuDO));
     }
+
+    public List<SysMenuDO> findAll() {
+        return menuDao.findAll();
+    }
 }
