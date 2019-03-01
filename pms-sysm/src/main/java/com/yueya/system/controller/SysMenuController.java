@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("${adminPath}/menu")
+@RequestMapping("${auth.adminPath}/menu")
 public class SysMenuController extends BaseController {
 
     @Autowired

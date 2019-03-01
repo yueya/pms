@@ -1,5 +1,6 @@
 package com.yueya.auth.filter;
 
+import com.yueya.common.util.JsonMapper;
 import com.yueya.common.web.RestResult;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -9,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+
+import java.io.Writer;
 
 import static com.yueya.auth.config.AuthConstant.LOGIN_FAIL_MESSAGE;
 
@@ -24,9 +27,18 @@ public class AccountFilter extends FormAuthenticationFilter {
         return new UsernamePasswordToken(username, password.toCharArray(), rememberMe);
     }
 
+
     @Override
     protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request, ServletResponse response) throws Exception {
-        return super.onLoginSuccess(token, subject, request, response);
+        //return super.onLoginSuccess(token, subject, request, response);
+        String msg= JsonMapper.toJsonString(RestResult.OK("登录成功"));
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        Writer writer=response.getWriter();
+        writer.write(msg);
+        writer.flush();
+        writer.close();
+        return false;
     }
 
     @Override

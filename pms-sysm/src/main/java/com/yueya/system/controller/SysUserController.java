@@ -18,7 +18,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("${adminPath}/user")
+@RequestMapping("${auth.adminPath}/user")
 public class SysUserController extends BaseController {
     @Autowired
     private SysUserService userService;

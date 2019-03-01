@@ -27,6 +27,10 @@ public class BaseController {
     @ExceptionHandler(Exception.class)
     public RestResult ExceptionHandler(Exception e ){
        logger.error("controller异常",e);
-       return RestResult.ERROR(e.getMessage());
+       if(logger.isDebugEnabled()){
+           return RestResult.ERROR(e.getMessage());
+       }else{
+           return RestResult.ERROR("后台异常,请查看日志");
+       }
     }
 }

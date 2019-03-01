@@ -1,6 +1,7 @@
 package com.yueya.auth.config;
 import com.yueya.auth.filter.AccountFilter;
 import com.yueya.auth.filter.ForceLogoutFilter;
+import com.yueya.auth.filter.PmsUserFilter;
 import com.yueya.auth.realm.AccountRealm;
 import com.yueya.auth.realm.CookieTokenRealm;
 import com.yueya.auth.service.AccountInfoProvider;
@@ -64,6 +65,7 @@ public class AuthConfig {
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filters);
         shiroFilterFactoryBean.setSecurityManager(manager);
         shiroFilterFactoryBean.getFilters().put("authc",new AccountFilter());
+        shiroFilterFactoryBean.getFilters().put("user",new PmsUserFilter());
         shiroFilterFactoryBean.getFilters().put("forceLogout",new ForceLogoutFilter());
         return shiroFilterFactoryBean;
     }
