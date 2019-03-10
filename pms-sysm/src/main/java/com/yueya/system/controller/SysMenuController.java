@@ -5,10 +5,7 @@ import com.yueya.common.web.RestResult;
 import com.yueya.system.dao.tables.pojos.SysMenuDO;
 import com.yueya.system.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,12 +17,12 @@ public class SysMenuController extends BaseController {
     private SysMenuService menuService;
 
     @PostMapping("insert")
-    public RestResult insert(SysMenuDO menuDO){
+    public RestResult insert(@RequestBody SysMenuDO menuDO){
         menuService.insert(menuDO);
         return RestResult.OK("success");
     }
     @RequestMapping("update")
-    public RestResult update(SysMenuDO menuDO){
+    public RestResult update(@RequestBody SysMenuDO menuDO){
         menuService.update(menuDO);
         return RestResult.OK("success");
     }

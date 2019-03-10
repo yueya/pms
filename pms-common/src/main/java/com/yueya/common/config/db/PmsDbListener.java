@@ -28,7 +28,7 @@ public class PmsDbListener extends DefaultExecuteListener {
 
     @Override
     public void executeStart(ExecuteContext ctx) {
-        logger.info("执行类型："+ctx.type().toString());
+        logger.debug("执行类型："+ctx.type().toString());
         if(ctx.type().equals(ExecuteType.READ)  && lastIsRead()){
             logger.debug("use slave db");
             ctx.connectionProvider(connectionProviderSlave);

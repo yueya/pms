@@ -14,4 +14,5 @@ public class AuthConfigTest {
         System.out.println(((AntPathMatcher) matcher).match("http://127.0.0.1:8080/a/login","/a/login"));
     }
 
+
 }

@@ -1,7 +1,9 @@
 package com.yueya.system.dao.tables.daos;
 
 import com.yueya.BaseTest;
+import com.yueya.system.dao.tables.pojos.SysMenuDO;
 import com.yueya.system.dao.tables.pojos.SysRoleDO;
+import net.bytebuddy.asm.Advice;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.Assert.*;
@@ -12,9 +14,15 @@ public class SysRoleDaoTest extends BaseTest{
 
     @Autowired
     SysRoleDao dao;
+    @Autowired
+    SysMenuDao menuDao;
     @Test
     public void fetchByUserId() {
         List<SysRoleDO> list=dao.fetchByUserId(Long.valueOf("1"));
        assertNotNull(list);
+       SysMenuDO menuDO=new SysMenuDO();
+       menuDO.setId(Long.valueOf(13));
+       menuDO.setName("111");
+       menuDao.update(menuDO);
     }
 }

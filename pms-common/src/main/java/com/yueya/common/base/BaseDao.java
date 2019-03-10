@@ -1,13 +1,14 @@
 package com.yueya.common.base;
 import org.jooq.*;
-import org.jooq.impl.DAOImpl;
-import org.jooq.impl.DSL;
+import org.jooq.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
+import static java.lang.Boolean.FALSE;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.name;
+import static org.jooq.impl.DSL.using;
 
 public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T> {
 
@@ -38,7 +39,85 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
                 .fetchInto(getType());
         return result;
     }
+    private /* non-final */ RecordListenerProvider[] providers(final RecordListenerProvider[] providers, final Object object) {
+        RecordListenerProvider[] result = Arrays.copyOf(providers, providers.length + 1);
 
+        result[providers.length] = new DefaultRecordListenerProvider(new DefaultRecordListener() {
+            private final void end(RecordContext ctx) {
+                Record record = ctx.record();
+
+                // TODO: [#2536] Use mapper()
+                if (record != null)
+                    record.into(object);
+            }
+
+            @Override
+            public final void storeEnd(RecordContext ctx) {
+                end(ctx);
+            }
+
+            @Override
+            public final void insertEnd(RecordContext ctx) {
+                end(ctx);
+            }
+
+            @Override
+            public final void updateEnd(RecordContext ctx) {
+                end(ctx);
+            }
+
+            @Override
+            public final void deleteEnd(RecordContext ctx) {
+                end(ctx);
+            }
+        });
+
+        return result;
+    }
+    private /* non-final */ Field<?>[] pk() {
+        UniqueKey<?> key = getTable().getPrimaryKey();
+        return key == null ? null : key.getFieldsArray();
+    }
+    private /* non-final */ List<R> records(Collection<P> objects, boolean forUpdate) {
+        List<R> result = new ArrayList<R>(objects.size());
+        Field<?>[] pk = pk();
+
+        for (P object : objects) {
+
+            // [#2536] Upon store(), insert(), update(), delete(), returned values in the record
+            //         are copied back to the relevant POJO using the RecordListener SPI
+            DSLContext ctx = using(
+                    ! FALSE.equals(configuration().settings().isReturnRecordToPojo())
+                            ? configuration().derive(providers(configuration().recordListenerProviders(), object))
+                            : configuration()
+            );
+
+            R record = ctx.newRecord(getTable(), object);
+
+            if (forUpdate && pk != null){
+                for (Field<?> field : pk){
+                    record.changed(field,false);
+                }
+            }
+            Field<?>[] fields=record.fields();
+            for (Field<?> field:fields) {
+                if(field.getValue(record)==null){
+                    record.changed(field,false);
+                }
+            }
+            // Tools.resetChangedOnNotNull(record);
+            result.add(record);
+        }
+
+        return result;
+    }
+    public void update(P object){
+        records(Collections.singletonList(object), true).get(0).update();;
+    }
+
+    public void updateAll(P object){
+        super.update(object);
+    }
     public long countByCondition(List<Condition> conditions){
         DSLContext create=DSL.using(super.configuration());
         return create.selectCount()
