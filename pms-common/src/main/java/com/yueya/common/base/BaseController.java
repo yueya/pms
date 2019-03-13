@@ -30,7 +30,7 @@ public class BaseController {
        if(logger.isDebugEnabled()){
            return RestResult.ERROR(e.getMessage());
        }else{
-           return RestResult.ERROR("后台异常,请查看日志");
+           return RestResult.ERROR("error!please check log");
        }
     }
 }

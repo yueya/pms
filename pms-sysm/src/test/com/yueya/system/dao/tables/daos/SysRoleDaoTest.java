@@ -8,21 +8,16 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.Assert.*;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
 
 
 public class SysRoleDaoTest extends BaseTest{
 
     @Autowired
     SysRoleDao dao;
-    @Autowired
-    SysMenuDao menuDao;
     @Test
     public void fetchByUserId() {
         List<SysRoleDO> list=dao.fetchByUserId(Long.valueOf("1"));
        assertNotNull(list);
-       SysMenuDO menuDO=new SysMenuDO();
-       menuDO.setId(Long.valueOf(13));
-       menuDO.setName("111");
-       menuDao.update(menuDO);
     }
 }

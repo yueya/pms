@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.name;
 import static org.jooq.impl.DSL.using;
@@ -38,6 +39,21 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
                 .where(conditions)
                 .fetchInto(getType());
         return result;
+    }
+
+    public int updateByCondition(P object,Condition... conditions){
+        DSLContext create=DSL.using(super.configuration());
+        Record record=create.newRecord(getTable(),object);
+        Field<?>[] fields=record.fields();
+        for (Field<?> field:fields) {
+            if(field.getValue(record)==null){
+                record.changed(field,false);
+            }
+        }
+        return create.update(getTable())
+                .set(record)
+                .where(conditions)
+                .execute();
     }
     private /* non-final */ RecordListenerProvider[] providers(final RecordListenerProvider[] providers, final Object object) {
         RecordListenerProvider[] result = Arrays.copyOf(providers, providers.length + 1);
@@ -105,16 +121,32 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
                     record.changed(field,false);
                 }
             }
-            // Tools.resetChangedOnNotNull(record);
             result.add(record);
         }
 
         return result;
     }
     public void update(P object){
-        records(Collections.singletonList(object), true).get(0).update();;
+        records(Collections.singletonList(object), true).get(0).update();
     }
+    @Override
+    public /* non-final */ void update(Collection<P> objects) {
 
+        // Execute a batch UPDATE
+        if (objects.size() > 1){
+            // [#2536] [#3327] We cannot batch UPDATE RETURNING calls yet
+            if (!FALSE.equals(configuration().settings().isReturnRecordToPojo()) &&
+                    TRUE.equals(configuration().settings().isReturnAllOnUpdatableRecord())){
+                for (P object : objects){
+                    update(object);
+                }
+            } else{
+                using(configuration()).batchUpdate(records(objects, true)).execute();
+            }
+        } else if (objects.size() == 1){
+            records(objects, true).get(0).update();
+        }
+    }
     public void updateAll(P object){
         super.update(object);
     }
