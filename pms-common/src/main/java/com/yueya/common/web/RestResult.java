@@ -36,6 +36,11 @@ public class RestResult {
     public static RestResult FAILER(String msg){
         return new RestResult(Code.FAILER,msg);
     }
+
+    public static RestResult OKWithPage(Object list, long count) {
+        return OkWithData(new RestPage(list,count));
+    }
+
     @JsonGetter("code")
     public int getCode() {
         return code.value();

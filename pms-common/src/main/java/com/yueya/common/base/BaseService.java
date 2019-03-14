@@ -11,4 +11,5 @@ public abstract class BaseService<T> {
     public static final String DEL_FLAG_NORMAL = "0";
     protected Logger logger= LoggerFactory.getLogger(getClass());
     public abstract List<Condition> getConditions(T t);
+
 }

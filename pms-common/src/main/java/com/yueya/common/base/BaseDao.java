@@ -168,8 +168,9 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
             result=create
                     .select(table.fields())
                     .from(table)
-                    .join(create.select(index).from(table).where(conditions)
-                            .limit(offset,limit).asTable(TEMP_TABLE_NAME))
+                    .join(create.select(index).from(table)
+                    .where(conditions)
+                    .limit(offset,limit).asTable(TEMP_TABLE_NAME))
                     .on(index.eq(field(name(TEMP_TABLE_NAME,index.getName()),String.class)))
                     .fetchInto(getType());
         }else{
