@@ -41,7 +41,9 @@ public class SysSystemService extends BaseService<SysSystemDO> {
     }
 
     public List<SysSystemDO> findAll() {
-        return dao.findAll();
+        Condition condition = SysSystem.SYS_SYSTEM.DEF_FLAG.eq(DEL_FLAG_NORMAL)
+                .and(SysSystem.SYS_SYSTEM.USEABLE.eq(USEABLE));
+        return dao.fetchByCondition(condition);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class SysSystemService extends BaseService<SysSystemDO> {
 
 
     public List<SysSystemDO> page(SysSystemDO systemDO, int offset, int limit) {
-            return dao.page(offset,limit,getConditions(systemDO));
+        return dao.page(offset,limit,getConditions(systemDO));
     }
 
     public long countByCondition(SysSystemDO systemDO) {

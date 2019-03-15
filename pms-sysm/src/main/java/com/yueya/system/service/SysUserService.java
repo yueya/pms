@@ -13,7 +13,11 @@ import org.jooq.Condition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class SysUserService extends BaseService<SysUserDO> {
     @Autowired
@@ -43,19 +47,29 @@ public class SysUserService extends BaseService<SysUserDO> {
         dao.insert(userDO);
     }
 
-    public void delete(long id){
-        dao.deleteById(id);
+    public void delete(String ids){
+        List<Long> list= Arrays.stream(ids.split(","))
+                .map(r->Long.valueOf(r)).collect(Collectors.toList());
+        Condition condition = SysUser.SYS_USER.ID.in(list);
+        SysUserDO userDO = new SysUserDO();
+        userDO.setDelFlag(DEL_FLAG_DEL);
+        dao.updateByCondition(userDO,condition);
     }
     public void update(SysUserDO userDO){
         dao.update(userDO);
     }
 
-    public List<SysUserDO> page(int offset,int limit,List<Condition> conditions){
-        return dao.page(offset,limit,conditions);
+    public List<SysUserDO> page(int offset,int limit,SysUserDO userDO){
+        return dao.page(offset,limit,getConditions(userDO));
     }
 
     @Override
     public List<Condition> getConditions(SysUserDO userDO) {
-        return null;
+        Condition condition = SysUser.SYS_USER.DEL_FLAG.eq(DEL_FLAG_NORMAL);
+        return Collections.singletonList(condition);
+    }
+
+    public long countByCondition(SysUserDO userDO) {
+        return dao.countByCondition(getConditions(userDO));
     }
 }

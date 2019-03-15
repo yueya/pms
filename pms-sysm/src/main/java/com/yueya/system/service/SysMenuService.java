@@ -16,8 +16,6 @@ public class SysMenuService extends BaseService<SysMenuDO> {
     @Autowired
     private SysMenuDao menuDao;
 
-    private final String USEABLE = "1";
-    private final String DISABLE = "0";
     public void insert(SysMenuDO menuDO){
         SysMenuDO parent = menuDao.fetchOneById(Long.valueOf(menuDO.getParentId()));
         menuDO.setDelFlag(DEL_FLAG_NORMAL);
