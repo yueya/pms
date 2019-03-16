@@ -9,6 +9,7 @@ import org.jooq.Condition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,7 +19,8 @@ public class SysAreaService extends BaseService<SysAreaDO> {
     private SysAreaDao areaDao;
     @Override
     public List<Condition> getConditions(SysAreaDO sysAreaDO) {
-        return null;
+        Condition condition = SysArea.SYS_AREA.DEL_FLAG.eq(DEL_FLAG_NORMAL);
+        return Collections.singletonList(condition);
     }
 
     public void insert(SysAreaDO sysAreaDO){
@@ -49,6 +51,7 @@ public class SysAreaService extends BaseService<SysAreaDO> {
     }
 
     public List<SysAreaDO> findAll() {
-        return areaDao.findAll();
+        Condition condition = SysArea.SYS_AREA.DEL_FLAG.eq(DEL_FLAG_NORMAL);
+        return areaDao.fetchByCondition(condition);
     }
 }

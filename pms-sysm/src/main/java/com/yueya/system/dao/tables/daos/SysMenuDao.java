@@ -192,8 +192,9 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
                 .on(SysRoleMenu.SYS_ROLE_MENU.MENU_ID.eq(SysMenu.SYS_MENU.ID))
                 .innerJoin(SysUserRole.SYS_USER_ROLE)
                 .on(SysUserRole.SYS_USER_ROLE.ROLE_ID.eq(SysRoleMenu.SYS_ROLE_MENU.ROLE_ID))
-                .where(SysUserRole.SYS_USER_ROLE.USER_ID.equal(userId)
-                .and(SysMenu.SYS_MENU.DEL_FLAG.equal(DEL_NORMAL)))
+                .where(SysUserRole.SYS_USER_ROLE.USER_ID.eq(userId)
+                .and(SysMenu.SYS_MENU.USEABLE.eq(ENABLE))
+                .and(SysMenu.SYS_MENU.DEL_FLAG.eq(DEL_NORMAL)))
                 .fetchInto(getType());
         return list;
     }

@@ -62,8 +62,7 @@ public class SysMenuService extends BaseService<SysMenuDO> {
     }
 
     public List<SysMenuDO> findAll() {
-        Condition condition = SysMenu.SYS_MENU.DEL_FLAG.eq(DEL_FLAG_NORMAL)
-                .and(SysMenu.SYS_MENU.USEABLE.eq(USEABLE));
+        Condition condition = SysMenu.SYS_MENU.DEL_FLAG.eq(DEL_FLAG_NORMAL);
         return menuDao.fetchByCondition(condition);
     }
 }
