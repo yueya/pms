@@ -31,7 +31,7 @@ public class PmsDbListener extends DefaultExecuteListener {
         logger.debug("执行类型："+ctx.type().toString());
         /**
          * 实际上主库数据同步到从库不一定是及时的，如果碰到id是自增长，且插入数据后立刻需要返回插入的id
-         * 的情况，程序可能会读取到错误的数据，所以如果上次是写操作，那么接下来的读操作将立即从主库读取
+         * 的情况，程序可能会读取到错误的数据，所以如果上次是写操作，那么下一次的读操作将立即从主库读取
          */
         //todo 待实际测试
         if(ctx.type().equals(ExecuteType.READ)  && lastIsRead()){
