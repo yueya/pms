@@ -33,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysLog extends TableImpl<SysLogRecord> {
 
-    private static final long serialVersionUID = 1538366561;
+    private static final long serialVersionUID = -1837993353;
 
     /**
      * The reference instance of <code>pms.sys_log</code>
@@ -56,7 +56,7 @@ public class SysLog extends TableImpl<SysLogRecord> {
     /**
      * The column <code>pms.sys_log.app_id</code>. 系统id
      */
-    public final TableField<SysLogRecord, Long> APP_ID = createField("app_id", org.jooq.impl.SQLDataType.BIGINT, this, "系统id");
+    public final TableField<SysLogRecord, String> APP_ID = createField("app_id", org.jooq.impl.SQLDataType.VARCHAR(64), this, "系统id");
 
     /**
      * The column <code>pms.sys_log.type</code>. 日志类型

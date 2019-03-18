@@ -27,6 +27,7 @@ public class LogListener implements MessageListener {
             logDO.setCreateDate(new Timestamp(new Date().getTime()));
             logDO.setCreateBy(pmsLog.getUserName());
             logDO.setTitle(pmsLog.getTitle());
+            logDO.setAppId(pmsLog.getAppId());
             logDO.setType(pmsLog.getType());
             logDO.setMethod(pmsLog.getMethod());
             logDO.setParams(pmsLog.getParams());

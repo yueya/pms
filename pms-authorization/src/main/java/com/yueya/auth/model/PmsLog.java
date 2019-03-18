@@ -4,11 +4,12 @@ import java.io.Serializable;
 
 public class PmsLog implements Serializable {
     private static final long serialVersionUID = 6567704530859606743L;
-    // 日志类型（1：接入日志；2：错误日志）
+    // 日志类型（1：访问日志；2：错误日志）
     public static final String TYPE_ACCESS = "1";
     public static final String TYPE_EXCEPTION = "2";
 
     private String title;
+    private String appId;
     private String type;
     private String remoteAddress;
     private String userAgent;
@@ -89,5 +90,13 @@ public class PmsLog implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 }

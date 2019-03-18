@@ -14,10 +14,10 @@ import java.sql.Timestamp;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysLogDO implements Serializable {
 
-    private static final long serialVersionUID = -1384799870;
+    private static final long serialVersionUID = -651197566;
 
     private Long      id;
-    private Long      appId;
+    private String    appId;
     private String    type;
     private String    title;
     private String    createBy;
@@ -48,7 +48,7 @@ public class SysLogDO implements Serializable {
 
     public SysLogDO(
         Long      id,
-        Long      appId,
+        String    appId,
         String    type,
         String    title,
         String    createBy,
@@ -82,11 +82,11 @@ public class SysLogDO implements Serializable {
         this.id = id;
     }
 
-    public Long getAppId() {
+    public String getAppId() {
         return this.appId;
     }
 
-    public void setAppId(Long appId) {
+    public void setAppId(String appId) {
         this.appId = appId;
     }
 

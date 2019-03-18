@@ -33,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysArea extends TableImpl<SysAreaRecord> {
 
-    private static final long serialVersionUID = -886385177;
+    private static final long serialVersionUID = -563168121;
 
     /**
      * The reference instance of <code>pms.sys_area</code>
@@ -86,12 +86,12 @@ public class SysArea extends TableImpl<SysAreaRecord> {
     /**
      * The column <code>pms.sys_area.gmt_create</code>. 创建时间
      */
-    public final TableField<SysAreaRecord, Timestamp> GMT_CREATE = createField("gmt_create", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "创建时间");
+    public final TableField<SysAreaRecord, Timestamp> GMT_CREATE = createField("gmt_create", org.jooq.impl.SQLDataType.TIMESTAMP, this, "创建时间");
 
     /**
      * The column <code>pms.sys_area.gmt_modified</code>. 更新时间
      */
-    public final TableField<SysAreaRecord, Timestamp> GMT_MODIFIED = createField("gmt_modified", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "更新时间");
+    public final TableField<SysAreaRecord, Timestamp> GMT_MODIFIED = createField("gmt_modified", org.jooq.impl.SQLDataType.TIMESTAMP, this, "更新时间");
 
     /**
      * The column <code>pms.sys_area.remarks</code>. 备注信息
