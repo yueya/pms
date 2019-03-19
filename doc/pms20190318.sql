@@ -166,7 +166,7 @@ DROP TABLE IF EXISTS `sys_organization`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sys_organization` (
-  `id` bigint(20) NOT NULL COMMENT 'id',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(255) DEFAULT NULL COMMENT '名称',
   `parent_id` varchar(255) DEFAULT NULL COMMENT '父级id',
   `parent_ids` varchar(255) DEFAULT NULL COMMENT '所有父级id',

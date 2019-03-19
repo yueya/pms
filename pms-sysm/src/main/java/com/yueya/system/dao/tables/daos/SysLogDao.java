@@ -63,7 +63,7 @@ public class SysLogDao extends BaseDao<SysLogRecord, SysLogDO, Long> {
     /**
      * Fetch records that have <code>app_id IN (values)</code>
      */
-    public List<SysLogDO> fetchByAppId(Long... values) {
+    public List<SysLogDO> fetchByAppId(String... values) {
         return fetch(com.yueya.system.dao.tables.SysLog.SYS_LOG.APP_ID, values);
     }
 

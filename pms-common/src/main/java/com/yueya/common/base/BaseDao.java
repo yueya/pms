@@ -163,6 +163,7 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
         List<P> result;
         //如果分页offset超过1000，使用延迟关联子查询提高分页速度
         if(offset>1000 && !table.getIndexes().isEmpty()){
+            String TEMP_TABLE = TEMP_TABLE_NAME+"_"+System.currentTimeMillis();
             String indexName=table.getIndexes().get(0).getFields().get(0).getName();
             Field index=field(name(getTable().getName(),indexName));
             result=create
@@ -170,8 +171,8 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
                     .from(table)
                     .join(create.select(index).from(table)
                     .where(conditions)
-                    .limit(offset,limit).asTable(TEMP_TABLE_NAME))
-                    .on(index.eq(field(name(TEMP_TABLE_NAME,index.getName()),String.class)))
+                    .limit(offset,limit).asTable(TEMP_TABLE))
+                    .on(index.eq(field(name(TEMP_TABLE,index.getName()),String.class)))
                     .fetchInto(getType());
         }else{
             result=create.select().from(table)
