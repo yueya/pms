@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
@@ -32,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysOrganization extends TableImpl<SysOrganizationRecord> {
 
-    private static final long serialVersionUID = 1979303484;
+    private static final long serialVersionUID = -135228059;
 
     /**
      * The reference instance of <code>pms.sys_organization</code>
@@ -50,7 +51,7 @@ public class SysOrganization extends TableImpl<SysOrganizationRecord> {
     /**
      * The column <code>pms.sys_organization.id</code>. id
      */
-    public final TableField<SysOrganizationRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "id");
+    public final TableField<SysOrganizationRecord, Long> ID = createField("id", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, "id");
 
     /**
      * The column <code>pms.sys_organization.name</code>. 名称
@@ -144,6 +145,14 @@ public class SysOrganization extends TableImpl<SysOrganizationRecord> {
     @Override
     public List<Index> getIndexes() {
         return Arrays.<Index>asList(Indexes.SYS_ORGANIZATION_PRIMARY);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Identity<SysOrganizationRecord, Long> getIdentity() {
+        return Keys.IDENTITY_SYS_ORGANIZATION;
     }
 
     /**

@@ -51,6 +51,7 @@ public class Keys {
     public static final Identity<SysDictRecord, Long> IDENTITY_SYS_DICT = Identities0.IDENTITY_SYS_DICT;
     public static final Identity<SysLogRecord, Long> IDENTITY_SYS_LOG = Identities0.IDENTITY_SYS_LOG;
     public static final Identity<SysMenuRecord, Long> IDENTITY_SYS_MENU = Identities0.IDENTITY_SYS_MENU;
+    public static final Identity<SysOrganizationRecord, Long> IDENTITY_SYS_ORGANIZATION = Identities0.IDENTITY_SYS_ORGANIZATION;
     public static final Identity<SysPermissionRecord, Long> IDENTITY_SYS_PERMISSION = Identities0.IDENTITY_SYS_PERMISSION;
     public static final Identity<SysRoleRecord, Long> IDENTITY_SYS_ROLE = Identities0.IDENTITY_SYS_ROLE;
     public static final Identity<SysRoleMenuRecord, Long> IDENTITY_SYS_ROLE_MENU = Identities0.IDENTITY_SYS_ROLE_MENU;
@@ -91,6 +92,7 @@ public class Keys {
         public static Identity<SysDictRecord, Long> IDENTITY_SYS_DICT = Internal.createIdentity(SysDict.SYS_DICT, SysDict.SYS_DICT.ID);
         public static Identity<SysLogRecord, Long> IDENTITY_SYS_LOG = Internal.createIdentity(SysLog.SYS_LOG, SysLog.SYS_LOG.ID);
         public static Identity<SysMenuRecord, Long> IDENTITY_SYS_MENU = Internal.createIdentity(SysMenu.SYS_MENU, SysMenu.SYS_MENU.ID);
+        public static Identity<SysOrganizationRecord, Long> IDENTITY_SYS_ORGANIZATION = Internal.createIdentity(SysOrganization.SYS_ORGANIZATION, SysOrganization.SYS_ORGANIZATION.ID);
         public static Identity<SysPermissionRecord, Long> IDENTITY_SYS_PERMISSION = Internal.createIdentity(SysPermission.SYS_PERMISSION, SysPermission.SYS_PERMISSION.ID);
         public static Identity<SysRoleRecord, Long> IDENTITY_SYS_ROLE = Internal.createIdentity(SysRole.SYS_ROLE, SysRole.SYS_ROLE.ID);
         public static Identity<SysRoleMenuRecord, Long> IDENTITY_SYS_ROLE_MENU = Internal.createIdentity(SysRoleMenu.SYS_ROLE_MENU, SysRoleMenu.SYS_ROLE_MENU.ID);
