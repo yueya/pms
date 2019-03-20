@@ -375,7 +375,7 @@ CREATE TABLE `sys_user` (
   `login_date` datetime DEFAULT NULL COMMENT '最后登陆时间',
   `login_flag` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '是否可登录',
   `gmt_create` datetime NOT NULL COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  `gmt_modified` datetime COMMENT '更新时间',
   `remarks` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
   `del_flag` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`),

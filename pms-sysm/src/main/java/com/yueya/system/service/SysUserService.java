@@ -1,6 +1,8 @@
 package com.yueya.system.service;
 
+import com.yueya.auth.utils.CredentialsHelper;
 import com.yueya.common.base.BaseService;
+import com.yueya.common.util.DateUtils;
 import com.yueya.system.dao.model.UserInfo;
 import com.yueya.system.dao.tables.SysUser;
 import com.yueya.system.dao.tables.daos.SysPermissionDao;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,6 +47,14 @@ public class SysUserService extends BaseService<SysUserDO> {
         return permissionDao.fetchByUser(Long.valueOf(userId),appId);
     }
     public void insert(SysUserDO userDO){
+        if(userDO.getPassword() != null){
+            //密码加密
+            userDO.setPassword(CredentialsHelper.entryptCredentials(userDO.getPassword()));
+        }
+        //设置一个用户的唯一标识码，暂时没什么用
+        userDO.setUserCode(UUID.randomUUID().toString().replace("-",""));
+        userDO.setGmtCreate(DateUtils.getCurTimeStamp());
+        userDO.setDelFlag(DEL_FLAG_NORMAL);
         dao.insert(userDO);
     }
 
@@ -56,11 +67,16 @@ public class SysUserService extends BaseService<SysUserDO> {
         dao.updateByCondition(userDO,condition);
     }
     public void update(SysUserDO userDO){
+        userDO.setGmtModified(DateUtils.getCurTimeStamp());
         dao.update(userDO);
     }
 
     public List<SysUserDO> page(int offset,int limit,SysUserDO userDO){
-        return dao.page(offset,limit,getConditions(userDO));
+        List<SysUserDO> list = dao.page(offset,limit,getConditions(userDO));
+        for (SysUserDO item: list) {
+            item.setPassword(null);
+        }
+        return list;
     }
 
     @Override

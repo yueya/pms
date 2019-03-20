@@ -22,6 +22,11 @@ public class SysOrgService extends BaseService<SysOrganizationDO> {
     }
 
     public void insert(SysOrganizationDO organizationDO) {
+        if(organizationDO.getParentId() != null){
+            SysOrganizationDO parent = dao.fetchOneById(Long.valueOf(organizationDO.getParentId()));
+            String pIds = parent.getParentIds()==null?(","+parent.getId()+",") : (parent.getParentIds()+parent.getId()+",");
+            organizationDO.setParentIds(pIds);
+        }
         organizationDO.setGmtCreate(DateUtils.getCurTimeStamp());
         organizationDO.setDefFlag(DEL_FLAG_NORMAL);
         dao.insert(organizationDO);

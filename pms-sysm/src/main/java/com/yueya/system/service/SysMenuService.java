@@ -17,10 +17,12 @@ public class SysMenuService extends BaseService<SysMenuDO> {
     private SysMenuDao menuDao;
 
     public void insert(SysMenuDO menuDO){
-        SysMenuDO parent = menuDao.fetchOneById(Long.valueOf(menuDO.getParentId()));
+        if(menuDO.getParentId() != null){
+            SysMenuDO parent = menuDao.fetchOneById(Long.valueOf(menuDO.getParentId()));
+            String pIds = parent.getParentIds()==null?(","+parent.getId()+",") : (parent.getParentIds()+parent.getId()+",");
+            menuDO.setParentIds(pIds);
+        }
         menuDO.setDelFlag(DEL_FLAG_NORMAL);
-        String pIds = parent.getParentIds()==null?(","+parent.getId()+",") : (parent.getParentIds()+parent.getId()+",");
-        menuDO.setParentIds(pIds);
         menuDO.setGmtCreate(DateUtils.getCurTimeStamp());
         menuDao.insert(menuDO);
     }

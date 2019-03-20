@@ -1,13 +1,10 @@
 package com.yueya.system.controller;
 
 import com.yueya.auth.realm.Principal;
-import com.yueya.auth.utils.CredentialsHelper;
 import com.yueya.auth.utils.UserInfoUtil;
 import com.yueya.common.base.BaseController;
-import com.yueya.common.web.RestPage;
 import com.yueya.common.web.RestResult;
 import com.yueya.system.dao.model.UserInfo;
-import com.yueya.system.dao.tables.SysMenu;
 import com.yueya.system.dao.tables.pojos.SysMenuDO;
 import com.yueya.system.dao.tables.pojos.SysUserDO;
 import com.yueya.system.service.SysMenuService;
@@ -16,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 
 @RestController
@@ -50,12 +45,6 @@ public class SysUserController extends BaseController {
 
     @PostMapping("insert")
     public RestResult insert(@RequestBody SysUserDO userDO){
-        if(userDO.getPassword() != null){
-            //密码加密
-            userDO.setPassword(CredentialsHelper.entryptCredentials(userDO.getPassword()));
-        }
-        //设置一个用户的唯一标识码，暂时没什么用
-        userDO.setUserCode(UUID.randomUUID().toString().replace("-",""));
         userService.insert(userDO);
         return RestResult.OK("success");
     }
