@@ -33,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysUser extends TableImpl<SysUserRecord> {
 
-    private static final long serialVersionUID = 774076358;
+    private static final long serialVersionUID = 1137895813;
 
     /**
      * The reference instance of <code>pms.sys_user</code>
@@ -136,7 +136,7 @@ public class SysUser extends TableImpl<SysUserRecord> {
     /**
      * The column <code>pms.sys_user.gmt_modified</code>. 更新时间
      */
-    public final TableField<SysUserRecord, Timestamp> GMT_MODIFIED = createField("gmt_modified", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "更新时间");
+    public final TableField<SysUserRecord, Timestamp> GMT_MODIFIED = createField("gmt_modified", org.jooq.impl.SQLDataType.TIMESTAMP, this, "更新时间");
 
     /**
      * The column <code>pms.sys_user.remarks</code>. 备注信息
@@ -146,7 +146,7 @@ public class SysUser extends TableImpl<SysUserRecord> {
     /**
      * The column <code>pms.sys_user.del_flag</code>. 删除标记
      */
-    public final TableField<SysUserRecord, String> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.CHAR(1).nullable(false).defaultValue(DSL.inline("0", org.jooq.impl.SQLDataType.CHAR)), this, "删除标记");
+    public final TableField<SysUserRecord, String> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.CHAR(1).nullable(false).defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.CHAR)), this, "删除标记");
 
     /**
      * Create a <code>pms.sys_user</code> table reference

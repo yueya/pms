@@ -1,5 +1,6 @@
 package com.yueya.system.service;
 
+import com.yueya.auth.config.AuthProperties;
 import com.yueya.common.base.BaseService;
 import com.yueya.common.util.DateUtils;
 import com.yueya.system.dao.tables.SysMenu;
@@ -15,7 +16,6 @@ import java.util.List;
 public class SysMenuService extends BaseService<SysMenuDO> {
     @Autowired
     private SysMenuDao menuDao;
-
     public void insert(SysMenuDO menuDO){
         if(menuDO.getParentId() != null){
             SysMenuDO parent = menuDao.fetchOneById(Long.valueOf(menuDO.getParentId()));

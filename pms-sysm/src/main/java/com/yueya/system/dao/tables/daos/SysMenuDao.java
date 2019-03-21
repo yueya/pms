@@ -183,6 +183,12 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
     public List<SysMenuDO> fetchByDelFlag(String... values) {
         return fetch(com.yueya.system.dao.tables.SysMenu.SYS_MENU.DEL_FLAG, values);
     }
+    /**
+     * Fetch records that have <code>permission IN (values)</code>
+     */
+    public List<SysMenuDO> fetchByPermission(String... values) {
+        return fetch(com.yueya.system.dao.tables.SysMenu.SYS_MENU.PERMISSION, values);
+    }
 
     public List<SysMenuDO> fetchMenusByUserId(Long userId) {
         DSLContext create= DSL.using(super.configuration());
@@ -198,4 +204,21 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
                 .fetchInto(getType());
         return list;
     }
+
+    public List<SysMenuDO> fetchMenusByUserId(Long userId,String systemCode) {
+        DSLContext create= DSL.using(super.configuration());
+        List<SysMenuDO> list=create.select()
+                .from(getTable())
+                .innerJoin(SysRoleMenu.SYS_ROLE_MENU)
+                .on(SysRoleMenu.SYS_ROLE_MENU.MENU_ID.eq(SysMenu.SYS_MENU.ID))
+                .innerJoin(SysUserRole.SYS_USER_ROLE)
+                .on(SysUserRole.SYS_USER_ROLE.ROLE_ID.eq(SysRoleMenu.SYS_ROLE_MENU.ROLE_ID))
+                .where(SysUserRole.SYS_USER_ROLE.USER_ID.eq(userId)
+                .and(SysMenu.SYS_MENU.USEABLE.eq(ENABLE))
+                .and(SysMenu.SYS_MENU.DEL_FLAG.eq(DEL_NORMAL)))
+                .and(SysMenu.SYS_MENU.SYSTEM_CODE.eq(systemCode))
+                .fetchInto(getType());
+        return list;
+    }
+
 }

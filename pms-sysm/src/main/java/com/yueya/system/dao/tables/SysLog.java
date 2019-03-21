@@ -61,12 +61,12 @@ public class SysLog extends TableImpl<SysLogRecord> {
     /**
      * The column <code>pms.sys_log.type</code>. 日志类型
      */
-    public final TableField<SysLogRecord, String> TYPE = createField("type", org.jooq.impl.SQLDataType.CHAR(1).defaultValue(DSL.inline("1", org.jooq.impl.SQLDataType.CHAR)), this, "日志类型");
+    public final TableField<SysLogRecord, String> TYPE = createField("type", org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.inline("1", org.jooq.impl.SQLDataType.CHAR)), this, "日志类型");
 
     /**
      * The column <code>pms.sys_log.title</code>. 日志标题
      */
-    public final TableField<SysLogRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR(255).defaultValue(DSL.inline("", org.jooq.impl.SQLDataType.VARCHAR)), this, "日志标题");
+    public final TableField<SysLogRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR(255).defaultValue(org.jooq.impl.DSL.inline("", org.jooq.impl.SQLDataType.VARCHAR)), this, "日志标题");
 
     /**
      * The column <code>pms.sys_log.create_by</code>. 创建者

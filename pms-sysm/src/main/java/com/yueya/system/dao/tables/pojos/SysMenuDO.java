@@ -34,6 +34,7 @@ public class SysMenuDO implements Serializable {
     private Timestamp gmtCreate;
     private Timestamp gmtModified;
     private String    delFlag;
+    private String    permission;
 
     public SysMenuDO() {}
 
@@ -56,6 +57,7 @@ public class SysMenuDO implements Serializable {
         this.gmtCreate = value.gmtCreate;
         this.gmtModified = value.gmtModified;
         this.delFlag = value.delFlag;
+        this.permission = value.permission;
     }
 
     public SysMenuDO(
@@ -76,7 +78,8 @@ public class SysMenuDO implements Serializable {
         String    remarks,
         Timestamp gmtCreate,
         Timestamp gmtModified,
-        String    delFlag
+        String    delFlag,
+        String    permission
     ) {
         this.id = id;
         this.name = name;
@@ -96,6 +99,7 @@ public class SysMenuDO implements Serializable {
         this.gmtCreate = gmtCreate;
         this.gmtModified = gmtModified;
         this.delFlag = delFlag;
+        this.permission = permission;
     }
 
     public Long getId() {
@@ -242,6 +246,14 @@ public class SysMenuDO implements Serializable {
         this.delFlag = delFlag;
     }
 
+    public String getPermission() {
+        return this.permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("SysMenuDO (");
@@ -264,6 +276,7 @@ public class SysMenuDO implements Serializable {
         sb.append(", ").append(gmtCreate);
         sb.append(", ").append(gmtModified);
         sb.append(", ").append(delFlag);
+        sb.append(", ").append(permission);
 
         sb.append(")");
         return sb.toString();

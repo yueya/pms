@@ -101,7 +101,7 @@ public class SysArea extends TableImpl<SysAreaRecord> {
     /**
      * The column <code>pms.sys_area.del_flag</code>. 删除标记
      */
-    public final TableField<SysAreaRecord, String> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.CHAR(1).nullable(false).defaultValue(DSL.inline("0", org.jooq.impl.SQLDataType.CHAR)), this, "删除标记");
+    public final TableField<SysAreaRecord, String> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.CHAR(1).nullable(false).defaultValue(org.jooq.impl.DSL.inline("0", org.jooq.impl.SQLDataType.CHAR)), this, "删除标记");
 
     /**
      * Create a <code>pms.sys_area</code> table reference

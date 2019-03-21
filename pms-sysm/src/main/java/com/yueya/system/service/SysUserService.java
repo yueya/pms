@@ -5,10 +5,10 @@ import com.yueya.common.base.BaseService;
 import com.yueya.common.util.DateUtils;
 import com.yueya.system.dao.model.UserInfo;
 import com.yueya.system.dao.tables.SysUser;
-import com.yueya.system.dao.tables.daos.SysPermissionDao;
+import com.yueya.system.dao.tables.daos.SysMenuDao;
 import com.yueya.system.dao.tables.daos.SysRoleDao;
 import com.yueya.system.dao.tables.daos.SysUserDao;
-import com.yueya.system.dao.tables.pojos.SysPermissionDO;
+import com.yueya.system.dao.tables.pojos.SysMenuDO;
 import com.yueya.system.dao.tables.pojos.SysRoleDO;
 import com.yueya.system.dao.tables.pojos.SysUserDO;
 import org.jooq.Condition;
@@ -28,7 +28,7 @@ public class SysUserService extends BaseService<SysUserDO> {
     @Autowired
     private SysRoleDao roleDao;
     @Autowired
-    private SysPermissionDao permissionDao;
+    private SysMenuDao menuDao;
     public SysUserDO findById(String id){
         return dao.fetchOne(SysUser.SYS_USER.ID,Long.valueOf(id));
     }
@@ -43,8 +43,8 @@ public class SysUserService extends BaseService<SysUserDO> {
         return roleDao.fetchByUserId(Long.valueOf(userId));
     }
 
-    public List<SysPermissionDO> findPermissionsByUser(String userId, String appId) {
-        return permissionDao.fetchByUser(Long.valueOf(userId),appId);
+    public List<SysMenuDO> findPermissionsByUser(String userId, String appId) {
+        return menuDao.fetchMenusByUserId(Long.valueOf(userId),appId);
     }
     public void insert(SysUserDO userDO){
         if(userDO.getPassword() != null){

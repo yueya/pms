@@ -33,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysMenu extends TableImpl<SysMenuRecord> {
 
-    private static final long serialVersionUID = 447645296;
+    private static final long serialVersionUID = -2016540107;
 
     /**
      * The reference instance of <code>pms.sys_menu</code>
@@ -137,6 +137,11 @@ public class SysMenu extends TableImpl<SysMenuRecord> {
      * The column <code>pms.sys_menu.del_flag</code>. 删除标记
      */
     public final TableField<SysMenuRecord, String> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.CHAR(1), this, "删除标记");
+
+    /**
+     * The column <code>pms.sys_menu.permission</code>.
+     */
+    public final TableField<SysMenuRecord, String> PERMISSION = createField("permission", org.jooq.impl.SQLDataType.VARCHAR(64), this, "");
 
     /**
      * Create a <code>pms.sys_menu</code> table reference
