@@ -1,6 +1,5 @@
 package com.yueya.system.service;
 
-import com.yueya.auth.config.AuthProperties;
 import com.yueya.common.base.BaseService;
 import com.yueya.common.util.DateUtils;
 import com.yueya.system.dao.tables.SysMenu;
