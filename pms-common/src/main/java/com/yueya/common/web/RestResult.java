@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 /**
  * 统一返回对象
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RestResult {
     private Code code;
     private String msg;
