@@ -15,6 +15,7 @@ public class SysRoleController extends BaseController {
     @Autowired
     private SysRoleService roleService;
 
+
     @RequestMapping("page")
     public RestResult page(@RequestParam(defaultValue = "0") int offset,
                            @RequestParam(defaultValue = "10") int limit,
@@ -27,16 +28,36 @@ public class SysRoleController extends BaseController {
     @PostMapping("insert")
     public RestResult insert(@RequestBody SysRoleDO roleDO){
         roleService.insert(roleDO);
-        return RestResult.OK("success");
+        return RestResult.OK();
     }
     @PostMapping("update")
     public RestResult update(@RequestBody SysRoleDO roleDO){
         roleService.update(roleDO);
-        return RestResult.OK("success");
+        return RestResult.OK();
     }
     @RequestMapping("delete")
     public RestResult delete(String ids){
         roleService.delete(ids);
-        return RestResult.OK("success");
+        return RestResult.OK();
+    }
+
+    @RequestMapping("menu")
+    public RestResult roleMenus(String id) {
+        return RestResult.OkWithData(roleService.roleMenus(id));
+    }
+
+    @PostMapping("auth")
+    public RestResult auth(String roleId,String menuIds) {
+        roleService.authMenus(roleId,menuIds);
+        return RestResult.OK();
+    }
+
+    /**
+     * 已分配该角色的用户
+     * @return
+     */
+    @RequestMapping("users")
+    public RestResult users(String id) {
+        return RestResult.OkWithData(roleService.fetchUsers(id));
     }
 }

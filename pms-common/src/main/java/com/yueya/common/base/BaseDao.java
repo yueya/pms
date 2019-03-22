@@ -1,7 +1,6 @@
 package com.yueya.common.base;
 import org.jooq.*;
 import org.jooq.impl.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
@@ -55,6 +54,12 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
                 .where(conditions)
                 .execute();
     }
+    public int deleteByCondition(Condition... conditions){
+        DSLContext create=DSL.using(super.configuration());
+        return create.delete(getTable())
+                .where(conditions)
+                .execute();
+    }
     private /* non-final */ RecordListenerProvider[] providers(final RecordListenerProvider[] providers, final Object object) {
         RecordListenerProvider[] result = Arrays.copyOf(providers, providers.length + 1);
 
@@ -93,6 +98,9 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
     private /* non-final */ Field<?>[] pk() {
         UniqueKey<?> key = getTable().getPrimaryKey();
         return key == null ? null : key.getFieldsArray();
+    }
+    public Field<?>[] getFields() {
+        return getTable().fields();
     }
     private /* non-final */ List<R> records(Collection<P> objects, boolean forUpdate) {
         List<R> result = new ArrayList<R>(objects.size());

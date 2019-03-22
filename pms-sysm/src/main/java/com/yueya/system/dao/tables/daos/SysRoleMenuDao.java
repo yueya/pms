@@ -5,12 +5,17 @@ package com.yueya.system.dao.tables.daos;
 
 
 import com.yueya.common.base.BaseDao;
+import com.yueya.system.dao.tables.SysMenu;
+import com.yueya.system.dao.tables.SysRoleMenu;
+import com.yueya.system.dao.tables.pojos.SysMenuDO;
 import com.yueya.system.dao.tables.pojos.SysRoleMenuDO;
 import com.yueya.system.dao.tables.records.SysRoleMenuRecord;
 
 import java.util.List;
 
 import org.jooq.Configuration;
+import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -71,5 +76,19 @@ public class SysRoleMenuDao extends BaseDao<SysRoleMenuRecord, SysRoleMenuDO, Lo
      */
     public List<SysRoleMenuDO> fetchByRoleId(Long... values) {
         return fetch(com.yueya.system.dao.tables.SysRoleMenu.SYS_ROLE_MENU.ROLE_ID, values);
+    }
+
+    public List<SysRoleMenuDO> fetchMenuByRole(String roleId) {
+        DSLContext create= DSL.using(super.configuration());
+        List<SysRoleMenuDO> list=create.select(getFields())
+                .from(getTable())
+                .innerJoin(SysMenu.SYS_MENU)
+                .on(SysRoleMenu.SYS_ROLE_MENU.MENU_ID.eq(SysMenu.SYS_MENU.ID))
+                .where(SysRoleMenu.SYS_ROLE_MENU.ROLE_ID.eq(Long.valueOf(roleId))
+                        .and(SysMenu.SYS_MENU.USEABLE.eq(ENABLE))
+                        .and(SysMenu.SYS_MENU.DEL_FLAG.eq(DEL_NORMAL)))
+                //.and(SysMenu.SYS_MENU.SYSTEM_CODE.eq(systemCode))
+                .fetchInto(getType());
+        return list;
     }
 }

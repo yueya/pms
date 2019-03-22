@@ -2,11 +2,18 @@ package com.yueya.common.web;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * 统一返回对象
  */
 public class RestResult {
+    public static final String SUCCESS = "success";
+    public static final String FAILER = "failer";
+    public static final String ERROR = "error";
     private Code code;
     private String msg;
     private Object data;
@@ -19,15 +26,22 @@ public class RestResult {
         this.msg=msg;
         this.data=data;
     }
-    public RestResult(Code code,String msg){
+    private RestResult(Code code,String... msg){
         this.code=code;
-        this.msg=msg;
+        switch (code) {
+            case OK: this.msg = msg.length == 0 ? SUCCESS : msg[0];
+            break;
+            case FAILER: this.msg = msg.length == 0 ? FAILER : msg[0];
+            break;
+            case ERROR: this.msg = msg.length == 0 ? ERROR : msg[0];
+            break;
+        }
     }
-    public static RestResult OK(String msg){
+    public static RestResult OK(String... msg){
         return new RestResult(Code.OK,msg);
     }
     public static RestResult OkWithData(Object data){
-        return new RestResult(Code.OK,"success",data);
+        return new RestResult(Code.OK,SUCCESS,data);
     }
     public static RestResult ERROR(String msg){
         return new RestResult(Code.ERROR,msg);

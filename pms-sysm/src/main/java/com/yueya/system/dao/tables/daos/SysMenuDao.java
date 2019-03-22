@@ -192,7 +192,7 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
 
     public List<SysMenuDO> fetchMenusByUserId(Long userId) {
         DSLContext create= DSL.using(super.configuration());
-        List<SysMenuDO> list=create.select()
+        List<SysMenuDO> list=create.select(getFields())
                 .from(getTable())
                 .innerJoin(SysRoleMenu.SYS_ROLE_MENU)
                 .on(SysRoleMenu.SYS_ROLE_MENU.MENU_ID.eq(SysMenu.SYS_MENU.ID))
@@ -207,7 +207,7 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
 
     public List<SysMenuDO> fetchMenusByUserId(Long userId,String systemCode) {
         DSLContext create= DSL.using(super.configuration());
-        List<SysMenuDO> list=create.select()
+        List<SysMenuDO> list=create.select(getFields())
                 .from(getTable())
                 .innerJoin(SysRoleMenu.SYS_ROLE_MENU)
                 .on(SysRoleMenu.SYS_ROLE_MENU.MENU_ID.eq(SysMenu.SYS_MENU.ID))
@@ -221,4 +221,17 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
         return list;
     }
 
+    public List<SysMenuDO> fetchMenuByRole(String roleId) {
+        DSLContext create= DSL.using(super.configuration());
+        List<SysMenuDO> list=create.select(getFields())
+                .from(getTable())
+                .innerJoin(SysRoleMenu.SYS_ROLE_MENU)
+                .on(SysRoleMenu.SYS_ROLE_MENU.MENU_ID.eq(SysMenu.SYS_MENU.ID))
+                .where(SysRoleMenu.SYS_ROLE_MENU.ROLE_ID.eq(Long.valueOf(roleId))
+                        .and(SysMenu.SYS_MENU.USEABLE.eq(ENABLE))
+                        .and(SysMenu.SYS_MENU.DEL_FLAG.eq(DEL_NORMAL)))
+                //.and(SysMenu.SYS_MENU.SYSTEM_CODE.eq(systemCode))
+                .fetchInto(getType());
+        return list;
+    }
 }
