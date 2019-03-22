@@ -7,12 +7,16 @@ package com.yueya.system.dao.tables.daos;
 import com.yueya.common.base.BaseDao;
 import com.yueya.system.dao.model.UserInfo;
 import com.yueya.system.dao.tables.SysOrganization;
+import com.yueya.system.dao.tables.SysRoleMenu;
+import com.yueya.system.dao.tables.SysUser;
+import com.yueya.system.dao.tables.SysUserRole;
 import com.yueya.system.dao.tables.pojos.SysOrganizationDO;
 import com.yueya.system.dao.tables.pojos.SysUserDO;
 import com.yueya.system.dao.tables.records.SysUserRecord;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.jooq.Configuration;
 import org.jooq.DSLContext;
@@ -211,5 +215,16 @@ public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, Long> {
         info.email=userDO.getEmail();
         info.photo=userDO.getPhoto();
         return info;
+    }
+
+    public List<SysUserDO> fetchByRole(String roleId) {
+        DSLContext create= DSL.using(super.configuration());
+        List<SysUserDO> list = create.select(SysUser.SYS_USER.ID,SysUser.SYS_USER.NAME,SysUser.SYS_USER.LOGIN_NAME)
+                .from(getTable())
+                .innerJoin(SysUserRole.SYS_USER_ROLE)
+                .on(SysUser.SYS_USER.ID.eq(SysUserRole.SYS_USER_ROLE.USER_ID))
+                .where(SysUserRole.SYS_USER_ROLE.ROLE_ID.eq(Long.valueOf(roleId)))
+                .fetchInto(getType());
+        return list;
     }
 }

@@ -2,17 +2,9 @@ package com.yueya.system.service;
 
 import com.yueya.common.base.BaseService;
 import com.yueya.common.util.DateUtils;
-import com.yueya.system.dao.tables.SysMenu;
-import com.yueya.system.dao.tables.SysRole;
-import com.yueya.system.dao.tables.SysRoleMenu;
-import com.yueya.system.dao.tables.daos.SysMenuDao;
-import com.yueya.system.dao.tables.daos.SysRoleDao;
-import com.yueya.system.dao.tables.daos.SysRoleMenuDao;
-import com.yueya.system.dao.tables.daos.SysUserDao;
-import com.yueya.system.dao.tables.pojos.SysMenuDO;
-import com.yueya.system.dao.tables.pojos.SysRoleDO;
-import com.yueya.system.dao.tables.pojos.SysRoleMenuDO;
-import com.yueya.system.dao.tables.pojos.SysUserDO;
+import com.yueya.system.dao.tables.*;
+import com.yueya.system.dao.tables.daos.*;
+import com.yueya.system.dao.tables.pojos.*;
 import org.jooq.Condition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +27,8 @@ public class SysRoleService extends BaseService<SysRoleDO> {
     @Autowired
     private SysUserDao sysUserDao;
 
+    @Autowired
+    private SysUserRoleDao userRoleDao;
     @Override
     public List<Condition> getConditions(SysRoleDO sysRoleDO) {
         Condition condition = SysRole.SYS_ROLE.DEL_FLAG.eq(DEL_FLAG_NORMAL);
@@ -85,6 +79,26 @@ public class SysRoleService extends BaseService<SysRoleDO> {
     }
 
     public List<SysUserDO> fetchUsers(String roleId) {
-        return sysUserDao.fetchByCondition();
+        return sysUserDao.fetchByRole(roleId);
+    }
+
+    public void assign(String addIds, String delIds,String roleId) {
+       if (!delIds.isEmpty()) {
+           // 删除 移除分配的用户关系
+           Condition condition = SysUserRole.SYS_USER_ROLE.USER_ID
+                   .in(Arrays.stream(delIds.split(",")).collect(Collectors.toSet()))
+                   .and(SysUserRole.SYS_USER_ROLE.ROLE_ID.eq(Long.valueOf(roleId)));
+           userRoleDao.deleteByCondition(condition);
+       }
+       if (!addIds.isEmpty()) {
+           // 添加 分配角色的用户关系
+           List<SysUserRoleDO> list = Arrays.stream(addIds.split(",")).map(id -> {
+               SysUserRoleDO userRoleDO = new SysUserRoleDO();
+               userRoleDO.setRoleId(Long.valueOf(roleId));
+               userRoleDO.setUserId(Long.valueOf(id));
+               return userRoleDO;
+           }).collect(Collectors.toList());
+           userRoleDao.insert(list);
+       }
     }
 }

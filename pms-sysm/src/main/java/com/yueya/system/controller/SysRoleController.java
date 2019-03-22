@@ -36,18 +36,18 @@ public class SysRoleController extends BaseController {
         return RestResult.OK();
     }
     @RequestMapping("delete")
-    public RestResult delete(String ids){
+    public RestResult delete(@RequestParam("ids") String ids){
         roleService.delete(ids);
         return RestResult.OK();
     }
 
     @RequestMapping("menu")
-    public RestResult roleMenus(String id) {
+    public RestResult roleMenus(@RequestParam("id") String id) {
         return RestResult.OkWithData(roleService.roleMenus(id));
     }
 
     @PostMapping("auth")
-    public RestResult auth(String roleId,String menuIds) {
+    public RestResult auth(@RequestParam("roleId") String roleId,@RequestParam("menuIds") String menuIds) {
         roleService.authMenus(roleId,menuIds);
         return RestResult.OK();
     }
@@ -57,7 +57,15 @@ public class SysRoleController extends BaseController {
      * @return
      */
     @RequestMapping("users")
-    public RestResult users(String id) {
+    public RestResult users(@RequestParam("id") String id) {
         return RestResult.OkWithData(roleService.fetchUsers(id));
+    }
+
+    @PostMapping("assign")
+    public RestResult assign(@RequestParam("addIds") String addIds,
+                             @RequestParam("delIds") String delIds,
+                             @RequestParam("roleId") String roleId) {
+        roleService.assign(addIds.trim(),delIds.trim(),roleId);
+        return RestResult.OK();
     }
 }
