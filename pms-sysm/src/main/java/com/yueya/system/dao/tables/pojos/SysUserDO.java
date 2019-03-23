@@ -4,6 +4,7 @@
 package com.yueya.system.dao.tables.pojos;
 
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -20,6 +21,7 @@ public class SysUserDO implements Serializable {
     private String    userCode;
     private String    organizationId;
     private String    departmentId;
+    @NotNull
     private String    loginName;
     private String    password;
     private String    userNo;

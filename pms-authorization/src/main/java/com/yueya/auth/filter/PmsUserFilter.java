@@ -15,9 +15,8 @@ public class PmsUserFilter extends UserFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         //return super.onAccessDenied(request, response);
-        System.out.println("asd");
         HttpServletResponse httpServletResponse= (HttpServletResponse) response;
-        httpServletResponse.setStatus(HttpStatus.FORBIDDEN.value());
+        httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
         /*String msg= JsonMapper.toJsonString(RestResult.ERROR("未登录"));
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

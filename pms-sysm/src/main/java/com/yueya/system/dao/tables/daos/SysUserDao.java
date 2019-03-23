@@ -202,18 +202,20 @@ public class SysUserDao extends BaseDao<SysUserRecord, SysUserDO, Long> {
     public List<SysUserDO> fetchByDelFlag(String... values) {
         return fetch(com.yueya.system.dao.tables.SysUser.SYS_USER.DEL_FLAG, values);
     }
-    public UserInfo fetchUserInfo(long id){
+    public UserInfo fetchUserInfo(String loginName){
         DSLContext create= DSL.using(super.configuration());
-        SysUserDO userDO=fetchOneById(id);
+        SysUserDO userDO=fetchOne(SysUser.SYS_USER.LOGIN_NAME,loginName);
         List<SysOrganizationDO> orgs=create.select()
                 .from(SysOrganization.SYS_ORGANIZATION)
-                .where(SysOrganization.SYS_ORGANIZATION.ID.in(Long.valueOf(userDO.getOrganizationId()),
-                        Long.valueOf(userDO.getDepartmentId())))
+                .where(SysOrganization.SYS_ORGANIZATION.ID.eq(Long.valueOf(userDO.getDepartmentId())))
                 .fetchInto(SysOrganizationDO.class);
         UserInfo info=new UserInfo();
-        info.name=userDO.getName();
-        info.email=userDO.getEmail();
-        info.photo=userDO.getPhoto();
+        info.name = userDO.getName();
+        info.email = userDO.getEmail();
+        info.photo = userDO.getPhoto();
+        if (!orgs.isEmpty()) {
+           info.deptName = orgs.get(0).getName();
+        }
         return info;
     }
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Principal implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String id; // 用户id
+    private String id; // 用户标识码
     private String userName; // 登录名
     private String name; // 姓名
     public String getId() {

@@ -10,6 +10,7 @@ import com.yueya.system.dao.tables.pojos.SysUserDO;
 import com.yueya.system.service.SysMenuService;
 import com.yueya.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,10 +23,11 @@ public class SysUserController extends BaseController {
     private SysUserService userService;
     @Autowired
     private SysMenuService menuService;
-    @RequestMapping("info")
-    public RestResult info(){
+
+    @RequestMapping("profile")
+    public RestResult profile(){
         Principal principal=UserInfoUtil.getPrincipal();
-        UserInfo user=userService.info(principal.getId());
+        UserInfo user=userService.info(principal.getUserName());
         return RestResult.OkWithData(user);
     }
     @RequestMapping("menus")
@@ -44,7 +46,11 @@ public class SysUserController extends BaseController {
     }
 
     @PostMapping("insert")
-    public RestResult insert(@RequestBody SysUserDO userDO){
+    public RestResult insert(@RequestBody @Validated SysUserDO userDO){
+        SysUserDO old = userService.findByUserName(userDO.getLoginName());
+        if (old!=null) {
+           return RestResult.FAILER("该登录名已存在");
+        }
         userService.insert(userDO);
         return RestResult.OK("success");
     }

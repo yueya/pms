@@ -32,8 +32,8 @@ public class SysUserService extends BaseService<SysUserDO> {
     public SysUserDO findById(String id){
         return dao.fetchOne(SysUser.SYS_USER.ID,Long.valueOf(id));
     }
-    public UserInfo info(String id){
-        return dao.fetchUserInfo(Long.valueOf(id));
+    public UserInfo info(String loginName){
+        return dao.fetchUserInfo(loginName);
     }
     public SysUserDO findByUserName(String userName){
         return dao.fetchOne(SysUser.SYS_USER.LOGIN_NAME,userName);
@@ -67,6 +67,10 @@ public class SysUserService extends BaseService<SysUserDO> {
         dao.updateByCondition(userDO,condition);
     }
     public void update(SysUserDO userDO){
+        if(userDO.getPassword() != null){
+            //密码加密
+            userDO.setPassword(CredentialsHelper.entryptCredentials(userDO.getPassword()));
+        }
         userDO.setGmtModified(DateUtils.getCurTimeStamp());
         dao.update(userDO);
     }

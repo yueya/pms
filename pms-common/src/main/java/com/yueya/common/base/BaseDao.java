@@ -3,6 +3,7 @@ import org.jooq.*;
 import org.jooq.impl.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -165,10 +166,13 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
                 .where(conditions)
                 .fetchOne(0,Long.class);
     }
-    public List<P> page(int offset,int limit,List<Condition> conditions){
+    public List<P> page(int offset,int limit,List<Condition> conditions, SortField... orderBy){
         DSLContext create=DSL.using(super.configuration());
         Table<R> table=getTable();
         List<P> result;
+       /* if (orderBy.length>0) {
+            Arrays.stream(orderBy).collect(Collectors.toSet());
+        }*/
         //如果分页offset超过1000，使用延迟关联子查询提高分页速度
         if(offset>1000 && !table.getIndexes().isEmpty()){
             String TEMP_TABLE = TEMP_TABLE_NAME+"_"+System.currentTimeMillis();
@@ -179,12 +183,14 @@ public class BaseDao<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T
                     .from(table)
                     .join(create.select(index).from(table)
                     .where(conditions)
+                    .orderBy(orderBy)
                     .limit(offset,limit).asTable(TEMP_TABLE))
                     .on(index.eq(field(name(TEMP_TABLE,index.getName()),String.class)))
                     .fetchInto(getType());
         }else{
             result=create.select().from(table)
             .where(conditions)
+            .orderBy(orderBy)
             .limit(offset,limit)
             .fetchInto(getType());
         }

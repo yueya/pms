@@ -5,8 +5,11 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserInfoUtil{
+    private static Logger logger = LoggerFactory.getLogger(UserInfoUtil.class);
     /**
      * 获取当前登录者对象
      */
@@ -17,10 +20,8 @@ public class UserInfoUtil{
             if (principal != null){
                 return principal;
             }
-        }catch (UnavailableSecurityManagerException e) {
-
-        }catch (InvalidSessionException e){
-
+        }catch (InvalidSessionException | UnavailableSecurityManagerException e) {
+            logger.error("获取信息异常",e);
         }
         return null;
     }
