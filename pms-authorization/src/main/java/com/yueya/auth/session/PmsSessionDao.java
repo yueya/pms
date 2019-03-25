@@ -1,6 +1,6 @@
 package com.yueya.auth.session;
 
-import com.yueya.auth.model.SessionPage;
+import com.yueya.common.web.RestPage;
 import org.apache.shiro.dao.DataAccessException;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SimpleSession;
@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import static com.yueya.auth.config.AuthConstant.ATTRIBUTE_LOGIN_NAME;
 
 @Component
 public class PmsSessionDao extends EnterpriseCacheSessionDAO implements SessionDao {
@@ -56,7 +58,7 @@ public class PmsSessionDao extends EnterpriseCacheSessionDAO implements SessionD
     }
 
     @Override
-    public SessionPage getActiveSessions(int offset, int limit) {
+    public RestPage getActiveSessions(int offset, int limit) {
         Set<String> keys=redisTemplate.keys(CACHE_PREFIX+"*");
         SessionCallback<List<Session>> sessionCallback=new SessionCallback<List<Session>>() {
             @Override
@@ -72,14 +74,12 @@ public class PmsSessionDao extends EnterpriseCacheSessionDAO implements SessionD
                     SimpleSession session=new SimpleSession();
                     session.setId(r.getId());
                     session.setHost(r.getHost());
+                    session.setAttribute(ATTRIBUTE_LOGIN_NAME,r.getAttribute(ATTRIBUTE_LOGIN_NAME));
                     session.setStartTimestamp(r.getStartTimestamp());
                     session.setLastAccessTime(r.getLastAccessTime());
                     return session;
                 }).collect(Collectors.toList());
-        SessionPage page=new SessionPage();
-        page.setCount(keys.size());
-        page.setList(list);
-        return page;
+        return new RestPage(list,keys.size());
     }
 
     @Override

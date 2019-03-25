@@ -5,9 +5,11 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 public class ForceLogoutFilter extends AccessControlFilter {
     Logger logger= LoggerFactory.getLogger(getClass());
@@ -21,9 +23,11 @@ public class ForceLogoutFilter extends AccessControlFilter {
     }
 
     @Override
-    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) {
         try {
             getSubject(request,response).logout();
+            HttpServletResponse httpServletResponse= (HttpServletResponse) response;
+            httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
         }catch (Exception e){
             logger.error("force logout error",e);
         }

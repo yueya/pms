@@ -26,7 +26,7 @@ public class LoginService implements AccountInfoProvider {
             Account acc=new Account();
             acc.setAccount(userDO.getLoginName());
             acc.setPassword(userDO.getPassword());
-            acc.setId(userDO.getUserCode());
+            acc.setId(String.valueOf(userDO.getId()));
             return acc;
         }
         return null;

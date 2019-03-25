@@ -14,16 +14,15 @@ import java.sql.Timestamp;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysMenuDO implements Serializable {
 
-    private static final long serialVersionUID = -2023429123;
+    private static final long serialVersionUID = 1830334553;
 
     private Long      id;
     private String    name;
     private String    parentId;
     private String    parentIds;
     private String    type;
-    private Integer   treeSort;
+    private Integer   sort;
     private String    systemCode;
-    private Integer   allSort;
     private String    href;
     private String    target;
     private String    icon;
@@ -44,9 +43,8 @@ public class SysMenuDO implements Serializable {
         this.parentId = value.parentId;
         this.parentIds = value.parentIds;
         this.type = value.type;
-        this.treeSort = value.treeSort;
+        this.sort = value.sort;
         this.systemCode = value.systemCode;
-        this.allSort = value.allSort;
         this.href = value.href;
         this.target = value.target;
         this.icon = value.icon;
@@ -66,9 +64,8 @@ public class SysMenuDO implements Serializable {
         String    parentId,
         String    parentIds,
         String    type,
-        Integer   treeSort,
+        Integer   sort,
         String    systemCode,
-        Integer   allSort,
         String    href,
         String    target,
         String    icon,
@@ -86,9 +83,8 @@ public class SysMenuDO implements Serializable {
         this.parentId = parentId;
         this.parentIds = parentIds;
         this.type = type;
-        this.treeSort = treeSort;
+        this.sort = sort;
         this.systemCode = systemCode;
-        this.allSort = allSort;
         this.href = href;
         this.target = target;
         this.icon = icon;
@@ -142,12 +138,12 @@ public class SysMenuDO implements Serializable {
         this.type = type;
     }
 
-    public Integer getTreeSort() {
-        return this.treeSort;
+    public Integer getSort() {
+        return this.sort;
     }
 
-    public void setTreeSort(Integer treeSort) {
-        this.treeSort = treeSort;
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     public String getSystemCode() {
@@ -156,14 +152,6 @@ public class SysMenuDO implements Serializable {
 
     public void setSystemCode(String systemCode) {
         this.systemCode = systemCode;
-    }
-
-    public Integer getAllSort() {
-        return this.allSort;
-    }
-
-    public void setAllSort(Integer allSort) {
-        this.allSort = allSort;
     }
 
     public String getHref() {
@@ -263,9 +251,8 @@ public class SysMenuDO implements Serializable {
         sb.append(", ").append(parentId);
         sb.append(", ").append(parentIds);
         sb.append(", ").append(type);
-        sb.append(", ").append(treeSort);
+        sb.append(", ").append(sort);
         sb.append(", ").append(systemCode);
-        sb.append(", ").append(allSort);
         sb.append(", ").append(href);
         sb.append(", ").append(target);
         sb.append(", ").append(icon);

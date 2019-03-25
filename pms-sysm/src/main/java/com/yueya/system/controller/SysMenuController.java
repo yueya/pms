@@ -1,5 +1,6 @@
 package com.yueya.system.controller;
 
+import com.yueya.auth.utils.UserInfoUtil;
 import com.yueya.common.base.BaseController;
 import com.yueya.common.web.RestResult;
 import com.yueya.system.dao.tables.pojos.SysMenuDO;
@@ -30,6 +31,11 @@ public class SysMenuController extends BaseController {
     public RestResult delete(String ids){
         menuService.delete(ids);
         return RestResult.OK("success");
+    }
+    @RequestMapping("user")
+    public RestResult userList() {
+        String userId = UserInfoUtil.getPrincipal().getId();
+        return RestResult.OkWithData(menuService.list(userId));
     }
     @RequestMapping("list")
     public RestResult list(@RequestParam(defaultValue = "0") int offset,

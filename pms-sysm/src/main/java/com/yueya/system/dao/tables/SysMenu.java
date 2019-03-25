@@ -33,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysMenu extends TableImpl<SysMenuRecord> {
 
-    private static final long serialVersionUID = -2016540107;
+    private static final long serialVersionUID = 1361923909;
 
     /**
      * The reference instance of <code>pms.sys_menu</code>
@@ -74,19 +74,14 @@ public class SysMenu extends TableImpl<SysMenuRecord> {
     public final TableField<SysMenuRecord, String> TYPE = createField("type", org.jooq.impl.SQLDataType.VARCHAR(255), this, "菜单类型");
 
     /**
-     * The column <code>pms.sys_menu.tree_sort</code>. 本组排序
+     * The column <code>pms.sys_menu.sort</code>. 本组排序
      */
-    public final TableField<SysMenuRecord, Integer> TREE_SORT = createField("tree_sort", org.jooq.impl.SQLDataType.INTEGER, this, "本组排序");
+    public final TableField<SysMenuRecord, Integer> SORT = createField("sort", org.jooq.impl.SQLDataType.INTEGER, this, "本组排序");
 
     /**
      * The column <code>pms.sys_menu.system_code</code>. 所属系统标识
      */
     public final TableField<SysMenuRecord, String> SYSTEM_CODE = createField("system_code", org.jooq.impl.SQLDataType.VARCHAR(45), this, "所属系统标识");
-
-    /**
-     * The column <code>pms.sys_menu.all_sort</code>. 才所有菜单中的排序
-     */
-    public final TableField<SysMenuRecord, Integer> ALL_SORT = createField("all_sort", org.jooq.impl.SQLDataType.INTEGER, this, "才所有菜单中的排序");
 
     /**
      * The column <code>pms.sys_menu.href</code>. 链接

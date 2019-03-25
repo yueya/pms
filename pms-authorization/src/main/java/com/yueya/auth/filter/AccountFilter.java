@@ -1,5 +1,6 @@
 package com.yueya.auth.filter;
 
+import com.yueya.auth.realm.Principal;
 import com.yueya.common.util.JsonMapper;
 import com.yueya.common.web.RestResult;
 import org.apache.shiro.authc.*;
@@ -13,6 +14,7 @@ import javax.servlet.ServletResponse;
 
 import java.io.Writer;
 
+import static com.yueya.auth.config.AuthConstant.ATTRIBUTE_LOGIN_NAME;
 import static com.yueya.auth.config.AuthConstant.LOGIN_FAIL_MESSAGE;
 
 public class AccountFilter extends FormAuthenticationFilter {
@@ -35,6 +37,7 @@ public class AccountFilter extends FormAuthenticationFilter {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         Writer writer=response.getWriter();
+        subject.getSession(false).setAttribute(ATTRIBUTE_LOGIN_NAME, ((UsernamePasswordToken)token).getUsername());
         writer.write(msg);
         writer.flush();
         writer.close();
@@ -44,7 +47,7 @@ public class AccountFilter extends FormAuthenticationFilter {
     @Override
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException ex, ServletRequest request, ServletResponse response) {
         String exception=ex.getClass().getName();
-        String result=null;
+        String result;
         if (UnknownAccountException.class.getName().equals(exception)) {
             result= "账号不存在";
         } else if (IncorrectCredentialsException.class.getName().equals(exception)) {

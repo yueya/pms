@@ -94,10 +94,10 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
     }
 
     /**
-     * Fetch records that have <code>tree_sort IN (values)</code>
+     * Fetch records that have <code>sort IN (values)</code>
      */
-    public List<SysMenuDO> fetchByTreeSort(Integer... values) {
-        return fetch(com.yueya.system.dao.tables.SysMenu.SYS_MENU.TREE_SORT, values);
+    public List<SysMenuDO> fetchBySort(Integer... values) {
+        return fetch(com.yueya.system.dao.tables.SysMenu.SYS_MENU.SORT, values);
     }
 
     /**
@@ -105,13 +105,6 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
      */
     public List<SysMenuDO> fetchBySystemCode(String... values) {
         return fetch(com.yueya.system.dao.tables.SysMenu.SYS_MENU.SYSTEM_CODE, values);
-    }
-
-    /**
-     * Fetch records that have <code>all_sort IN (values)</code>
-     */
-    public List<SysMenuDO> fetchByAllSort(Integer... values) {
-        return fetch(com.yueya.system.dao.tables.SysMenu.SYS_MENU.ALL_SORT, values);
     }
 
     /**
@@ -183,6 +176,7 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
     public List<SysMenuDO> fetchByDelFlag(String... values) {
         return fetch(com.yueya.system.dao.tables.SysMenu.SYS_MENU.DEL_FLAG, values);
     }
+
     /**
      * Fetch records that have <code>permission IN (values)</code>
      */
