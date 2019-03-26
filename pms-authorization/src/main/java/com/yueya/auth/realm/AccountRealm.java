@@ -30,23 +30,22 @@ public class AccountRealm extends AuthorizingRealm {
     }
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        String account = (String) principals.getPrimaryPrincipal();
+        Principal principal = (Principal) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo info =  new SimpleAuthorizationInfo();
-        Set<String> roles = provider.loadRoles(account);
-        Set<String> permissions = provider.loadPermissions(account,properties.getAppId());
-        if(null!=roles&&!roles.isEmpty()){
+        Set<String> roles = provider.loadRoles(principal.getId());
+        Set<String> permissions = provider.loadPermissions(principal.getId());
+        if(null != roles && !roles.isEmpty()){
             info.setRoles(roles);
         }
-        if(null!=permissions&&!permissions.isEmpty()){
-            info.setStringPermissions(permissions);
+        if(null != permissions && !permissions.isEmpty()){
+            permissions.stream().forEach(r -> info.addStringPermission(r));
         }
-        info.addStringPermission("user");
         return info;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        if(null==token.getPrincipal()||null==token.getCredentials()){
+        if(null==token.getPrincipal() || null==token.getCredentials()){
             throw new AuthenticationException(messageConfig.getMsgAccountPasswordEmpty());
         }
         String account = (String) token.getPrincipal();
@@ -58,7 +57,7 @@ public class AccountRealm extends AuthorizingRealm {
         byte[] salt = Hex.decode(accountEntity.getPassword().substring(0,16));
         return new SimpleAuthenticationInfo(new Principal(accountEntity.getId(),accountEntity.getAccount()),
                 accountEntity.getPassword().substring(16),
-                ByteSource.Util.bytes(salt),
+                new ShiroByteSource(ByteSource.Util.bytes(salt)),
                 getName());
     }
 

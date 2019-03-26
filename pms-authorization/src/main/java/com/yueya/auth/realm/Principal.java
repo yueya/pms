@@ -3,7 +3,7 @@ package com.yueya.auth.realm;
 import java.io.Serializable;
 
 public class Principal implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -980255633986282908L;
     private String id; // 用户标识码
     private String userName; // 登录名
     private String name; // 姓名

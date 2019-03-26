@@ -1,4 +1,5 @@
 package com.yueya.auth.config;
+import com.yueya.auth.cache.PmsCacheManager;
 import com.yueya.auth.filter.AccountFilter;
 import com.yueya.auth.filter.ForceLogoutFilter;
 import com.yueya.auth.filter.PmsLogoutFilter;
@@ -8,15 +9,16 @@ import com.yueya.auth.realm.CookieTokenRealm;
 import com.yueya.auth.service.AccountInfoProvider;
 import com.yueya.auth.session.PmsSessionDao;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import sun.rmi.runtime.Log;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +33,8 @@ public class AuthConfig {
     private AccountInfoProvider provider;
     @Autowired
     private PmsSessionDao sessionDao;
-
+    @Autowired
+    private PmsCacheManager cacheManager;
     @Bean
     public SecurityManager securityManager(){
         DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
@@ -40,6 +43,9 @@ public class AuthConfig {
         securityManager.setSessionManager(sessionManager);
         if(properties.getType().equals("server")){
             AccountRealm realm=new AccountRealm();
+            realm.setCachingEnabled(true);
+            realm.setAuthenticationCachingEnabled(true);
+            realm.setCacheManager(cacheManager);
             realm.setProperties(properties);
             if(provider==null){
                 throw new NullPointerException("未实现AccountInfoProvider");
@@ -72,5 +78,19 @@ public class AuthConfig {
         return shiroFilterFactoryBean;
     }
 
+    @Bean
+    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
+        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        advisorAutoProxyCreator.setProxyTargetClass(true);
+        return advisorAutoProxyCreator;
+    }
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+        return authorizationAttributeSourceAdvisor;
+
+    }
 
 }

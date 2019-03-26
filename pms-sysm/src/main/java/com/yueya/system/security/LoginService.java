@@ -10,6 +10,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,8 +45,11 @@ public class LoginService implements AccountInfoProvider {
     }
 
     @Override
-    public Set<String> loadPermissions(String userId,String appCode) {
-        List<SysMenuDO> list=userService.findPermissionsByUser(userId,appCode);
-        return list.stream().map(r->r.getPermission()).collect(Collectors.toSet());
+    public Set<String> loadPermissions(String userId) {
+        List<SysMenuDO> list=userService.findPermissionsByUser(userId);
+        return list.stream()
+                .filter(r -> r.getPermission() != null && !r.getPermission().isEmpty())
+                .flatMap(r -> Arrays.stream(r.getPermission().split(",")))
+                .collect(Collectors.toSet());
     }
 }

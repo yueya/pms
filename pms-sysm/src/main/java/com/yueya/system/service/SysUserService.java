@@ -43,8 +43,8 @@ public class SysUserService extends BaseService<SysUserDO> {
         return roleDao.fetchByUserId(Long.valueOf(userId));
     }
 
-    public List<SysMenuDO> findPermissionsByUser(String userId, String appId) {
-        return menuDao.fetchMenusByUserId(Long.valueOf(userId),appId);
+    public List<SysMenuDO> findPermissionsByUser(String userId) {
+        return menuDao.fetchMenusByUserId(Long.valueOf(userId));
     }
     public void insert(SysUserDO userDO){
         if(userDO.getPassword() != null){

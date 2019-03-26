@@ -5,6 +5,7 @@ import com.yueya.common.web.RestPage;
 import com.yueya.common.web.RestResult;
 import com.yueya.system.dao.tables.pojos.SysLogDO;
 import com.yueya.system.service.SysLogService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,11 +16,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("${auth.adminPath}/log")
-public class SysLogCOntroller extends BaseController {
+public class SysLogController extends BaseController {
 
     @Autowired
     private SysLogService logService;
-
+    @RequiresPermissions("user:admin")
     @RequestMapping("page")
     public RestResult page(@RequestParam(defaultValue = "0") int offset,
                            @RequestParam(defaultValue = "10") int limit,

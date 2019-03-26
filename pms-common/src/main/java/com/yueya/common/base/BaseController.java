@@ -4,6 +4,7 @@ package com.yueya.common.base;
 import com.yueya.common.util.DateUtils;
 import com.yueya.common.web.RestResult;
 import org.apache.commons.text.StringEscapeUtils;
+import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,7 +43,18 @@ public class BaseController {
     @Value("${auth.adminPath}")
     protected String adminPath;
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseBody
+    @ExceptionHandler(AuthorizationException.class)
+    public RestResult AuthExceptionHandler(Exception e ){
+       if(logger.isDebugEnabled()){
+           return RestResult.ERROR(e.getMessage());
+       }else{
+           return RestResult.ERROR("暂无权限");
+       }
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public RestResult ExceptionHandler(Exception e ){

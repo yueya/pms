@@ -4,7 +4,7 @@ import com.yueya.auth.config.AuthConstant;
 import com.yueya.auth.session.SessionDao;
 import com.yueya.common.base.BaseController;
 import com.yueya.common.web.RestResult;
-import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,6 @@ public class SessionController extends BaseController {
 
     @Autowired
     private SessionDao sessionDao;
-    //@RequiresPermissions("user:admin")
     @RequestMapping("page")
     public RestResult listActiveSessions(@RequestParam(name = "limit",defaultValue = "10") int limit,
                                          @RequestParam(name = "offset",defaultValue = "0") int offset){
@@ -27,8 +26,9 @@ public class SessionController extends BaseController {
     @RequestMapping("forceLogout")
     public RestResult forceLogout(@RequestParam("sessionId") String sessionId){
         try {
+            /*
             String curSessionId = SecurityUtils.getSubject().getSession().getId().toString();
-           /* if (curSessionId.equals(sessionId)) {
+            if (curSessionId.equals(sessionId)) {
                 return RestResult.FAILER("不允许退出当前用户");
             }*/
             Session session=sessionDao.readSession(sessionId);

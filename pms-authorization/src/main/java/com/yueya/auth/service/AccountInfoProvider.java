@@ -29,8 +29,7 @@ public interface AccountInfoProvider {
     /**
      * 根据用户和系统加载持有的权限
      * @param userId
-     * @param appCode 系统标识码
      * @return
      */
-    public Set<String> loadPermissions(String userId,String appCode);
+    public Set<String> loadPermissions(String userId);
 }
