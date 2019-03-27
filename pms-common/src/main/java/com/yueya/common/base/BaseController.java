@@ -43,62 +43,6 @@ public class BaseController {
     @Value("${auth.adminPath}")
     protected String adminPath;
 
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    @ResponseBody
-    @ExceptionHandler(AuthorizationException.class)
-    public RestResult AuthExceptionHandler(Exception e ){
-       if(logger.isDebugEnabled()){
-           return RestResult.ERROR(e.getMessage());
-       }else{
-           return RestResult.ERROR("暂无权限");
-       }
-    }
-
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
-    @ExceptionHandler(Exception.class)
-    public RestResult ExceptionHandler(Exception e ){
-       logger.error("controller异常",e);
-       if(logger.isDebugEnabled()){
-           return RestResult.ERROR(e.getMessage());
-       }else{
-           return RestResult.ERROR("error!please check log");
-       }
-    }
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    @ExceptionHandler({ConstraintViolationException.class})
-    public RestResult ValidExceptionHandler(ConstraintViolationException e ){
-        logger.error("参数异常",e);
-        String msg = e.getConstraintViolations().stream()
-                .map(r -> r.getPropertyPath().toString() + ":" + r.getMessage())
-                .collect(Collectors.joining(";"));
-        return RestResult.ERROR(msg);
-    }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    @ExceptionHandler({MethodArgumentNotValidException.class})
-    public RestResult ValidExceptionHandler(MethodArgumentNotValidException e ){
-        logger.error("参数异常",e);
-        String msg = e.getBindingResult().getAllErrors().stream()
-                .filter(r -> r instanceof FieldError)
-                .map(r -> ((FieldError)r).getField()+":"+ r.getDefaultMessage())
-                .collect(Collectors.joining(";"));
-        return RestResult.ERROR(msg);
-    }
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    @ExceptionHandler({BindException.class})
-    public RestResult ValidExceptionHandler(BindException e ){
-        logger.error("参数异常",e);
-        String msg = e.getBindingResult().getAllErrors().stream()
-                .filter(r -> r instanceof FieldError)
-                .map(r -> ((FieldError)r).getField()+":"+ r.getDefaultMessage())
-                .collect(Collectors.joining(";"));
-        return RestResult.ERROR(msg);
-    }
-
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         // String类型转换，将所有传递进来的String进行HTML编码，防止XSS攻击

@@ -1,4 +1,4 @@
-package com.yueya.system.dao.model;
+package com.yueya.system.dao.dto;
 
 public class UserInfo {
     public String name;

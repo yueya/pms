@@ -34,6 +34,7 @@ public class LogListener implements MessageListener {
             logDO.setRemoteAddr(pmsLog.getRemoteAddress());
             logDO.setRequestUri(pmsLog.getRequestUri());
             logDO.setUserAgent(pmsLog.getUserAgent());
+            logDO.setException(pmsLog.getException());
             logService.saveLog(logDO);
         }
     }

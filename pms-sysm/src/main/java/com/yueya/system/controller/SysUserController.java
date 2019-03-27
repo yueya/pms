@@ -4,7 +4,7 @@ import com.yueya.auth.realm.Principal;
 import com.yueya.auth.utils.UserInfoUtil;
 import com.yueya.common.base.BaseController;
 import com.yueya.common.web.RestResult;
-import com.yueya.system.dao.model.UserInfo;
+import com.yueya.system.dao.dto.UserInfo;
 import com.yueya.system.dao.tables.pojos.SysMenuDO;
 import com.yueya.system.dao.tables.pojos.SysUserDO;
 import com.yueya.system.service.SysMenuService;

@@ -5,9 +5,8 @@ package com.yueya.system.dao.tables.daos;
 
 
 import com.yueya.common.base.BaseDao;
-import com.yueya.system.dao.model.UserInfo;
+import com.yueya.system.dao.dto.UserInfo;
 import com.yueya.system.dao.tables.SysOrganization;
-import com.yueya.system.dao.tables.SysRoleMenu;
 import com.yueya.system.dao.tables.SysUser;
 import com.yueya.system.dao.tables.SysUserRole;
 import com.yueya.system.dao.tables.pojos.SysOrganizationDO;
@@ -16,7 +15,6 @@ import com.yueya.system.dao.tables.records.SysUserRecord;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.jooq.Configuration;
 import org.jooq.DSLContext;

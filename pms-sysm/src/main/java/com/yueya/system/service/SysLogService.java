@@ -4,6 +4,7 @@ import com.yueya.common.base.BaseService;
 import com.yueya.system.dao.tables.SysLog;
 import com.yueya.system.dao.tables.daos.SysLogDao;
 import com.yueya.system.dao.tables.pojos.SysLogDO;
+import com.yueya.system.dao.dto.ViewDto;
 import org.jooq.Condition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,13 @@ public class SysLogService extends BaseService<SysLogDO> {
 
     public long countByCondition(SysLogDO logDO) {
         return logDao.countByCondition(getConditions(logDO));
+    }
+
+    public List<ViewDto> queryCountBySystem() {
+        return logDao.queryViewsBySystem();
+    }
+
+    public List<ViewDto> queryCountByHref() {
+        return logDao.queryViewsByHref();
     }
 }

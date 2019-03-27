@@ -3,7 +3,7 @@ package com.yueya.system.service;
 import com.yueya.auth.utils.CredentialsHelper;
 import com.yueya.common.base.BaseService;
 import com.yueya.common.util.DateUtils;
-import com.yueya.system.dao.model.UserInfo;
+import com.yueya.system.dao.dto.UserInfo;
 import com.yueya.system.dao.tables.SysUser;
 import com.yueya.system.dao.tables.daos.SysMenuDao;
 import com.yueya.system.dao.tables.daos.SysRoleDao;

@@ -4,14 +4,20 @@
 package com.yueya.system.dao.tables.daos;
 
 
+import com.yueya.auth.model.PmsLog;
 import com.yueya.common.base.BaseDao;
+import com.yueya.system.dao.tables.SysLog;
+import com.yueya.system.dao.tables.SysSystem;
 import com.yueya.system.dao.tables.pojos.SysLogDO;
 import com.yueya.system.dao.tables.records.SysLogRecord;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.yueya.system.dao.dto.ViewDto;
 import org.jooq.Configuration;
+import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -135,5 +141,24 @@ public class SysLogDao extends BaseDao<SysLogRecord, SysLogDO, Long> {
      */
     public List<SysLogDO> fetchByException(String... values) {
         return fetch(com.yueya.system.dao.tables.SysLog.SYS_LOG.EXCEPTION, values);
+    }
+
+    public List<ViewDto> queryViewsBySystem() {
+        DSLContext create=DSL.using(super.configuration());
+        return create.select(SysSystem.SYS_SYSTEM.NAME.as("name"),DSL.count().as("count"))
+                .from(SysLog.SYS_LOG)
+                .join(SysSystem.SYS_SYSTEM)
+                .on(SysLog.SYS_LOG.APP_ID.eq(SysSystem.SYS_SYSTEM.CODE))
+                .where(SysSystem.SYS_SYSTEM.DEF_FLAG.eq(DEL_NORMAL))
+                .groupBy(SysLog.SYS_LOG.APP_ID).fetchInto(ViewDto.class);
+    }
+
+    public List<ViewDto> queryViewsByHref() {
+        DSLContext create=DSL.using(super.configuration());
+        return create.select(SysLog.SYS_LOG.REQUEST_URI.as("name"),DSL.count().as("count"))
+                .from(SysLog.SYS_LOG)
+                .where(SysLog.SYS_LOG.TYPE.eq(PmsLog.TYPE_ACCESS))
+                .groupBy(SysLog.SYS_LOG.REQUEST_URI)
+                .fetchInto(ViewDto.class);
     }
 }
