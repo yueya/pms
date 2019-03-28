@@ -18,6 +18,7 @@ import org.apache.shiro.util.ByteSource;
 
 import java.util.Set;
 
+import static com.yueya.auth.config.AuthConstant.APP_TYPE_CLIENT;
 import static com.yueya.auth.utils.CredentialsHelper.HASH_ALGORITHM;
 import static com.yueya.auth.utils.CredentialsHelper.HASH_INTERATIONS;
 
@@ -49,6 +50,10 @@ public class AccountRealm extends AuthorizingRealm {
             throw new AuthenticationException(messageConfig.getMsgAccountPasswordEmpty());
         }
         String account = (String) token.getPrincipal();
+        String password = new String((char[]) token.getCredentials());
+        if (APP_TYPE_CLIENT.equals(properties.getType())) {
+            return new SimpleAuthenticationInfo(account,password,getName());
+        }
         Account accountEntity = provider.loadAccount(account);
         if (null == accountEntity) {
             throw new AuthenticationException(messageConfig.getMsgAccountNotExist());

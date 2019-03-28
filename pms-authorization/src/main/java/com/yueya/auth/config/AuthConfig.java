@@ -41,21 +41,19 @@ public class AuthConfig {
         DefaultWebSessionManager sessionManager=new DefaultWebSessionManager();
         sessionManager.setSessionDAO(sessionDao);
         securityManager.setSessionManager(sessionManager);
+        AccountRealm realm=new AccountRealm();
+        realm.setCachingEnabled(true);
+        realm.setAuthenticationCachingEnabled(true);
+        realm.setCacheManager(cacheManager);
+        realm.setProperties(properties);
         if(properties.getType().equals("server")){
-            AccountRealm realm=new AccountRealm();
-            realm.setCachingEnabled(true);
-            realm.setAuthenticationCachingEnabled(true);
-            realm.setCacheManager(cacheManager);
-            realm.setProperties(properties);
             if(provider==null){
                 throw new NullPointerException("未实现AccountInfoProvider");
             }
             realm.setProvider(provider);
             realm.setMessageConfig(MessageConfig.ins());
-            securityManager.setRealm(realm);
-        }else{
-            securityManager.setRealm(new CookieTokenRealm());
         }
+        securityManager.setRealm(realm);
         return securityManager;
     }
 

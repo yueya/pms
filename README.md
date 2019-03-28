@@ -44,7 +44,12 @@
  26. 在线用户查看 get
  27. 强制下线 get
  
-  
+ ### 代码结构
+1.  pms-authorization：权限管理模块
+2.  pms-codegen： 代码生成模块
+3.  pms-sysm：权限管理系统接口
+4.  pms-common: 通用模块
+
 
 #### 使用说明
 

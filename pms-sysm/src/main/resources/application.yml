@@ -3,11 +3,15 @@ auth:
   adminPath: /a
   frontPath: /f
   loginUrl: /login
-  successUrl: http://127.0.0.1:8080/a/index
+  successUrl: http://127.0.0.1:1222
   type: server
 logging:
   config: classpath:logback-dev.xml
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    # default-property-inclusion: non_null
   cache:
     type: ehcache
     ehcache:
@@ -27,9 +31,9 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     druid:
       one:
-        url: jdbc:mysql://localhost:3308/pms?characterEncoding=UTF-8&autoReconnect=true&useUnicode=true&serverTimezone=UTC
+        url: jdbc:mysql://localhost:3306/pms?characterEncoding=UTF-8&autoReconnect=true&useUnicode=true&serverTimezone=GMT%2B8
         username: root
-        password: root
+        password: 123456
         initial-size: 10
         max-active: 100
         min-idle: 10

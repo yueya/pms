@@ -2,10 +2,10 @@
 <configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.11.0.xsd">
     <!-- Configure the database connection here -->
     <jdbc>
-        <driver>com.mysql.jdbc.Driver</driver>
-        <url>jdbc:mysql://localhost:3308/pms?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8</url>
+        <driver>com.mysql.cj.jdbc.Driver</driver>
+        <url>jdbc:mysql://localhost:3306/pms?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8</url>
         <user>root</user>
-        <password>root</password>
+        <password>123456</password>
     </jdbc>
 
     <generator>
@@ -45,7 +45,7 @@
             <packageName>com.yueya.system.dao</packageName>
 
             <!-- The destination directory of your generated classes. Using Maven directory layout here -->
-            <directory>D:/src/pms/</directory>
+            <directory>/home/yueya/权限系统/src/pms/</directory>
         </target>
         <generate>
             <daos>true</daos>

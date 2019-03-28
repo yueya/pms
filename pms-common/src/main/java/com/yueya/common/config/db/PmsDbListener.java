@@ -12,13 +12,26 @@ import org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator;
 import org.springframework.jdbc.support.SQLExceptionTranslator;
 import org.springframework.stereotype.Component;
 
-@Component
 public class PmsDbListener extends DefaultExecuteListener {
     private Logger logger=LoggerFactory.getLogger(getClass());
-    @Autowired
     private DataSourceConnectionProvider connectionProviderMaster;
-    @Autowired
     private DataSourceConnectionProvider connectionProviderSlave;
+
+    public DataSourceConnectionProvider getConnectionProviderMaster() {
+        return connectionProviderMaster;
+    }
+
+    public void setConnectionProviderMaster(DataSourceConnectionProvider connectionProviderMaster) {
+        this.connectionProviderMaster = connectionProviderMaster;
+    }
+
+    public DataSourceConnectionProvider getConnectionProviderSlave() {
+        return connectionProviderSlave;
+    }
+
+    public void setConnectionProviderSlave(DataSourceConnectionProvider connectionProviderSlave) {
+        this.connectionProviderSlave = connectionProviderSlave;
+    }
     private static final ThreadLocal<Integer> holder = new ThreadLocal<>();
     /**
      * 数据源名称
