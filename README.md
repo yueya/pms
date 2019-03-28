@@ -18,7 +18,8 @@
 
 演示地址：
  - http://47.98.182.45:8099/#/user/login
- 账号密码：super_admin/admin
+ 账号密码：super_admin/admin  
+
 前端项目地址：  
  - https://gitee.com/yueyakk/pms-front-new
 #### 内置功能
