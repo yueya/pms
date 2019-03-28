@@ -16,6 +16,9 @@
  5. alibaba druib 数据库连接池  
  6. react；ice  前端框架
 
+演示地址：
+ - http://47.98.182.45:8099/#/user/login
+ 账号密码：super_admin/admin
 #### 内置功能
  1. 菜单列表 get  
  2. 新增菜单 get  
