@@ -14,7 +14,7 @@
  3. shiro 权限框架  
  4. redis 缓存  
  5. alibaba druib 数据库连接池  
- 6. react；ice  前端框架
+ 6. react；阿里的 ice  前端框架
 
 演示地址：
  - http://47.98.182.45:8099/#/user/login
