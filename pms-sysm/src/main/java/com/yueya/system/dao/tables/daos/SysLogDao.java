@@ -18,6 +18,7 @@ import com.yueya.system.dao.dto.ViewDto;
 import org.jooq.Configuration;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
+import org.jooq.meta.derby.sys.Sys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -145,17 +146,17 @@ public class SysLogDao extends BaseDao<SysLogRecord, SysLogDO, Long> {
 
     public List<ViewDto> queryViewsBySystem() {
         DSLContext create=DSL.using(super.configuration());
-        return create.select(SysSystem.SYS_SYSTEM.NAME.as("name"),DSL.count().as("count"))
+        return create.select(SysSystem.SYS_SYSTEM.NAME.as("name"),DSL.count(SysSystem.SYS_SYSTEM.NAME).as("count"))
                 .from(SysLog.SYS_LOG)
                 .join(SysSystem.SYS_SYSTEM)
                 .on(SysLog.SYS_LOG.APP_ID.eq(SysSystem.SYS_SYSTEM.CODE))
                 .where(SysSystem.SYS_SYSTEM.DEF_FLAG.eq(DEL_NORMAL))
-                .groupBy(SysLog.SYS_LOG.APP_ID).fetchInto(ViewDto.class);
+                .groupBy(SysSystem.SYS_SYSTEM.NAME).fetchInto(ViewDto.class);
     }
 
     public List<ViewDto> queryViewsByHref() {
         DSLContext create=DSL.using(super.configuration());
-        return create.select(SysLog.SYS_LOG.REQUEST_URI.as("name"),DSL.count().as("count"))
+        return create.select(SysLog.SYS_LOG.REQUEST_URI.as("name"),DSL.count(SysLog.SYS_LOG.REQUEST_URI).as("count"))
                 .from(SysLog.SYS_LOG)
                 .where(SysLog.SYS_LOG.TYPE.eq(PmsLog.TYPE_ACCESS))
                 .groupBy(SysLog.SYS_LOG.REQUEST_URI)
