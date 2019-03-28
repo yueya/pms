@@ -1,0 +1,56 @@
+auth:
+  appId: auth-sys
+  adminPath: /a
+  frontPath: /f
+  loginUrl: /login
+  successUrl: http://127.0.0.1:1222
+  type: server
+logging:
+  config: classpath:logback-dev.xml
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    # default-property-inclusion: non_null
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache-local.xml
+  redis:
+    host: 127.0.0.1
+    port: 6380
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 8
+        min-idle: 1
+        max-wait: 1000ms
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      one:
+        url: jdbc:mysql://localhost:3306/pms?characterEncoding=UTF-8&autoReconnect=true&useUnicode=true&serverTimezone=GMT%2B8
+        username: root
+        password: 123456
+        initial-size: 10
+        max-active: 100
+        min-idle: 10
+        max-wait: 60000
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000
+      two:
+        url: jdbc:mysql://localhost:3308/pms?characterEncoding=UTF-8&autoReconnect=true&useUnicode=true&serverTimezone=UTC
+        username: root
+        password: root
+        initial-size: 10
+        max-active: 100
+        min-idle: 10
+        max-wait: 60000
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000

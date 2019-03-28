@@ -1,0 +1,26 @@
+
+auth:
+  appId: cms
+  adminPath: /a
+  frontPath: /f
+  loginUrl: /login
+  successUrl: http://127.0.0.1:1222
+  type: client
+logging:
+  config: classpath:logback-dev.xml
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    # default-property-inclusion: non_null
+  redis:
+    host: 127.0.0.1
+    port: 6380
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 8
+        min-idle: 1
+        max-wait: 1000ms
+server:
+  port: 8081
