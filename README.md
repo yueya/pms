@@ -55,14 +55,15 @@
 ### 业务系统开发
 1. 依赖pms-authorization模块
 2. 配置applciation.yml
-  `auth:
+```
+ auth:
      appId: xxx
      adminPath: /a
      frontPath: /f
      loginUrl: /login
      successUrl: http://127.0.0.1:8090
      type: client
-   `
+```
 3. 配置好reids连接和数据库连接
 4. 在nginx中配置好该模块的接口匹配规则
 
