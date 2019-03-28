@@ -2,45 +2,68 @@
 
 #### 项目介绍
 
-  一个前后端分离的通用的权限管理系统，同时也是web项目的脚手架，可以很方便的基于此系统开发项目。各个web可独立启动，方便分模块开发。
-     具体详细请点击：。。。。。。
+  一个前后端分离的通用的权限管理系统，同时也是web项目的脚手架，可以很方便的基于此系统开发项目。各个application可独立启动，只要依赖pms-authorization后，
+  做一些简单的配置，就可以接入权限系统的管理，方便分模块开发。
+        独立启动的web项目，为了能统一控制权限，目前的做法使用redis来接管session的保存，前置一个nginx来把各个系统的接口接到一个域名下，
+      来实现，后续打算换成jwt的方式来验证。
 
 #### 用到的开源框架
- 1 spring boot 不用介绍了  
+ 1 spring boot 2.0 不用介绍了  
  2 jooq orm框架  
  3 shiro 权限框架  
  4 redis 缓存  
  5 alibaba druib 数据库连接池
+ 6 react；ice  前端框架
 
 #### 内置功能
- 1 登录验证 get  
- 2 权限拦截 get  
- 3 访问日志 get  
- 4 强制登出  get  
- 5 字典管理  get  
- 6 菜单管理  
- 7 权限管理  
- 8 模块管理  
- 9 用户管理  
- 10 区域管理  
- 11 角色管理  
- 12 组织管理  
- 13 系统监控  
- 14 代码生成  get    
- 15通用分页  get  
-      
-
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
+ 1 菜单列表 get
+ 2 新增菜单 get
+ 3 删除菜单 get
+ 4 模块列表 get
+ 5 新增模块 get
+ 6 删除模块 get
+ 10 区域列表 get
+ 11 新增区域 get
+ 12 删除区域 get
+ 18 组织列表 get
+ 19 新增组织 get
+ 20 删除组织 get
+ 7 用户列表 get
+ 8 新增用户 get
+ 9 删除用户 get
+ 13 角色列表 get
+ 14 新增角色 get
+ 15 删除角色 get
+ 16 角色授权 get
+ 17 角色分配 get
+ 25 日志列表 get
+ 22 字典列表
+ 23 新增字典
+ 24 删除字典
+ 26 在线用户查看 get
+ 27 强制下线 get
+ 
+  
 
 #### 使用说明
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. 导入数据库
+2. 启动redis
+3. 修改配置文件，启动Application
+
+### 业务系统开发
+1. 依赖pms-authorization模块
+2. 配置applciation.yml
+  'auth:
+     appId: xxx
+     adminPath: /a
+     frontPath: /f
+     loginUrl: /login
+     successUrl: http://127.0.0.1:8090
+     type: client
+   '
+3. 配置好reids连接和数据库连接
+4. 在nginx中配置好该模块的接口匹配规则
 
 #### 参与贡献
 
