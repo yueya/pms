@@ -19,7 +19,6 @@ public class PmsCacheManager implements CacheManager {
     private RedisTemplate<String,Object> redisTemplate;
     @Override
     public <K, V> Cache<K, V> getCache(String s) throws CacheException {
-        System.out.println(CACHE_PREFIX+s);
         return new JedisCache(CACHE_PREFIX+s,redisTemplate,EXPIRE_TIME);
     }
 
