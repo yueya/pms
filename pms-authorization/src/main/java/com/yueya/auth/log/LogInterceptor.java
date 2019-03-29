@@ -3,6 +3,7 @@ package com.yueya.auth.log;
 import com.yueya.auth.realm.Principal;
 import com.yueya.auth.utils.UserInfoUtil;
 import com.yueya.common.web.RestResult;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,10 @@ public class LogInterceptor implements HandlerInterceptor, HandlerExceptionResol
 
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
-        RestResult result;
-        String msg;
+        String msg="";
+        ModelAndView mv = new ModelAndView();
+        MappingJackson2JsonView view = new MappingJackson2JsonView();
+        mv.setView(view);
         if (e instanceof ConstraintViolationException) {
             httpServletResponse.setStatus(HttpStatus.BAD_REQUEST.value());
             ConstraintViolationException ex = (ConstraintViolationException)e;
@@ -64,6 +67,9 @@ public class LogInterceptor implements HandlerInterceptor, HandlerExceptionResol
                     .filter(r -> r instanceof FieldError)
                     .map(r -> ((FieldError)r).getField()+":"+ r.getDefaultMessage())
                     .collect(Collectors.joining(";"));
+        } else if(e instanceof UnauthorizedException) {
+            httpServletResponse.setStatus(HttpStatus.FORBIDDEN.value());
+            msg = "无权限";
         } else {
             httpServletResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             logger.error("controller异常",e);
@@ -75,9 +81,6 @@ public class LogInterceptor implements HandlerInterceptor, HandlerExceptionResol
         }
         Principal principal=UserInfoUtil.getPrincipal();
         threadPool.execute(()-> logService.saveLog(httpServletRequest,null,e,principal,null));
-        ModelAndView mv = new ModelAndView();
-        MappingJackson2JsonView view = new MappingJackson2JsonView();
-        mv.setView(view);
         mv.addObject("code",500);
         mv.addObject("msg",msg);
         return mv;

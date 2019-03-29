@@ -1,5 +1,6 @@
 package com.yueya.system.service;
 
+import com.yueya.auth.cache.PmsCacheManager;
 import com.yueya.auth.utils.CredentialsHelper;
 import com.yueya.common.base.BaseService;
 import com.yueya.common.util.DateUtils;
@@ -29,6 +30,8 @@ public class SysUserService extends BaseService<SysUserDO> {
     private SysRoleDao roleDao;
     @Autowired
     private SysMenuDao menuDao;
+    @Autowired
+    private PmsCacheManager cacheManager;
     public SysUserDO findById(String id){
         return dao.fetchOne(SysUser.SYS_USER.ID,Long.valueOf(id));
     }
@@ -36,14 +39,25 @@ public class SysUserService extends BaseService<SysUserDO> {
         return dao.fetchUserInfo(loginName);
     }
     public SysUserDO findByUserName(String userName){
-        return dao.fetchOne(SysUser.SYS_USER.LOGIN_NAME,userName);
+        Condition condition = SysUser.SYS_USER.LOGIN_NAME.eq(userName)
+                .and(SysUser.SYS_USER.DEL_FLAG.eq(DEL_FLAG_NORMAL));
+        List<SysUserDO> list =  dao.fetchByCondition(condition);
+        if (list != null && !list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
     }
 
     public List<SysRoleDO> findRoles(String userId) {
         return roleDao.fetchByUserId(Long.valueOf(userId));
     }
 
-    public List<SysMenuDO> findPermissionsByUser(String userId) {
+    /**
+     * 返回权限使用
+     * @param userId
+     * @return
+     */
+    public List<SysMenuDO> findMenuByUser(String userId) {
         return menuDao.fetchMenusByUserId(Long.valueOf(userId));
     }
     public void insert(SysUserDO userDO){
@@ -73,6 +87,7 @@ public class SysUserService extends BaseService<SysUserDO> {
         }
         userDO.setGmtModified(DateUtils.getCurTimeStamp());
         dao.update(userDO);
+        cacheManager.clearCache(userDO.getLoginName());
     }
 
     public List<SysUserDO> page(int offset,int limit,SysUserDO userDO){

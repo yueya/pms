@@ -8,7 +8,9 @@ import com.yueya.auth.realm.AccountRealm;
 import com.yueya.auth.realm.CookieTokenRealm;
 import com.yueya.auth.service.AccountInfoProvider;
 import com.yueya.auth.session.PmsSessionDao;
+import com.yueya.auth.session.PmsSessionFactory;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.SessionFactory;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -39,6 +41,8 @@ public class AuthConfig {
     public SecurityManager securityManager(){
         DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
         DefaultWebSessionManager sessionManager=new DefaultWebSessionManager();
+        SessionFactory sessionFactory = new PmsSessionFactory();
+        sessionManager.setSessionFactory(sessionFactory);
         sessionManager.setSessionDAO(sessionDao);
         securityManager.setSessionManager(sessionManager);
         AccountRealm realm=new AccountRealm();

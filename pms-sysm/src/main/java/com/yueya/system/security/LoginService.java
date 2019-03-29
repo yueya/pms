@@ -46,7 +46,7 @@ public class LoginService implements AccountInfoProvider {
 
     @Override
     public Set<String> loadPermissions(String userId) {
-        List<SysMenuDO> list=userService.findPermissionsByUser(userId);
+        List<SysMenuDO> list=userService.findMenuByUser(userId);
         return list.stream()
                 .filter(r -> r.getPermission() != null && !r.getPermission().isEmpty())
                 .flatMap(r -> Arrays.stream(r.getPermission().split(",")))

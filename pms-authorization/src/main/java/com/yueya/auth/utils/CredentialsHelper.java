@@ -37,8 +37,4 @@ public class CredentialsHelper {
         return credentials.equals(source.toHex()+hashPassword);
     }
 
-    public static void main(String[] args) {
-        System.out.println(entryptCredentials("admin"));
-        System.out.println(validateCredentials("admin","0b20c3a122a412e220115e706d224cc583d786d91e635e936b1b1bb7"));
-    }
 }

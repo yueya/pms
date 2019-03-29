@@ -1,11 +1,15 @@
 package com.yueya.auth.cache;
 
+import com.yueya.auth.realm.AccountRealm;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+
+import javax.xml.bind.SchemaOutputResolver;
+import java.util.Set;
 
 @Component
 public class PmsCacheManager implements CacheManager {
@@ -15,7 +19,14 @@ public class PmsCacheManager implements CacheManager {
     private RedisTemplate<String,Object> redisTemplate;
     @Override
     public <K, V> Cache<K, V> getCache(String s) throws CacheException {
+        System.out.println(CACHE_PREFIX+s);
         return new JedisCache(CACHE_PREFIX+s,redisTemplate,EXPIRE_TIME);
+    }
+
+    public void clearCache(String subject) {
+        Cache<Object,Object> cache = getCache(AccountRealm.class.getName()+".authenticationCache");
+        Object p = cache.get(subject);
+        cache.remove(subject);
     }
 
 }
