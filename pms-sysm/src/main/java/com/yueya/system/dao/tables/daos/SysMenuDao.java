@@ -28,6 +28,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
 
+    public final static String TYPE_MENU = "menu";
+    public final static String TYPE_BUTTON = "button";
     /**
      * Create a new SysMenuDao without any configuration
      */
@@ -194,6 +196,7 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
                 .on(SysUserRole.SYS_USER_ROLE.ROLE_ID.eq(SysRoleMenu.SYS_ROLE_MENU.ROLE_ID))
                 .where(SysUserRole.SYS_USER_ROLE.USER_ID.eq(userId)
                 .and(SysMenu.SYS_MENU.USEABLE.eq(ENABLE))
+                .and(SysMenu.SYS_MENU.TYPE.eq(TYPE_MENU))
                 .and(SysMenu.SYS_MENU.DEL_FLAG.eq(DEL_NORMAL)))
                 .fetchInto(getType());
         return list;
@@ -209,6 +212,7 @@ public class SysMenuDao extends BaseDao<SysMenuRecord, SysMenuDO, Long> {
                 .on(SysUserRole.SYS_USER_ROLE.ROLE_ID.eq(SysRoleMenu.SYS_ROLE_MENU.ROLE_ID))
                 .where(SysUserRole.SYS_USER_ROLE.USER_ID.eq(userId)
                 .and(SysMenu.SYS_MENU.USEABLE.eq(ENABLE))
+                .and(SysMenu.SYS_MENU.TYPE.eq(TYPE_MENU))
                 .and(SysMenu.SYS_MENU.DEL_FLAG.eq(DEL_NORMAL)))
                 .and(SysMenu.SYS_MENU.SYSTEM_CODE.eq(systemCode))
                 .fetchInto(getType());

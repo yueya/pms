@@ -20,7 +20,7 @@ public class SysLogController extends BaseController {
 
     @Autowired
     private SysLogService logService;
-    @RequiresPermissions("user:admin")
+    @RequiresPermissions("sys:log:show")
     @RequestMapping("page")
     public RestResult page(@RequestParam(defaultValue = "0") int offset,
                            @RequestParam(defaultValue = "10") int limit,

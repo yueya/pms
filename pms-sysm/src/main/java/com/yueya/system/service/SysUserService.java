@@ -36,7 +36,13 @@ public class SysUserService extends BaseService<SysUserDO> {
         return dao.fetchUserInfo(loginName);
     }
     public SysUserDO findByUserName(String userName){
-        return dao.fetchOne(SysUser.SYS_USER.LOGIN_NAME,userName);
+        Condition condition = SysUser.SYS_USER.LOGIN_NAME.eq(userName)
+                .and(SysUser.SYS_USER.DEL_FLAG.eq(DEL_FLAG_NORMAL));
+        List<SysUserDO> list =  dao.fetchByCondition(condition);
+        if (list != null && !list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
     }
 
     public List<SysRoleDO> findRoles(String userId) {

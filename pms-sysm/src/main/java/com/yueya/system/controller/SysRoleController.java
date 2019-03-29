@@ -4,6 +4,7 @@ import com.yueya.common.base.BaseController;
 import com.yueya.common.web.RestResult;
 import com.yueya.system.dao.tables.pojos.SysRoleDO;
 import com.yueya.system.service.SysRoleService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ public class SysRoleController extends BaseController {
     private SysRoleService roleService;
 
 
+    @RequiresPermissions("sys:role:show")
     @RequestMapping("page")
     public RestResult page(@RequestParam(defaultValue = "0") int offset,
                            @RequestParam(defaultValue = "10") int limit,
@@ -25,16 +27,21 @@ public class SysRoleController extends BaseController {
         return RestResult.OKWithPage(list,count);
     }
 
+    @RequiresPermissions("sys:role:insert")
     @PostMapping("insert")
     public RestResult insert(@RequestBody SysRoleDO roleDO){
         roleService.insert(roleDO);
         return RestResult.OK();
     }
+
+    @RequiresPermissions("sys:role:update")
     @PostMapping("update")
     public RestResult update(@RequestBody SysRoleDO roleDO){
         roleService.update(roleDO);
         return RestResult.OK();
     }
+
+    @RequiresPermissions("sys:role:delete")
     @RequestMapping("delete")
     public RestResult delete(@RequestParam("ids") String ids){
         roleService.delete(ids);
@@ -46,6 +53,8 @@ public class SysRoleController extends BaseController {
         return RestResult.OkWithData(roleService.roleMenus(id));
     }
 
+
+    @RequiresPermissions("sys:role:auth")
     @PostMapping("auth")
     public RestResult auth(@RequestParam("roleId") String roleId,@RequestParam("menuIds") String menuIds) {
         if (roleId.equals("1")) {
@@ -64,6 +73,7 @@ public class SysRoleController extends BaseController {
         return RestResult.OkWithData(roleService.fetchUsers(id));
     }
 
+    @RequiresPermissions("sys:role:assign")
     @PostMapping("assign")
     public RestResult assign(@RequestParam("addIds") String addIds,
                              @RequestParam("delIds") String delIds,

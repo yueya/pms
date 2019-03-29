@@ -18,11 +18,13 @@ public class SessionController extends BaseController {
 
     @Autowired
     private SessionDao sessionDao;
+    @RequiresPermissions("sys:session:list")
     @RequestMapping("page")
     public RestResult listActiveSessions(@RequestParam(name = "limit",defaultValue = "10") int limit,
                                          @RequestParam(name = "offset",defaultValue = "0") int offset){
         return RestResult.OkWithData(sessionDao.getActiveSessions(offset,limit));
     }
+    @RequiresPermissions("sys:session:edit")
     @RequestMapping("forceLogout")
     public RestResult forceLogout(@RequestParam("sessionId") String sessionId){
         try {

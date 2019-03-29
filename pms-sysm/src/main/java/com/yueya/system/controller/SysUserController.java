@@ -9,6 +9,7 @@ import com.yueya.system.dao.tables.pojos.SysMenuDO;
 import com.yueya.system.dao.tables.pojos.SysUserDO;
 import com.yueya.system.service.SysMenuService;
 import com.yueya.system.service.SysUserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,8 @@ public class SysUserController extends BaseController {
         List<SysMenuDO> menus=menuService.list(principal.getId());
         return RestResult.OkWithData(menus);
     }
+
+    @RequiresPermissions("sys:user:show")
     @RequestMapping("page")
     public RestResult page(@RequestParam(defaultValue = "0") int offset,
                            @RequestParam(defaultValue = "10") int limit,
@@ -45,6 +48,7 @@ public class SysUserController extends BaseController {
         return RestResult.OKWithPage(list,count);
     }
 
+    @RequiresPermissions("sys:user:insert")
     @PostMapping("insert")
     public RestResult insert(@RequestBody @Validated SysUserDO userDO){
         SysUserDO old = userService.findByUserName(userDO.getLoginName());
@@ -54,12 +58,15 @@ public class SysUserController extends BaseController {
         userService.insert(userDO);
         return RestResult.OK("success");
     }
+
+    @RequiresPermissions("sys:user:update")
     @PostMapping("update")
     public RestResult update(@RequestBody SysUserDO userDO){
-        return RestResult.ERROR("演示模式，请勿修改");
-        // userService.update(userDO);
-        // return RestResult.OK("success");
+         userService.update(userDO);
+         return RestResult.OK("success");
     }
+
+    @RequiresPermissions("sys:user:delete")
     @RequestMapping("delete")
     public RestResult delete(String ids){
         userService.delete(ids);

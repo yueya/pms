@@ -23,13 +23,13 @@ public class SysMenuController extends BaseController {
         menuService.insert(menuDO);
         return RestResult.OK("success");
     }
-    @RequiresPermissions("menu:update")
+    @RequiresPermissions("sys:menu:update")
     @RequestMapping("update")
     public RestResult update(@RequestBody SysMenuDO menuDO){
         menuService.update(menuDO);
         return RestResult.OK("success");
     }
-    @RequiresPermissions("menu:delete")
+    @RequiresPermissions("sys:menu:delete")
     @RequestMapping("delete")
     public RestResult delete(String ids){
         menuService.delete(ids);
@@ -40,6 +40,7 @@ public class SysMenuController extends BaseController {
         String userId = UserInfoUtil.getPrincipal().getId();
         return RestResult.OkWithData(menuService.list(userId));
     }
+    @RequiresPermissions("sys:menu:show")
     @RequestMapping("list")
     public RestResult list(@RequestParam(defaultValue = "0") int offset,
                            @RequestParam(defaultValue = "10") int limit, SysMenuDO menuDO){
