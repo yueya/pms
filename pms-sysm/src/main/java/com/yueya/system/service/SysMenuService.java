@@ -10,9 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SysMenuService extends BaseService<SysMenuDO> {
+
+    public final static String TYPE_MENU = "menu";
+    public final static String TYPE_BUTTON = "button";
+
     @Autowired
     private SysMenuDao menuDao;
     public void insert(SysMenuDO menuDO){
@@ -45,12 +50,14 @@ public class SysMenuService extends BaseService<SysMenuDO> {
     }
 
     /**
-     * 根据用户角色 获取用户可以看到的菜单
+     * 根据用户角色 获取用户可以看到的菜单,按钮不需要返回
      * @param userId
      * @return
      */
     public List<SysMenuDO> list(String userId){
-        return menuDao.fetchMenusByUserId(Long.valueOf(userId));
+        return menuDao.fetchMenusByUserId(Long.valueOf(userId))
+                .stream().filter(r -> TYPE_MENU.equals(r.getType()))
+                .collect(Collectors.toList());
     }
 
     @Override

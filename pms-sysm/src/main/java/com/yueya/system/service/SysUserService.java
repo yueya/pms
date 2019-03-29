@@ -49,7 +49,12 @@ public class SysUserService extends BaseService<SysUserDO> {
         return roleDao.fetchByUserId(Long.valueOf(userId));
     }
 
-    public List<SysMenuDO> findPermissionsByUser(String userId) {
+    /**
+     * 返回权限使用
+     * @param userId
+     * @return
+     */
+    public List<SysMenuDO> findMenuByUser(String userId) {
         return menuDao.fetchMenusByUserId(Long.valueOf(userId));
     }
     public void insert(SysUserDO userDO){

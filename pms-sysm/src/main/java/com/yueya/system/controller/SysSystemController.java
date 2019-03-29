@@ -17,7 +17,6 @@ public class SysSystemController extends BaseController {
     @Autowired
     private SysSystemService systemService;
 
-    @RequiresPermissions("sys:system:show")
     @RequestMapping("list")
     public RestResult list(){
         return RestResult.OkWithData(systemService.findAll());

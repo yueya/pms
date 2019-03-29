@@ -18,6 +18,7 @@ public class SysMenuController extends BaseController {
     @Autowired
     private SysMenuService menuService;
 
+    @RequiresPermissions("sys:menu:insert")
     @PostMapping("insert")
     public RestResult insert(@RequestBody SysMenuDO menuDO){
         menuService.insert(menuDO);
