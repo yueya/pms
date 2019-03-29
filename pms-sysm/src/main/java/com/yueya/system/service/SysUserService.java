@@ -1,5 +1,6 @@
 package com.yueya.system.service;
 
+import com.yueya.auth.cache.PmsCacheManager;
 import com.yueya.auth.utils.CredentialsHelper;
 import com.yueya.common.base.BaseService;
 import com.yueya.common.util.DateUtils;
@@ -29,6 +30,8 @@ public class SysUserService extends BaseService<SysUserDO> {
     private SysRoleDao roleDao;
     @Autowired
     private SysMenuDao menuDao;
+    @Autowired
+    private PmsCacheManager cacheManager;
     public SysUserDO findById(String id){
         return dao.fetchOne(SysUser.SYS_USER.ID,Long.valueOf(id));
     }
@@ -84,6 +87,7 @@ public class SysUserService extends BaseService<SysUserDO> {
         }
         userDO.setGmtModified(DateUtils.getCurTimeStamp());
         dao.update(userDO);
+        cacheManager.clearCache(userDO.getLoginName());
     }
 
     public List<SysUserDO> page(int offset,int limit,SysUserDO userDO){
