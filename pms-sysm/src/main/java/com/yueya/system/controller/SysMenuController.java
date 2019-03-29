@@ -5,6 +5,7 @@ import com.yueya.common.base.BaseController;
 import com.yueya.common.web.RestResult;
 import com.yueya.system.dao.tables.pojos.SysMenuDO;
 import com.yueya.system.service.SysMenuService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,11 +23,13 @@ public class SysMenuController extends BaseController {
         menuService.insert(menuDO);
         return RestResult.OK("success");
     }
+    @RequiresPermissions("menu:update")
     @RequestMapping("update")
     public RestResult update(@RequestBody SysMenuDO menuDO){
         menuService.update(menuDO);
         return RestResult.OK("success");
     }
+    @RequiresPermissions("menu:delete")
     @RequestMapping("delete")
     public RestResult delete(String ids){
         menuService.delete(ids);

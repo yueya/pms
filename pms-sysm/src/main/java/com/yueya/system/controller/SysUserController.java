@@ -56,8 +56,9 @@ public class SysUserController extends BaseController {
     }
     @PostMapping("update")
     public RestResult update(@RequestBody SysUserDO userDO){
-        userService.update(userDO);
-        return RestResult.OK("success");
+        return RestResult.ERROR("演示模式，请勿修改");
+        // userService.update(userDO);
+        // return RestResult.OK("success");
     }
     @RequestMapping("delete")
     public RestResult delete(String ids){

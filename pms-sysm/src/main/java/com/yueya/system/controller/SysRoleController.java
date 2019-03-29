@@ -48,6 +48,9 @@ public class SysRoleController extends BaseController {
 
     @PostMapping("auth")
     public RestResult auth(@RequestParam("roleId") String roleId,@RequestParam("menuIds") String menuIds) {
+        if (roleId.equals("1")) {
+            return RestResult.ERROR("演示模式，请勿修改");
+        }
         roleService.authMenus(roleId,menuIds);
         return RestResult.OK();
     }
